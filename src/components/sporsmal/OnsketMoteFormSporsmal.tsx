@@ -24,9 +24,9 @@ function OnsketMoteFormSporsmal (props: SporsmalProps) {
                 legend=""
                 name=""
                 radios={[
-                    { label: 'I et møte på NAV-kontoret mitt', value: MEETING_VALUE },
-                    { label: 'I en telefonsamtale', value: PHONE_VALUE },
-                    { label: 'Jeg vil skrive', value: WRITING_VALUE },
+                    { label: 'I et møte på NAV-kontoret mitt', disabled:props.loading, value: MEETING_VALUE },
+                    { label: 'I en telefonsamtale', disabled:props.loading, value: PHONE_VALUE },
+                    { label: 'Jeg vil skrive', disabled:props.loading, value: WRITING_VALUE },
                 ]}
                 checked={value}
                 onChange={(e, val) => setValue(val)}
@@ -35,7 +35,9 @@ function OnsketMoteFormSporsmal (props: SporsmalProps) {
             <InfoPanel>
                 Når du trykker neste, vil svaret ditt bli delt med veilederen din.
             </InfoPanel>
-            <Hovedknapp onClick={() => props.onSubmit(value)}>Neste</Hovedknapp>
+            <Hovedknapp spinner={props.loading}
+                        disabled={props.loading}
+                        onClick={() => props.onSubmit(value)}>Neste</Hovedknapp>
         </div>
 }
 

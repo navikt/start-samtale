@@ -32,7 +32,10 @@ function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
         <InfoPanel>
             Når du trykker neste, vil svaret ditt bli delt med veilederen din.
         </InfoPanel>
-        <Hovedknapp onClick={() => props.onSubmit(value)}>Neste</Hovedknapp>
+        <Hovedknapp spinner={props.loading}
+                    onClick={() => props.onSubmit(value)}>
+            Neste
+        </Hovedknapp>
     </div>
 }
 

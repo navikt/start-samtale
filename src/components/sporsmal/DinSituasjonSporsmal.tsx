@@ -39,7 +39,10 @@ function DinSituasjonSporsmal(props: SporsmalProps) {
         <InfoPanel>
             Når du trykker fullfør, vil svaret ditt bli delt med veilederen din.
         </InfoPanel>
-        <Hovedknapp onClick={() => props.onSubmit(value)}>Fullfør</Hovedknapp>
+        <Hovedknapp spinner={props.loading}
+                    onClick={() => props.onSubmit(value)}>
+            Fullfør
+        </Hovedknapp>
     </div>
 }
 

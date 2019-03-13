@@ -7,6 +7,7 @@ import DinSituasjonSporsmal from "./DinSituasjonSporsmal";
 import './Sporsmal.less'
 
 export interface SporsmalProps {
+    loading: boolean;
     onSubmit: (value: string) => void;
 }
 
@@ -41,9 +42,11 @@ const reducer = (state: State, action: Action) => {
     switch (action.type) {
         case 'next':
             if (action.value === WRITING_VALUE){
-                return {...state, step: 3};
+                return {...state, step: 3, loading: false};
             }
-            return {...state, step: state.step + 1};
+            return {...state, step: state.step + 1, loading: false};
+        case 'loading':
+            return {...state, loading: true};
         default:
             throw new Error('Unexpected action');
     }
@@ -67,7 +70,12 @@ function SporsmalManager() {
                 />
             }
 
-            <Question onSubmit={(value) => dispatch({type: 'next', value})}/>
+            <Question loading={state.loading} onSubmit={(value) => {
+                dispatch({type: 'loading', value});
+                setTimeout(() => {
+                    dispatch({type: 'next', value});
+                }, 10000)
+            }}/>
         </>
     );
 }
