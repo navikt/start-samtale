@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import {Innholdstittel, Undertittel} from 'nav-frontend-typografi';
+import {Undertittel} from 'nav-frontend-typografi';
 import {RadioPanelGruppe} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "./SporsmalManager";
@@ -16,7 +16,7 @@ function OnsketMoteFormSporsmal (props: SporsmalProps) {
             </Undertittel>
 
             <RadioPanelGruppe
-                className="spm-radio spm-row"
+                className="spm-row"
                 legend=""
                 name=""
                 radios={[
