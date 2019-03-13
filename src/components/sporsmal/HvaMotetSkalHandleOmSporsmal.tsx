@@ -5,11 +5,11 @@ import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "./SporsmalManager";
 import InfoPanel from "../infopanel/InfoPanel";
 
-const initRadioState: string | undefined = undefined;
+const initTextState: string = '';
 
 
 function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
-    const [value, setValue] = useState(initRadioState);
+    const [value, setValue] = useState(initTextState);
 
     return <div className="spm">
         <Normaltekst className="spm-row">
@@ -25,16 +25,14 @@ function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
                 textareaClass="spm-text-area"
                 label={false}
                 tellerTekst={() => false}
-                value={value || ''}
+                value={value}
                 onChange={(e) => setValue((e.target as HTMLInputElement).value)}
             />
         </div>
         <InfoPanel>
             Når du trykker neste, vil svaret ditt bli delt med veilederen din.
         </InfoPanel>
-        <Hovedknapp onClick={() => {
-            props.onSubmit()
-        }}>Neste</Hovedknapp>
+        <Hovedknapp onClick={() => props.onSubmit(value)}>Neste</Hovedknapp>
     </div>
 }
 

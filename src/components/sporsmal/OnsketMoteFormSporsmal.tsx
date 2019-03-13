@@ -5,9 +5,13 @@ import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "./SporsmalManager";
 import InfoPanel from "../infopanel/InfoPanel";
 
-const initRadioState: string | undefined = undefined;
+const MEETING_VALUE = 'I et møte på NAV-kontoret mitt';
+const PHONE_VALUE = 'I en telefonsamtale';
+export const WRITING_VALUE = 'Jeg vil skrive';
 
-// todo can we refactor out the logic out of the view code?
+
+const initRadioState: string = '';
+
 function OnsketMoteFormSporsmal (props: SporsmalProps) {
     const [value, setValue] = useState(initRadioState);
     return <div className="spm">
@@ -20,9 +24,9 @@ function OnsketMoteFormSporsmal (props: SporsmalProps) {
                 legend=""
                 name=""
                 radios={[
-                    { label: 'I et møte på NAV-kontoret mitt', value: 'I et møte på NAV-kontoret mitt' },
-                    { label: 'I en telefonsamtale', value: 'I en telefonsamtale' },
-                    { label: 'Jeg vil skrive', value: 'Jeg vil skrive' },
+                    { label: 'I et møte på NAV-kontoret mitt', value: MEETING_VALUE },
+                    { label: 'I en telefonsamtale', value: PHONE_VALUE },
+                    { label: 'Jeg vil skrive', value: WRITING_VALUE },
                 ]}
                 checked={value}
                 onChange={(e, val) => setValue(val)}
@@ -31,7 +35,7 @@ function OnsketMoteFormSporsmal (props: SporsmalProps) {
             <InfoPanel>
                 Når du trykker neste, vil svaret ditt bli delt med veilederen din.
             </InfoPanel>
-            <Hovedknapp onClick={() => props.onSubmit()}>Neste</Hovedknapp>
+            <Hovedknapp onClick={() => props.onSubmit(value)}>Neste</Hovedknapp>
         </div>
 }
 

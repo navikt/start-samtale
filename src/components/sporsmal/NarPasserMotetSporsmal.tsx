@@ -5,11 +5,11 @@ import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "./SporsmalManager";
 import InfoPanel from "../infopanel/InfoPanel";
 
-const initRadioState: string | undefined = undefined;
-
+const inputState: string = '';
 
 function NarPasserMotetSporsmal(props: SporsmalProps) {
-    const [value, setValue] = useState(initRadioState);
+    const [value, setValue] = useState(inputState);
+
     return <div className="spm">
         <Undertittel className="spm-row">
             Når du trykker neste, vil svaret ditt bli delt med veilederen din.
@@ -21,7 +21,7 @@ function NarPasserMotetSporsmal(props: SporsmalProps) {
         <Input
             className="spm-row"
             label={false}
-            value={value || ''}
+            value={value}
             placeholder="Skriv her"
             onChange={(e) => setValue((e.target as HTMLInputElement).value)}
         />
@@ -29,9 +29,9 @@ function NarPasserMotetSporsmal(props: SporsmalProps) {
             Veilederen din vil kalle deg inn til et møte basert på tilbakemeldingene dine.
         </Normaltekst>
         <InfoPanel>
-            Når du trykker fullfører, vil svaret ditt bli delt med veilederen din.
+            Når du trykker fullfør, vil svaret ditt bli delt med veilederen din.
         </InfoPanel>
-        <Hovedknapp onClick={() => {props.onSubmit();}}>
+        <Hovedknapp onClick={() => props.onSubmit(value)}>
             Fullfør
         </Hovedknapp>
     </div>
