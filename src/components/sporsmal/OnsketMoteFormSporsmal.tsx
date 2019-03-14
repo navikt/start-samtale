@@ -29,7 +29,7 @@ function OnsketMoteFormSporsmal (props: SporsmalProps) {
                     { label: 'Jeg vil skrive', disabled:props.loading, value: WRITING_VALUE },
                 ]}
                 checked={value}
-                onChange={(e, val) => setValue(val)}
+                onChange={(_, val) => setValue(val)}
             />
 
             <InfoPanel>
