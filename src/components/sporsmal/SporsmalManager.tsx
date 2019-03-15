@@ -1,83 +1,48 @@
 import React, {useReducer} from 'react';
-import OnsketMoteFormSporsmal, {WRITING_VALUE} from "./OnsketMoteFormSporsmal";
-import Stegindikator from "nav-frontend-stegindikator/lib/stegindikator";
-import HvaMotetSkalHandleOmSporsmal from "./HvaMotetSkalHandleOmSporsmal";
-import NarPasserMotetSporsmal from "./NarPasserMotetSporsmal";
-import DinSituasjonSporsmal from "./DinSituasjonSporsmal";
-import './Sporsmal.less'
+import {WRITING_VALUE} from "./page/OnsketMoteFormSporsmal";
+import {NyDialogMeldingData} from "../api/dataTypes";
+import {postDialog} from "../api/api";
+import {initialState as initialFlowState,
+    reducer as flowReducer,
+    ActionTypes as FlowActionTypes
+} from './flowReducer';
+import {initialState as initialFetchState,
+    reducer as fetchReducer,
+    ActionTypes as FetchActionTypes,
+    Action as FetchAction
+} from './fetchReducer';
+import SporsmalView from "./SporsmalView";
 
-export interface SporsmalProps {
-    loading: boolean;
-    onSubmit: (value: string) => void;
+function dataFetcher(dispatch: (value: FetchAction) => void, value: string) {
+    dispatch({type: FetchActionTypes.LOADING});
+    const data: NyDialogMeldingData = {tekst: value};
+    return postDialog(data)
+        .then(_ => dispatch({type: FetchActionTypes.OK}))
+        .catch(() => dispatch({type: FetchActionTypes.FAILURE}))
 }
-
-function getSporsmal(id: number): (props: SporsmalProps) => JSX.Element {
-    switch (id) {
-        case 0: return OnsketMoteFormSporsmal;
-        case 1: return HvaMotetSkalHandleOmSporsmal;
-        case 2: return NarPasserMotetSporsmal;
-        case 3: return DinSituasjonSporsmal;
-        default:
-            throw new Error('Unexpected question');
-    }
-}
-
-interface State {
-    step: number;
-    loading: boolean;
-    dialogId: number | undefined;
-}
-
-interface Action {
-    type: string,
-    value: string
-}
-
-const initialState = {
-    step: 0,
-    loading: false,
-    dialogId: undefined
-};
-const reducer = (state: State, action: Action) => {
-    switch (action.type) {
-        case 'next':
-            if (action.value === WRITING_VALUE){
-                return {...state, step: 3, loading: false};
-            }
-            return {...state, step: state.step + 1, loading: false};
-        case 'loading':
-            return {...state, loading: true};
-        default:
-            throw new Error('Unexpected action');
-    }
-};
 
 function SporsmalManager() {
-    const [state, dispatch] = useReducer(reducer, initialState);
+    const [flowState, flowDispatch] = useReducer(flowReducer, initialFlowState);
+    const [fetchState, fetchDispatch] = useReducer(fetchReducer, initialFetchState);
 
-    const Question = getSporsmal(state.step);
-    return (
-        <>
-            {
-                state.step != 3 && <Stegindikator
-                    steg={[
-                        {label: "Dette steget først", index: 0},
-                        {label: "Og så dette steget", index: 1},
-                        {label: "Deretter må du gjøre dette", index: 2},
-                    ]}
-                    kompakt
-                    aktivtSteg={state.step}
-                />
+    const onSubmit = (value: string) => {
+            if (flowState.step === 0 && value === WRITING_VALUE){
+                flowDispatch({type: FlowActionTypes.SET, value: 3})
             }
+            else if(value.length === 0){
+                flowDispatch({type: FlowActionTypes.NEXT});
+            }
+            else {
+                dataFetcher(fetchDispatch, value)
+                    .then(() => flowDispatch({type: FlowActionTypes.NEXT}))
+            }
+        };
 
-            <Question loading={state.loading} onSubmit={(value) => {
-                dispatch({type: 'loading', value});
-                setTimeout(() => {
-                    dispatch({type: 'next', value});
-                }, 10000)
-            }}/>
-        </>
-    );
+    return <SporsmalView step={flowState.step}
+                     onSubmit={onSubmit}
+                     loading={fetchState.loading}/>;
+
+
 }
 
 export default SporsmalManager;

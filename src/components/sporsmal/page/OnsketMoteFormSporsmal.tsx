@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import {Undertittel} from 'nav-frontend-typografi';
 import {RadioPanelGruppe} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
-import {SporsmalProps} from "./SporsmalManager";
-import InfoPanel from "../infopanel/InfoPanel";
+import {SporsmalProps} from "../SporsmalView";
+import InfoPanel from "../../infopanel/InfoPanel";
 
 const MEETING_VALUE = 'I et møte på NAV-kontoret mitt';
 const PHONE_VALUE = 'I en telefonsamtale';
