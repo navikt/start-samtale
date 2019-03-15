@@ -33,6 +33,7 @@
     "typescript": "^3.3.3333"
   },
   "scripts": {
+    "lint": "echo not implemented, part of the build script",
     "start": "cross-env REACT_APP_MOCK=true craco start",
     "build": "craco build",
     "test": "craco test",
