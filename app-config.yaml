@@ -1,0 +1,55 @@
+# ref https://raw.githubusercontent.com/nais/naisd/master/nais_example.yaml
+image: docker.adeo.no:5000/fo/forberede-moete
+replicas:
+  min: 2
+  max: 2
+  cpuThresholdPercentage: 50
+
+port: 8080
+
+healthcheck:
+  liveness:
+    path: /internal/isAlive
+    initialDelay: 60
+  readiness:
+    path: /internal/isReady
+    initialDelay: 60
+
+team: bos
+
+alertProfiles:
+  - common-java-modules
+
+prometheus:
+  enabled: true
+  path: /internal/metrics
+
+resources:
+  limits:
+    cpu: 3
+    memory: 768Mi
+  requests:
+    memory: 512Mi
+
+fasitResources:
+  used:
+    - alias: appres.cms
+      resourceType: baseUrl
+    - alias: appdynamics
+      resourceType: applicationproperties
+
+    # links
+    - alias: aktivitetsplan
+      resourceType: baseUrl
+
+    # oidc med AzureAD B2C
+    - alias: loginservice
+      resourceType: restservice
+      propertyMap:
+        url: OIDC_LOGIN_URL
+    - alias: aad_b2c_clientid
+      resourceType: credential
+    - alias: aad_b2c_discovery
+      resourceType: baseurl
+
+webproxy: true
