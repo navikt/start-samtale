@@ -21,6 +21,7 @@ function NarPasserMotetSporsmal(props: SporsmalProps) {
         <Input
             className="spm-row"
             label={false}
+            disabled={props.loading}
             value={value}
             placeholder="Skriv her"
             onChange={(e) => setValue((e.target as HTMLInputElement).value)}
@@ -32,6 +33,7 @@ function NarPasserMotetSporsmal(props: SporsmalProps) {
             Når du trykker fullfør, vil svaret ditt bli delt med veilederen din.
         </InfoPanel>
         <Hovedknapp spinner={props.loading}
+                    disabled={props.loading}
                     onClick={() => props.onSubmit(value)}>
             Fullfør
         </Hovedknapp>

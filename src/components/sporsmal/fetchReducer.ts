@@ -7,7 +7,7 @@ export enum ActionTypes {
 interface State {
     loading: boolean;
     failure: boolean
-    dialogId: number | undefined;
+    dialogId?: string;
 }
 
 export interface Action {
@@ -26,7 +26,7 @@ export const reducer = (state: State, action: Action) => {
         case ActionTypes.LOADING:
             return {...state, loading: true};
         case ActionTypes.OK:
-            return {...state, loading: false};
+            return {...state, loading: false, dialogId: action.value};
         case ActionTypes.FAILURE:
             return {...state, loading: false, failure: true};
     }

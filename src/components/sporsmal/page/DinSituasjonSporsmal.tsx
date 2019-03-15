@@ -33,6 +33,7 @@ function DinSituasjonSporsmal(props: SporsmalProps) {
                 label={false}
                 tellerTekst={() => false}
                 value={value}
+                disabled={props.loading}
                 onChange={(e) => setValue((e.target as HTMLInputElement).value)}
             />
         </div>
@@ -40,6 +41,7 @@ function DinSituasjonSporsmal(props: SporsmalProps) {
             Når du trykker fullfør, vil svaret ditt bli delt med veilederen din.
         </InfoPanel>
         <Hovedknapp spinner={props.loading}
+                    disabled={props.loading}
                     onClick={() => props.onSubmit(value)}>
             Fullfør
         </Hovedknapp>

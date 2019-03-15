@@ -23,6 +23,7 @@ function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
             <Textarea
                 placeholder="Her kan du skrive noen stikkord for hva du ønsker å prate om i møtet."
                 textareaClass="spm-text-area"
+                disabled={props.loading}
                 label={false}
                 tellerTekst={() => false}
                 value={value}
@@ -33,6 +34,7 @@ function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
             Når du trykker neste, vil svaret ditt bli delt med veilederen din.
         </InfoPanel>
         <Hovedknapp spinner={props.loading}
+                    disabled={props.loading}
                     onClick={() => props.onSubmit(value)}>
             Neste
         </Hovedknapp>

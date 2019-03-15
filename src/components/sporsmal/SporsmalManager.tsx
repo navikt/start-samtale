@@ -12,18 +12,22 @@ import {initialState as initialFetchState,
     Action as FetchAction
 } from './fetchReducer';
 import SporsmalView from "./SporsmalView";
+import {parseDialogId} from "../util/parse";
 
-function dataFetcher(dispatch: (value: FetchAction) => void, value: string) {
+
+function dataFetcher(dispatch: (value: FetchAction) => void, value: string, dialogId?: string) {
     dispatch({type: FetchActionTypes.LOADING});
-    const data: NyDialogMeldingData = {tekst: value};
+    const data: NyDialogMeldingData = {dialogId: dialogId, tekst: value};
     return postDialog(data)
-        .then(_ => dispatch({type: FetchActionTypes.OK}))
+        .then(res => dispatch({type: FetchActionTypes.OK, value: res.id}))
         .catch(() => dispatch({type: FetchActionTypes.FAILURE}))
 }
 
 function SporsmalManager() {
+    const dialogIdParam = parseDialogId();
+
     const [flowState, flowDispatch] = useReducer(flowReducer, initialFlowState);
-    const [fetchState, fetchDispatch] = useReducer(fetchReducer, initialFetchState);
+    const [fetchState, fetchDispatch] = useReducer(fetchReducer, {...initialFetchState, dialogId: dialogIdParam});
 
     const onSubmit = (value: string) => {
             if (flowState.step === 0 && value === WRITING_VALUE){
@@ -33,7 +37,7 @@ function SporsmalManager() {
                 flowDispatch({type: FlowActionTypes.NEXT});
             }
             else {
-                dataFetcher(fetchDispatch, value)
+                dataFetcher(fetchDispatch, value, fetchState.dialogId)
                     .then(() => flowDispatch({type: FlowActionTypes.NEXT}))
             }
         };

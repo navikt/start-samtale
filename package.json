@@ -26,6 +26,7 @@
     "nav-frontend-typografi": "^2.0.10",
     "nav-frontend-typografi-style": "^1.0.12",
     "prop-types": "^15.7.2",
+    "query-string": "^6.4.0",
     "react": "^16.8.4",
     "react-dom": "^16.8.4",
     "react-scripts": "2.1.8",
