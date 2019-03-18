@@ -13,14 +13,18 @@ import {initialState as initialFetchState,
 } from './fetchReducer';
 import SporsmalView from "./SporsmalView";
 import {parseDialogId} from "../util/parse";
+import Lenke from "nav-frontend-lenker";
 
 
 function dataFetcher(dispatch: (value: FetchAction) => void, value: string, dialogId?: string) {
     dispatch({type: FetchActionTypes.LOADING});
-    const data: NyDialogMeldingData = {dialogId: dialogId, tekst: value};
+    const data: NyDialogMeldingData = {dialogId: dialogId, tekst: value, overskrift: 'Mitt første møte med NAV'};
     return postDialog(data)
         .then(res => dispatch({type: FetchActionTypes.OK, value: res.id}))
-        .catch(() => dispatch({type: FetchActionTypes.FAILURE}))
+        .catch((reason) => {
+            dispatch({type: FetchActionTypes.FAILURE});
+            return Promise.reject(reason)
+        })
 }
 
 function SporsmalManager() {
@@ -42,9 +46,18 @@ function SporsmalManager() {
             }
         };
 
-    return <SporsmalView step={flowState.step}
-                     onSubmit={onSubmit}
-                     loading={fetchState.loading}/>;
+
+    const dialogIdLink = fetchState.dialogId ? `/${fetchState.dialogId}` : '';
+    const href = `aktivitetsplan/dialog${dialogIdLink}`;
+
+    return <>
+            <SporsmalView step={flowState.step}
+                         onSubmit={onSubmit}
+                         loading={fetchState.loading}/>
+            <Lenke href={href}>
+                Avbryt
+            </Lenke>
+        </>
 
 
 }
