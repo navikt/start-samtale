@@ -1,3 +1,9 @@
+contextPath: /
+
+auth:
+  enforce: true
+  loginUrl: {{ LOGINSERVICE_URL }}
+
 proxy:
   - contextPath: "/veilarbdialog"
     baseUrl: "http://veilarbproxy"
