@@ -45,8 +45,6 @@ fasitResources:
     # oidc med AzureAD B2C
     - alias: loginservice
       resourceType: restservice
-      propertyMap:
-        url: OIDC_LOGIN_URL
     - alias: aad_b2c_clientid
       resourceType: credential
     - alias: aad_b2c_discovery
