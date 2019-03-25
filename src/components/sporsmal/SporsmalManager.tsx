@@ -38,7 +38,7 @@ function SporsmalManager() {
 
     const onSubmit = (value: string) => {
         if (flowState.step === 0) {
-            frontendLogger('forberede-moete.motetype', {type: value});
+            frontendLogger('forberede-moete.motetype', {},{type: value});
             if(value === WRITE){
                 flowDispatch({type: FlowActionTypes.SET, value: 4})
             } else {
