@@ -5,9 +5,20 @@ import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "../SporsmalView";
 import InfoPanel from "../../infopanel/InfoPanel";
 
-const MEETING_VALUE = 'I et møte på NAV-kontoret mitt';
-const PHONE_VALUE = 'I en telefonsamtale';
-export const WRITING_VALUE = 'Jeg vil skrive';
+export type MoteForm = 'MEET' | 'PHONE' | 'WRITE'
+
+const MEET: MoteForm = 'MEET';
+const PHONE: MoteForm = 'PHONE';
+export const WRITE: MoteForm = 'WRITE';
+
+export function moteFormValue(form: MoteForm): string {
+    switch (form){
+        case 'MEET': return 'I et møte på NAV-kontoret mitt';
+        case 'PHONE': return 'I en telefonsamtale';
+        case 'WRITE': return 'Jeg vil skrive';
+    }
+}
+
 
 
 const initRadioState: string = '';
@@ -24,9 +35,9 @@ function OnsketMoteFormSporsmal(props: SporsmalProps) {
             legend=""
             name=""
             radios={[
-                {label: 'I et møte på NAV-kontoret mitt', disabled: props.loading, value: MEETING_VALUE},
-                {label: 'I en telefonsamtale', disabled: props.loading, value: PHONE_VALUE},
-                {label: 'Jeg vil skrive', disabled: props.loading, value: WRITING_VALUE},
+                {label: moteFormValue(MEET), disabled: props.loading, value: MEET},
+                {label: moteFormValue(PHONE), disabled: props.loading, value: PHONE},
+                {label: moteFormValue(WRITE), disabled: props.loading, value: WRITE},
             ]}
             checked={value}
             onChange={(_, val) => setValue(val)}

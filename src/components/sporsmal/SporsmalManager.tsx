@@ -1,5 +1,5 @@
 import React, {useReducer} from 'react';
-import {WRITING_VALUE} from "./page/OnsketMoteFormSporsmal";
+import {MoteForm, moteFormValue, WRITE} from "./page/OnsketMoteFormSporsmal";
 import {NyDialogMeldingData} from "../api/dataTypes";
 import {postDialog} from "../api/api";
 import {
@@ -16,6 +16,7 @@ import {
 import SporsmalView from "./SporsmalView";
 import {parseDialogId} from "../util/parse";
 import Lenke from "nav-frontend-lenker";
+import {frontendLogger} from "../util/frontendlogger";
 
 
 function dataFetcher(dispatch: (value: FetchAction) => void, value: string, dialogId?: string) {
@@ -36,8 +37,14 @@ function SporsmalManager() {
     const [fetchState, fetchDispatch] = useReducer(fetchReducer, {...initialFetchState, dialogId: dialogIdParam});
 
     const onSubmit = (value: string) => {
-        if (flowState.step === 0 && value === WRITING_VALUE) {
-            flowDispatch({type: FlowActionTypes.SET, value: 4})
+        if (flowState.step === 0) {
+            frontendLogger('forberede-moete.motetype', {type: value});
+            if(value === WRITE){
+                flowDispatch({type: FlowActionTypes.SET, value: 4})
+            } else {
+                dataFetcher(fetchDispatch, moteFormValue(value as MoteForm), fetchState.dialogId)
+                    .then(() => flowDispatch({type: FlowActionTypes.NEXT}))
+            }
         }
         else if (value.length === 0) {
             flowDispatch({type: FlowActionTypes.NEXT});

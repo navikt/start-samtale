@@ -2,6 +2,10 @@
 import FetchMock, { Middleware, MiddlewareUtils } from 'yet-another-fetch-mock';
 import {opprettDialog} from "./dialog";
 
+(window as any).frontendlogger = { info: function(){}, warn: function(){}, error: function(){}, event: function(){
+        console.log("event-triggered", arguments)
+    }};
+
 const loggingMiddleware: Middleware = (request, response) => {
     console.groupCollapsed(request.url);
     console.groupCollapsed('config');
