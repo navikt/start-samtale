@@ -1,6 +1,5 @@
 import React from 'react';
 import OnsketMoteFormSporsmal from "./page/OnsketMoteFormSporsmal";
-import Stegindikator from "../stegindikator/Stegindikator";
 import HvaMotetSkalHandleOmSporsmal from "./page/HvaMotetSkalHandleOmSporsmal";
 import NarPasserMotetSporsmal from "./page/NarPasserMotetSporsmal";
 import DinSituasjonSporsmal from "./page/DinSituasjonSporsmal";
@@ -39,13 +38,7 @@ function SporsmalView(props: SporsmalViewProps) {
     if (!Question) {
         return <Redirect to={props.fallbackUrl}/>
     }
-    return (
-        <>
-            <Stegindikator aktivtSteg={props.step}/>
-            <Question loading={props.loading}
-                      onSubmit={props.onSubmit}/>
-        </>
-    );
+    return <Question loading={props.loading} onSubmit={props.onSubmit}/>
 }
 
 export default SporsmalView;
