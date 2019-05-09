@@ -14,7 +14,6 @@ import {
     Action as FetchAction
 } from './fetchReducer';
 import SporsmalView from "./SporsmalView";
-import {parseDialogId} from "../util/parse";
 import Lenke from "nav-frontend-lenker";
 import {frontendLogger} from "../util/frontendlogger";
 
@@ -31,10 +30,9 @@ function dataFetcher(dispatch: (value: FetchAction) => void, value: string, dial
 }
 
 function SporsmalManager() {
-    const dialogIdParam = parseDialogId();
 
     const [flowState, flowDispatch] = useReducer(flowReducer, initialFlowState);
-    const [fetchState, fetchDispatch] = useReducer(fetchReducer, {...initialFetchState, dialogId: dialogIdParam});
+    const [fetchState, fetchDispatch] = useReducer(fetchReducer, initialFetchState);
 
     const onSubmit = (value: string) => {
         if (flowState.step === 0) {
@@ -42,7 +40,7 @@ function SporsmalManager() {
             if(value === WRITE){
                 flowDispatch({type: FlowActionTypes.SET, value: 4})
             } else {
-                dataFetcher(fetchDispatch, moteFormValue(value as MoteForm), fetchState.dialogId)
+                dataFetcher(fetchDispatch, moteFormValue(value as MoteForm))
                     .then(() => flowDispatch({type: FlowActionTypes.NEXT}))
             }
         }
