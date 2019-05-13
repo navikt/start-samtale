@@ -5,6 +5,7 @@ import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "../SporsmalView";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import {ReactComponent as SVG} from './veileder_motestotte.svg'
+import Lenke from "nav-frontend-lenker";
 
 const initTextState: string = '';
 
@@ -51,6 +52,9 @@ function DinSituasjonSporsmal(props: SporsmalProps) {
                     Send
                 </Hovedknapp>
             </div>
+            <Lenke href={props.fallbackUrl}>
+                Avbryt
+            </Lenke>
         </>
     )
 }

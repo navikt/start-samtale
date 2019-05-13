@@ -4,6 +4,7 @@ import {RadioPanelGruppe} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "../SporsmalView";
 import Stegindikator from "../../stegindikator/Stegindikator";
+import Lenke from "nav-frontend-lenker";
 
 export type MoteForm = 'MEET' | 'PHONE' | 'WRITE'
 
@@ -51,6 +52,9 @@ function OnsketMoteFormSporsmal(props: SporsmalProps) {
                             disabled={props.loading}
                             onClick={() => props.onSubmit(value)}>Send</Hovedknapp>
             </div>
+            <Lenke href={props.fallbackUrl}>
+                Avbryt
+            </Lenke>
         </>
     );
 }

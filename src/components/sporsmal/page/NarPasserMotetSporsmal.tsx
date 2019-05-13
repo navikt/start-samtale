@@ -4,6 +4,7 @@ import {Input} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "../SporsmalView";
 import Stegindikator from "../../stegindikator/Stegindikator";
+import Lenke from "nav-frontend-lenker";
 
 const inputState: string = '';
 
@@ -37,6 +38,9 @@ function NarPasserMotetSporsmal(props: SporsmalProps) {
                     Send
                 </Hovedknapp>
             </div>
+            <Lenke href={props.fallbackUrl}>
+                Avbryt
+            </Lenke>
         </>
     )
 }

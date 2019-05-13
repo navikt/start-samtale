@@ -5,7 +5,7 @@ import NarPasserMotetSporsmal from "./page/NarPasserMotetSporsmal";
 import DinSituasjonSporsmal from "./page/DinSituasjonSporsmal";
 import './Sporsmal.less'
 import Redirect from "../util/Redirect";
-import Oppsummering from "./page/Oppsumering";
+import Oppsummering from "./page/Oppsummering";
 
 export interface SporsmalProps {
     loading: boolean;

@@ -14,7 +14,6 @@ import {
     Action as FetchAction
 } from './fetchReducer';
 import SporsmalView from "./SporsmalView";
-import Lenke from "nav-frontend-lenker";
 import {frontendLogger} from "../util/frontendlogger";
 
 
@@ -63,9 +62,6 @@ function SporsmalManager() {
             step={flowState.step}
             onSubmit={onSubmit}
             loading={fetchState.loading}/>
-        <Lenke href={href}>
-            Avbryt
-        </Lenke>
     </>
 
 

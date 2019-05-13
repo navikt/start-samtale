@@ -6,6 +6,7 @@ import {SporsmalProps} from "../SporsmalView";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import Stegindikator from "../../stegindikator/Stegindikator";
 import {ReactComponent as SVG} from './veileder_motestotte.svg'
+import Lenke from "nav-frontend-lenker";
 
 const initTextState: string = '';
 
@@ -50,6 +51,9 @@ function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
                     Send
                 </Hovedknapp>
             </div>
+            <Lenke href={props.fallbackUrl}>
+                Avbryt
+            </Lenke>
         </>
     );
 }
