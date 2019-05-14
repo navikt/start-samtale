@@ -2,13 +2,18 @@ import React, {useState} from 'react';
 import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Input} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
-import {SporsmalProps} from "../SporsmalView";
-import Stegindikator from "../../stegindikator/Stegindikator";
+import Stegindikator from "../../../stegindikator/Stegindikator";
 import Lenke from "nav-frontend-lenker";
+
+interface Props {
+    loading: boolean;
+    onSubmit: (arg: string) => void;
+    fallbackUrl: string
+}
 
 const inputState: string = '';
 
-function NarPasserMotetSporsmal(props: SporsmalProps) {
+function NarPasserMotetView(props: Props) {
     const [value, setValue] = useState(inputState);
 
     return (
@@ -45,4 +50,4 @@ function NarPasserMotetSporsmal(props: SporsmalProps) {
     )
 }
 
-export default NarPasserMotetSporsmal;
+export default NarPasserMotetView;

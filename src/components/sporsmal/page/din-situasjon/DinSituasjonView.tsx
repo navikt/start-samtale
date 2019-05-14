@@ -2,15 +2,20 @@ import React, {useState} from 'react';
 import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Textarea} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
-import {SporsmalProps} from "../SporsmalView";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import {ReactComponent as SVG} from './veileder_motestotte.svg'
+import {ReactComponent as SVG} from '../veileder_motestotte.svg'
 import Lenke from "nav-frontend-lenker";
 
 const initTextState: string = '';
 
 
-function DinSituasjonSporsmal(props: SporsmalProps) {
+interface Props {
+    loading: boolean;
+    onSubmit: (arg: string) => void;
+    fallbackUrl: string
+}
+
+function DinSituasjonView(props: Props) {
     const [value, setValue] = useState(initTextState);
 
     return (
@@ -59,4 +64,4 @@ function DinSituasjonSporsmal(props: SporsmalProps) {
     )
 }
 
-export default DinSituasjonSporsmal;
+export default DinSituasjonView;

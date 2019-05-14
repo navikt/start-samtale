@@ -1,33 +1,31 @@
-export enum ActionTypes {
+export enum FetchActionTypes {
     LOADING,
     FAILURE,
     OK
 }
 
-interface State {
+interface FetchState {
     loading: boolean;
     failure: boolean
-    dialogId?: string;
 }
 
-export interface Action {
-    type: ActionTypes,
+export interface FetchAction {
+    type: FetchActionTypes,
     value?: string
 }
 
-export const initialState = {
+export const initialFetchState = {
     loading: false,
     failure: false,
-    dialogId: undefined
 };
 
-export const reducer = (state: State, action: Action) => {
+export const fetchReducer = (state: FetchState, action: FetchAction) => {
     switch (action.type) {
-        case ActionTypes.LOADING:
+        case FetchActionTypes.LOADING:
             return {...state, loading: true};
-        case ActionTypes.OK:
-            return {...state, loading: false, dialogId: action.value};
-        case ActionTypes.FAILURE:
+        case FetchActionTypes.OK:
+            return {...state, loading: false};
+        case FetchActionTypes.FAILURE:
             return {...state, loading: false, failure: true};
     }
 };

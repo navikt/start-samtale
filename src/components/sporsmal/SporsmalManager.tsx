@@ -1,69 +1,41 @@
-import React, {useReducer} from 'react';
-import { BrowserRouter } from 'react-router-dom';
-import {MoteForm, moteFormValue, WRITE} from "./page/OnsketMoteFormSporsmal";
-import {NyDialogMeldingData} from "../api/dataTypes";
-import {postDialog} from "../api/api";
-import {
-    initialState as initialFlowState,
-    reducer as flowReducer,
-    ActionTypes as FlowActionTypes
-} from './flowReducer';
-import {
-    initialState as initialFetchState,
-    reducer as fetchReducer,
-    ActionTypes as FetchActionTypes,
-    Action as FetchAction
-} from './fetchReducer';
-import SporsmalView from "./SporsmalView";
-import {frontendLogger} from "../util/frontendlogger";
+import React, {useState} from 'react';
+import { BrowserRouter, Route } from 'react-router-dom';
+import {PagesState} from "./PagesTypes";
+import OnsketMoteFormSporsmal from "./page/onsket-moteform/OnsketMoteFormSporsmal";
+import HvaMotetSkalHandleOmSporsmal, {PAGE_ID as HVA_PAGE_ID} from "./page/hva-skal-mote-handle-om/HvaMotetSkalHandleOmSporsmal";
+import NarPasserMotetSporsmal, {PAGE_ID as NAR_PAGE_ID} from "./page/nar-passer-motet/NarPasserMotetSporsmal";
+import DinSituasjonSporsmal, {PAGE_ID as SITUASJON_PAGE_ID} from "./page/din-situasjon/DinSituasjonSporsmal";
+import Oppsummering, {PAGE_ID as OPPSUMMERING_PAGE_ID} from "./page/oppsummering/Oppsummering";
+import './Sporsmal.less'
 
-
-function dataFetcher(dispatch: (value: FetchAction) => void, value: string, dialogId?: string) {
-    dispatch({type: FetchActionTypes.LOADING});
-    const data: NyDialogMeldingData = {dialogId: dialogId, tekst: value, overskrift: 'Mitt første møte med NAV'};
-    return postDialog(data)
-        .then(res => dispatch({type: FetchActionTypes.OK, value: res.id}))
-        .catch((reason) => {
-            dispatch({type: FetchActionTypes.FAILURE});
-            return Promise.reject(reason)
-        })
-}
+const initalState: PagesState = {};
 
 function SporsmalManager() {
-
-    const [flowState, flowDispatch] = useReducer(flowReducer, initialFlowState);
-    const [fetchState, fetchDispatch] = useReducer(fetchReducer, initialFetchState);
-
-    const onSubmit = (value: string) => {
-        if (flowState.step === 0) {
-            frontendLogger('forberede-moete.motetype', {},{type: value});
-            if(value === WRITE){
-                flowDispatch({type: FlowActionTypes.SET, value: 4})
-            } else {
-                dataFetcher(fetchDispatch, moteFormValue(value as MoteForm))
-                    .then(() => flowDispatch({type: FlowActionTypes.NEXT}))
-            }
-        }
-        else if (value.length === 0) {
-            flowDispatch({type: FlowActionTypes.NEXT});
-        }
-        else {
-            dataFetcher(fetchDispatch, value, fetchState.dialogId)
-                .then(() => flowDispatch({type: FlowActionTypes.NEXT}))
-        }
-    };
-
-
-    const dialogIdLink = fetchState.dialogId ? `/${fetchState.dialogId}` : '';
-    const href = `aktivitetsplan/dialog${dialogIdLink}`;
+    const [value, setValue] = useState(initalState);
 
     return <>
         <BrowserRouter>
-            <SporsmalView
-                fallbackUrl={href}
-                step={flowState.step}
-                onSubmit={onSubmit}
-                loading={fetchState.loading}/>
+            <Route
+                path="/"
+                exact={true}
+                component={() => <OnsketMoteFormSporsmal state={value} setState={setValue}/>}
+            />
+            <Route
+                path={`/${HVA_PAGE_ID}`}
+                component={() => <HvaMotetSkalHandleOmSporsmal state={value} setState={setValue}/>}
+            />
+            <Route
+                path={`/${NAR_PAGE_ID}`}
+                component={() => <NarPasserMotetSporsmal state={value} setState={setValue}/>}
+            />
+            <Route
+                path={`/${SITUASJON_PAGE_ID}`}
+                component={() => <DinSituasjonSporsmal state={value} setState={setValue}/>}
+            />
+            <Route
+                path={`/${OPPSUMMERING_PAGE_ID}`}
+                component={() => <Oppsummering state={value} setState={setValue}/>}
+            />
         </BrowserRouter>
     </>
 
