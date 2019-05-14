@@ -3,41 +3,46 @@ import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Input} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "../SporsmalView";
-import InfoPanel from "../../infopanel/InfoPanel";
+import Stegindikator from "../../stegindikator/Stegindikator";
+import Lenke from "nav-frontend-lenker";
 
 const inputState: string = '';
 
 function NarPasserMotetSporsmal(props: SporsmalProps) {
     const [value, setValue] = useState(inputState);
 
-    return <div className="spm">
-        <Undertittel className="spm-row">
-            Når du trykker neste, vil svaret ditt bli delt med veilederen din.
-        </Undertittel>
-        <Normaltekst className="spm-row">
-            NAV-kontoret ditt har åpent på dagtid fra mandag til fredag. Hvis du har noen ønsker til tidspunkt for
-            møtet, skal vi prøve så godt vi kan å legge til rette for det.
-        </Normaltekst>
-        <Input
-            className="spm-row"
-            label={false}
-            disabled={props.loading}
-            value={value}
-            placeholder="Skriv her"
-            onChange={(e) => setValue((e.target as HTMLInputElement).value)}
-        />
-        <Normaltekst className="spm-row">
-            Veilederen din vil kalle deg inn til et møte basert på tilbakemeldingene dine.
-        </Normaltekst>
-        <InfoPanel>
-            Når du trykker fullfør, vil svaret ditt bli delt med veilederen din.
-        </InfoPanel>
-        <Hovedknapp spinner={props.loading}
+    return (
+        <>
+            <div className="veileder-budskap">
+                <Stegindikator aktivtSteg={2}/>
+                <Normaltekst className="custom-infotext">
+                    Veilederen din er tilgjengelig på dagtid fra mandag til fredag. Hvis du har noen ønsker til
+                    tidspunkt for møtet, skal vi prøve å legge til rette for det.
+                </Normaltekst>
+            </div>
+            <div className="spm">
+                <Undertittel className="spm-row">
+                    Hvilket tidspunkt passer best for deg?
+                </Undertittel>
+                <Input
+                    className="spm-row"
+                    label={false}
                     disabled={props.loading}
-                    onClick={() => props.onSubmit(value)}>
-            Fullfør
-        </Hovedknapp>
-    </div>
+                    value={value}
+                    placeholder="For eksempel: Alle dager utenom tirsdager"
+                    onChange={(e) => setValue((e.target as HTMLInputElement).value)}
+                />
+                <Hovedknapp spinner={props.loading}
+                            disabled={props.loading}
+                            onClick={() => props.onSubmit(value)}>
+                    Send
+                </Hovedknapp>
+            </div>
+            <Lenke href={props.fallbackUrl}>
+                Avbryt
+            </Lenke>
+        </>
+    )
 }
 
 export default NarPasserMotetSporsmal;

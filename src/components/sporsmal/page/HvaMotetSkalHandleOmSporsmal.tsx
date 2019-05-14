@@ -3,25 +3,40 @@ import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Textarea} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
 import {SporsmalProps} from "../SporsmalView";
-import InfoPanel from "../../infopanel/InfoPanel";
+import Veilederpanel from "nav-frontend-veilederpanel";
+import Stegindikator from "../../stegindikator/Stegindikator";
+import {ReactComponent as SVG} from './veileder_motestotte.svg'
+import Lenke from "nav-frontend-lenker";
 
 const initTextState: string = '';
-
 
 function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
     const [value, setValue] = useState(initTextState);
 
-    return <div className="spm">
-        <Normaltekst className="spm-row">
-            I møtet ønsker vi å bli kjent med deg og din situasjon. Møtet skal handle om dine muligheter i
-            arbeidsmarkedet.
-        </Normaltekst>
-        <Undertittel className="spm-row">
-            Hva ønsker du å prate om?
-        </Undertittel>
-        <div className="spm-row">
+    return (
+        <>
+            <div className="veileder-budskap">
+                <Stegindikator aktivtSteg={1}/>
+                <div className="custom-veilederpanel">
+                    <Veilederpanel kompakt svg={<SVG id="veileder-icon"/>}>
+                        <Undertittel>
+                            Vi ønsker å
+                        </Undertittel>
+                        <ul>
+                            <li><Normaltekst>bli bedre kjent med situasjonen din</Normaltekst></li>
+                            <li><Normaltekst>snakke om hva som kan hindre deg i å søke eller være i jobb</Normaltekst>
+                            </li>
+                        </ul>
+                    </Veilederpanel>
+                </div>
+            </div>
+            <div className="spm">
+                <Undertittel className="spm-row">
+                    Er det noe du ønsker å snakke med oss om?
+                </Undertittel>
+                <div className="spm-row">
             <Textarea
-                placeholder="Her kan du skrive noen stikkord for hva du ønsker å prate om i møtet."
+                placeholder="Skriv noen stikkord hvis du ønsker"
                 textareaClass="spm-text-area"
                 disabled={props.loading}
                 label={false}
@@ -29,16 +44,18 @@ function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
                 value={value}
                 onChange={(e) => setValue((e.target as HTMLInputElement).value)}
             />
-        </div>
-        <InfoPanel>
-            Når du trykker neste, vil svaret ditt bli delt med veilederen din.
-        </InfoPanel>
-        <Hovedknapp spinner={props.loading}
-                    disabled={props.loading}
-                    onClick={() => props.onSubmit(value)}>
-            Neste
-        </Hovedknapp>
-    </div>
+                </div>
+                <Hovedknapp spinner={props.loading}
+                            disabled={props.loading}
+                            onClick={() => props.onSubmit(value)}>
+                    Send
+                </Hovedknapp>
+            </div>
+            <Lenke href={props.fallbackUrl}>
+                Avbryt
+            </Lenke>
+        </>
+    );
 }
 
 export default HvaMotetSkalHandleOmSporsmal;

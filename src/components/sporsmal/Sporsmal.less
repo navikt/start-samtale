@@ -1,3 +1,5 @@
+@import "~nav-frontend-core";
+
 .stegindikator {
   margin: 1rem 0 1rem 0;
 }
@@ -7,10 +9,10 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  max-width: 490px;
-  padding: 0 8px 0 8px;
+  max-width: 400px;
+  width: 100%;
+  padding: 0 0.5rem 0 0.5rem;
 }
-
 
 .spm-row{
   margin-bottom: 1.5rem;
@@ -19,4 +21,37 @@
 
 .spm-text-area{
   min-height: 100px;
+}
+
+.veileder-budskap{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 0 1rem 0;
+  background: @navLysGra;
+}
+
+.custom-veilederpanel{
+  max-width: 400px;
+  padding: 1rem 0.5rem 0 0.5rem;
+  width: 100%;
+  & ul {
+    padding-left: 1rem;
+    margin: 0
+  }
+}
+
+.custom-infotext{
+  max-width: 400px;
+  margin: 1rem 0 2rem 0;
+  padding: 0 0.5rem 0 0.5rem;
+}
+
+#veileder-icon{
+  height: 100%;
+}
+
+.nav-veilederpanel {
+  border: 0;
 }
