@@ -1,4 +1,5 @@
 import React, {useReducer} from 'react';
+import { BrowserRouter } from 'react-router-dom';
 import {MoteForm, moteFormValue, WRITE} from "./page/OnsketMoteFormSporsmal";
 import {NyDialogMeldingData} from "../api/dataTypes";
 import {postDialog} from "../api/api";
@@ -57,11 +58,13 @@ function SporsmalManager() {
     const href = `aktivitetsplan/dialog${dialogIdLink}`;
 
     return <>
-        <SporsmalView
-            fallbackUrl={href}
-            step={flowState.step}
-            onSubmit={onSubmit}
-            loading={fetchState.loading}/>
+        <BrowserRouter>
+            <SporsmalView
+                fallbackUrl={href}
+                step={flowState.step}
+                onSubmit={onSubmit}
+                loading={fetchState.loading}/>
+        </BrowserRouter>
     </>
 
 

@@ -1,10 +1,10 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
 import OnsketMoteFormSporsmal from "./page/OnsketMoteFormSporsmal";
 import HvaMotetSkalHandleOmSporsmal from "./page/HvaMotetSkalHandleOmSporsmal";
 import NarPasserMotetSporsmal from "./page/NarPasserMotetSporsmal";
 import DinSituasjonSporsmal from "./page/DinSituasjonSporsmal";
 import './Sporsmal.less'
-import Redirect from "../util/Redirect";
 import Oppsummering from "./page/Oppsummering";
 
 export interface SporsmalProps {
@@ -39,10 +39,15 @@ interface SporsmalViewProps {
 
 function SporsmalView(props: SporsmalViewProps) {
     const Question = getSporsmal(props.step);
-    if (!Question) {
-        return <Redirect to={props.fallbackUrl}/>
-    }
-    return <Question loading={props.loading} onSubmit={props.onSubmit} fallbackUrl={props.fallbackUrl}/>
+
+    return (
+        <Route
+            path="/"
+            exact={true}
+            component={() => <OnsketMoteFormSporsmal state={value} setState={setValue}/>}
+        />
+    )
+    // return <Question loading={props.loading} onSubmit={props.onSubmit} fallbackUrl={props.fallbackUrl}/>
 }
 
 export default SporsmalView;
