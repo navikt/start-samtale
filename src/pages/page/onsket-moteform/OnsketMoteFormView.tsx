@@ -28,10 +28,13 @@ interface Props {
     fallbackUrl: string
 }
 
-const initRadioState: string = '';
 
 function OnsketMoteFormView(props: Props) {
-    const [value, setValue] = useState(initRadioState);
+    const [value, setValue] = useState<string | undefined>(undefined);
+    const [feilState, setFeil] = useState(false);
+
+    const feil = feilState ? {feilmelding: 'Obligatorisk felt'} : undefined;
+
     return (
         <>
             <Stegindikator aktivtSteg={0}/>
@@ -51,11 +54,19 @@ function OnsketMoteFormView(props: Props) {
                     ]}
                     checked={value}
                     onChange={(_, val) => setValue(val)}
+                    feil={feil}
                 />
 
                 <Hovedknapp spinner={props.loading}
                             disabled={props.loading}
-                            onClick={() => props.onSubmit(value)}>Send</Hovedknapp>
+                            onClick={() => {
+                                    if (value === undefined) {
+                                        setFeil(true);
+                                    } else {
+                                        setFeil(false);
+                                        props.onSubmit(value);
+                                    }
+                            }}>Send</Hovedknapp>
             </div>
             <Lenke href={props.fallbackUrl}>
                 Avbryt
