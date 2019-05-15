@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Input} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
-import Stegindikator from "../../../stegindikator/Stegindikator";
+import Stegindikator from "../../../components/stegindikator/Stegindikator";
 import Lenke from "nav-frontend-lenker";
 
 interface Props {

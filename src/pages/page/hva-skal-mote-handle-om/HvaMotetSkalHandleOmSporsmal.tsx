@@ -14,7 +14,8 @@ function HvaMotetSkalHandleOmSporsmal(props: PagesProps & RouteComponentProps) {
     const onSubmit = (value: string) => {
         if (value.length !== 0) {
             dispatchDialogData(fetchDispatch, value, props.state.dialogId)
-                .then(() => {
+                .then((res) => {
+                    props.setState({dialogId: res.id});
                     props.history.push(`/${NAR_PAGE_ID}`)
                 })
         } else {

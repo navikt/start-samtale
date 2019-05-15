@@ -3,7 +3,7 @@ import {PagesProps} from "../../PagesTypes";
 import {RouteComponentProps, withRouter} from "react-router-dom";
 import OnsketMoteFormView, {MoteForm, moteFormValue, WRITE} from "./OnsketMoteFormView";
 import {fetchReducer, initialFetchState} from "../../fetchReducer";
-import {frontendLogger} from "../../../util/frontendlogger";
+import {frontendLogger} from "../../../components/util/frontendlogger";
 import {dispatchDialogData} from "../../dispatchDialogData";
 import {PAGE_ID as DIN_SITUASJON_PAGE_ID} from "../din-situasjon/DinSituasjonSporsmal";
 import {PAGE_ID as HANDLER_OM_PAGE_ID} from "../hva-skal-mote-handle-om/HvaMotetSkalHandleOmSporsmal";
@@ -20,7 +20,8 @@ function OnsketMoteFormSporsmal(props: PagesProps & RouteComponentProps) {
 
         } else {
             dispatchDialogData(fetchDispatch, moteFormValue(value as MoteForm))
-                .then(() => {
+                .then((res) => {
+                    props.setState({dialogId: res.id});
                     props.history.push(`/${HANDLER_OM_PAGE_ID}`)
                 })
         }

@@ -3,7 +3,7 @@ import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Textarea} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import Stegindikator from "../../../stegindikator/Stegindikator";
+import Stegindikator from "../../../components/stegindikator/Stegindikator";
 import {ReactComponent as SVG} from '../veileder_motestotte.svg'
 import Lenke from "nav-frontend-lenker";
 

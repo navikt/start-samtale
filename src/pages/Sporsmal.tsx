@@ -10,7 +10,7 @@ import './Sporsmal.less'
 
 const initalState: PagesState = {};
 
-function SporsmalManager() {
+function Sporsmal() {
     const [value, setValue] = useState(initalState);
 
     return <>
@@ -42,4 +42,4 @@ function SporsmalManager() {
 
 }
 
-export default SporsmalManager;
+export default Sporsmal;

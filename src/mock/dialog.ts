@@ -1,21 +1,22 @@
 import {DialogData, NyDialogMeldingData} from "../components/api/dataTypes";
 
-const dialogData = {
-    id: '123',
-    overskrift: 'Overskrift',
-    henvendelser: [
-        {
-            tekst: "First message"
-        }
-    ],
+const dialogData: DialogData = {
+    id: '1234',
+    overskrift: '',
+    henvendelser: [],
 };
 
 export function opprettDialog(update: NyDialogMeldingData): DialogData {
-    if (update.dialogId === dialogData.id) {
-        dialogData.henvendelser.push({tekst: update.tekst});
+    if (update.dialogId !== dialogData.id) {
+        dialogData.id = `${Math.floor(Math.random() * 100000)}`;
+        dialogData.overskrift = update.overskrift!;
+        dialogData.henvendelser = [{tekst: update.tekst}];
         return dialogData;
     } else {
-        return {...dialogData, henvendelser: [{tekst: update.tekst}]}
+        dialogData.henvendelser.push({tekst: update.tekst});
     }
 
+    return dialogData;
+
 }
+
