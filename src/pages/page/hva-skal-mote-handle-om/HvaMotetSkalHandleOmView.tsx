@@ -2,15 +2,20 @@ import React, {useState} from 'react';
 import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Textarea} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
-import {SporsmalProps} from "../SporsmalView";
 import Veilederpanel from "nav-frontend-veilederpanel";
-import Stegindikator from "../../stegindikator/Stegindikator";
-import {ReactComponent as SVG} from './veileder_motestotte.svg'
+import Stegindikator from "../../../components/stegindikator/Stegindikator";
+import {ReactComponent as SVG} from '../veileder_motestotte.svg'
 import Lenke from "nav-frontend-lenker";
+
+interface Props {
+    loading: boolean;
+    onSubmit: (arg: string) => void;
+    fallbackUrl: string
+}
 
 const initTextState: string = '';
 
-function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
+function HvaMotetSkalHandleOmView(props: Props) {
     const [value, setValue] = useState(initTextState);
 
     return (
@@ -58,4 +63,4 @@ function HvaMotetSkalHandleOmSporsmal(props: SporsmalProps) {
     );
 }
 
-export default HvaMotetSkalHandleOmSporsmal;
+export default HvaMotetSkalHandleOmView;

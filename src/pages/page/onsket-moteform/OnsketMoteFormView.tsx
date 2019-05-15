@@ -2,8 +2,7 @@ import React, {useState} from 'react';
 import {Undertittel} from 'nav-frontend-typografi';
 import {RadioPanelGruppe} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
-import {SporsmalProps} from "../SporsmalView";
-import Stegindikator from "../../stegindikator/Stegindikator";
+import Stegindikator from "../../../components/stegindikator/Stegindikator";
 import Lenke from "nav-frontend-lenker";
 
 export type MoteForm = 'MEET' | 'PHONE' | 'WRITE'
@@ -23,9 +22,15 @@ export function moteFormValue(form: MoteForm): string {
     }
 }
 
+interface Props {
+    loading: boolean;
+    onSubmit: (arg: string) => void;
+    fallbackUrl: string
+}
+
 const initRadioState: string = '';
 
-function OnsketMoteFormSporsmal(props: SporsmalProps) {
+function OnsketMoteFormView(props: Props) {
     const [value, setValue] = useState(initRadioState);
     return (
         <>
@@ -59,4 +64,4 @@ function OnsketMoteFormSporsmal(props: SporsmalProps) {
     );
 }
 
-export default OnsketMoteFormSporsmal;
+export default OnsketMoteFormView;
