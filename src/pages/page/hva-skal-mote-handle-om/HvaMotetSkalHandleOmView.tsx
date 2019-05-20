@@ -25,11 +25,11 @@ function HvaMotetSkalHandleOmView(props: Props) {
                 <div className="custom-veilederpanel">
                     <Veilederpanel kompakt svg={<SVG id="veileder-icon"/>}>
                         <Undertittel>
-                            Vi ønsker å
+                            I samtalen ønsker veilederen din
                         </Undertittel>
                         <ul>
-                            <li><Normaltekst>bli bedre kjent med situasjonen din</Normaltekst></li>
-                            <li><Normaltekst>snakke om hva som kan hindre deg i å søke eller være i jobb</Normaltekst>
+                            <li><Normaltekst>å bli bedre kjent med situasjonen din</Normaltekst></li>
+                            <li><Normaltekst>å snakke om jobbmulighetene dine</Normaltekst>
                             </li>
                         </ul>
                     </Veilederpanel>
@@ -37,11 +37,11 @@ function HvaMotetSkalHandleOmView(props: Props) {
             </div>
             <div className="spm">
                 <Undertittel className="spm-row">
-                    Er det noe du ønsker å snakke med oss om?
+                    Hva ønsker du å snakke om?
                 </Undertittel>
                 <div className="spm-row">
             <Textarea
-                placeholder="Skriv noen stikkord hvis du ønsker"
+                placeholder="Skriv noen stikkord til samtalen, eller hopp over"
                 textareaClass="spm-text-area"
                 disabled={props.loading}
                 label={false}

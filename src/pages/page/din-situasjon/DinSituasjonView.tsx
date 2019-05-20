@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
+import {Undertittel} from 'nav-frontend-typografi';
 import {Textarea} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
 import Veilederpanel from "nav-frontend-veilederpanel";
@@ -24,16 +24,12 @@ function DinSituasjonView(props: Props) {
                 <div className="custom-veilederpanel">
                     <Veilederpanel kompakt svg={<SVG id="veileder-icon"/>}>
                         <Undertittel>
-                            Fortell om situasjonen din
+                            Fortell om
                         </Undertittel>
                         <div>
-                            <Normaltekst>
-                                Du kan skrive om
-                            </Normaltekst>
                             <ul>
                                 <li>hva slags jobb du ønsker deg</li>
-                                <li>Hva som kan hindre deg i å jobbe</li>
-                                <li>hva som skal til for å komme i jobb</li>
+                                <li>hva som hindrer deg i å jobbe</li>
                             </ul>
                         </div>
                     </Veilederpanel>
@@ -42,7 +38,7 @@ function DinSituasjonView(props: Props) {
             <div className="spm">
                 <div className="spm-row">
                     <Textarea
-                        placeholder="Skriv til din veileder her"
+                        placeholder="Skriv til veilederen din"
                         textareaClass="spm-text-area"
                         label={false}
                         tellerTekst={() => false}

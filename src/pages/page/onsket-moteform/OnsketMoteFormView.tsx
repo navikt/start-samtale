@@ -14,11 +14,11 @@ export const WRITE: MoteForm = 'WRITE';
 export function moteFormValue(form: MoteForm): string {
     switch (form) {
         case 'MEET':
-            return 'I et møte på NAV-kontoret mitt';
+            return 'I et møte på NAV-kontoret';
         case 'PHONE':
             return 'I en telefonsamtale';
         case 'WRITE':
-            return 'Jeg vil skrive';
+            return 'Jeg vil skrive her';
     }
 }
 
@@ -40,7 +40,7 @@ function OnsketMoteFormView(props: Props) {
             <Stegindikator aktivtSteg={0}/>
             <div className="spm">
                 <Undertittel className="spm-row">
-                    Hvordan ønsker du å fortelle en veileder om situasjon din?
+                    Hvor vil du starte samtalen med veilederen din?
                 </Undertittel>
 
                 <RadioPanelGruppe

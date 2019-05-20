@@ -21,20 +21,20 @@ function NarPasserMotetView(props: Props) {
             <div className="veileder-budskap">
                 <Stegindikator aktivtSteg={2}/>
                 <Normaltekst className="custom-infotext">
-                    Veilederen din er tilgjengelig på dagtid fra mandag til fredag. Hvis du har noen ønsker til
-                    tidspunkt for møtet, skal vi prøve å legge til rette for det.
+                    Hvis det er tidspunkt som ikke passer, kan du skrive det under.
+                    Vi prøver å ta hensyn til det når vi kaller deg inn til møte.
                 </Normaltekst>
             </div>
             <div className="spm">
                 <Undertittel className="spm-row">
-                    Hvilket tidspunkt passer best for deg?
+                    Er det noe tidspunkt som ikke passer?
                 </Undertittel>
                 <Input
                     className="spm-row"
                     label={false}
                     disabled={props.loading}
                     value={value}
-                    placeholder="For eksempel: Alle dager utenom tirsdager"
+                    placeholder="Skriv her"
                     onChange={(e) => setValue((e.target as HTMLInputElement).value)}
                 />
                 <Hovedknapp spinner={props.loading}
