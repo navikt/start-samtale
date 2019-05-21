@@ -2,6 +2,7 @@ import {fetchData} from "./fetchData";
 import {DialogData, NyDialogMeldingData} from "./dataTypes";
 
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
+export const API_VEILARBVEDTAKINFO = '/veilarbvedtakinfo/api/motestotte';
 
 
 function getCookie(name: string) {
@@ -24,4 +25,8 @@ const CONFIG = {
 
 export function postDialog(data: NyDialogMeldingData): Promise<DialogData> {
     return fetchData<DialogData>(API_VEILARBDIALOG, {method: 'post', body: JSON.stringify(data), ...CONFIG});
+}
+
+export function postMotestotte(): Promise<void> {
+    return fetchData<void>(API_VEILARBVEDTAKINFO, {method: 'post', ...CONFIG});
 }
