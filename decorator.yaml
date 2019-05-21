@@ -13,3 +13,5 @@ proxy:
 redirect:
   - from: /aktivitetsplan
     to: {{ AKTIVITETSPLAN_URL }}
+  - from: /veientilarbeid
+    to: {{ VEIENTILARBEID_URL }}

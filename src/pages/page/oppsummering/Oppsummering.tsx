@@ -2,7 +2,6 @@ import React from 'react';
 import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
 import {PagesProps} from "../../PagesTypes";
-import {Knapp} from "nav-frontend-knapper";
 
 export const PAGE_ID = 'oppsumering';
 
@@ -28,9 +27,9 @@ function Oppsummering(props: PagesProps) {
 
                     </AlertStripeSuksess>
                 </div>
-                <Knapp className="ferdig-knapp">
+                <a href="/veientilarbeid">
                     Ferdig
-                </Knapp>
+                </a>
             </div>
         </>
     );

@@ -43,6 +43,8 @@ fasitResources:
     # links
     - alias: aktivitetsplan
       resourceType: baseUrl
+    - alias: veientilarbeid
+      resourceType: baseUrl
 
     # oidc med AzureAD B2C
     - alias: loginservice
