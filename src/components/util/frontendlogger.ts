@@ -8,3 +8,7 @@ export function frontendLogger(eventNavn: string, feltObjekt?: object, tagObjekt
         frontendlogger.event(eventNavn, feltObjekt || {}, tagObjekt || {});
     }
 }
+
+export function avbrytMetrikk(side: string) {
+    frontendLogger('forberede-moete.avbryt', undefined, {'side': side});
+}

@@ -7,6 +7,8 @@ import Stegindikator from '../../../components/stegindikator/Stegindikator';
 import { ReactComponent as SVG } from '../veileder_motestotte.svg';
 import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
+import {avbrytMetrikk} from "../../../components/util/frontendlogger";
+import {PAGE_ID} from "./HvaMotetSkalHandleOmSporsmal";
 
 interface Props {
     loading: boolean;
@@ -68,7 +70,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
                     Hopp over
                 </Flatknapp>
             </div>
-            <Lenke href={props.fallbackUrl}>
+            <Lenke href={props.fallbackUrl} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>
