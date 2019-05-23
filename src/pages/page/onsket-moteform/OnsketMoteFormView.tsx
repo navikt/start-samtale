@@ -5,8 +5,8 @@ import { Hovedknapp } from 'nav-frontend-knapper';
 import Stegindikator from '../../../components/stegindikator/Stegindikator';
 import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
-import {avbrytMetrikk} from "../../../components/util/frontendlogger";
-import {PAGE_ID} from "./OnsketMoteFormSporsmal";
+import { avbrytMetrikk } from '../../../components/util/frontendlogger';
+import { PAGE_ID } from './OnsketMoteFormSporsmal';
 
 export type MoteForm = 'MEET' | 'PHONE' | 'WRITE';
 

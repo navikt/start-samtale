@@ -5,8 +5,8 @@ import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import Stegindikator from '../../../components/stegindikator/Stegindikator';
 import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
-import {avbrytMetrikk} from "../../../components/util/frontendlogger";
-import {PAGE_ID} from "./NarPasserMotetSporsmal";
+import { avbrytMetrikk } from '../../../components/util/frontendlogger';
+import { PAGE_ID } from './NarPasserMotetSporsmal';
 
 interface Props {
     loading: boolean;
