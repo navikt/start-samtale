@@ -1,6 +1,5 @@
-import {FetchAction, FetchActionTypes as FetchActionTypes} from "./fetchReducer";
-import {postMotestotte} from "../components/api/api";
-
+import { FetchAction, FetchActionTypes as FetchActionTypes } from './fetchReducer';
+import { postMotestotte } from '../components/api/api';
 
 export function dispatchMotestotte(dispatch: (value: FetchAction) => void): Promise<void> {
     dispatch({type: FetchActionTypes.LOADING});

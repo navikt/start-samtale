@@ -1,12 +1,15 @@
 import React from 'react';
-import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import {PagesProps} from "../../PagesTypes";
+import { RouteComponentProps, withRouter } from 'react-router-dom';
+import queryString from 'query-string';
 
 export const PAGE_ID = 'oppsumering';
 
-function Oppsummering(props: PagesProps) {
-    const dialogIdLink = props.state.dialogId ? `/${props.state.dialogId}` : '';
+function Oppsummering(props: RouteComponentProps) {
+    const parsed = queryString.parse(props.location.search);
+
+    const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : '';
     const href = `aktivitetsplan/dialog${dialogIdLink}`;
 
     return (
@@ -35,4 +38,4 @@ function Oppsummering(props: PagesProps) {
     );
 }
 
-export default Oppsummering;
+export default withRouter(Oppsummering);

@@ -1,11 +1,12 @@
-import React, {useState} from 'react';
-import {Undertittel} from 'nav-frontend-typografi';
-import {RadioPanelGruppe} from "nav-frontend-skjema";
-import {Hovedknapp} from "nav-frontend-knapper";
-import Stegindikator from "../../../components/stegindikator/Stegindikator";
-import Lenke from "nav-frontend-lenker";
+import React, { useState } from 'react';
+import { Undertittel } from 'nav-frontend-typografi';
+import { RadioPanelGruppe } from 'nav-frontend-skjema';
+import { Hovedknapp } from 'nav-frontend-knapper';
+import Stegindikator from '../../../components/stegindikator/Stegindikator';
+import Lenke from 'nav-frontend-lenker';
+import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
 
-export type MoteForm = 'MEET' | 'PHONE' | 'WRITE'
+export type MoteForm = 'MEET' | 'PHONE' | 'WRITE';
 
 const MEET: MoteForm = 'MEET';
 const PHONE: MoteForm = 'PHONE';
@@ -19,15 +20,17 @@ export function moteFormValue(form: MoteForm): string {
             return 'I en telefonsamtale';
         case 'WRITE':
             return 'Jeg vil skrive her';
+        default:
+            return 'Ukjent';
     }
 }
 
 interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
-    fallbackUrl: string
+    fallbackUrl: string;
+    answered: boolean;
 }
-
 
 function OnsketMoteFormView(props: Props) {
     const [value, setValue] = useState<string | undefined>(undefined);
@@ -39,6 +42,7 @@ function OnsketMoteFormView(props: Props) {
         <>
             <Stegindikator aktivtSteg={0}/>
             <div className="spm">
+                <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Undertittel className="spm-row">
                     Hvor vil du starte samtalen med veilederen din?
                 </Undertittel>
@@ -57,16 +61,20 @@ function OnsketMoteFormView(props: Props) {
                     feil={feil}
                 />
 
-                <Hovedknapp spinner={props.loading}
-                            disabled={props.loading}
-                            onClick={() => {
-                                    if (value === undefined) {
-                                        setFeil(true);
-                                    } else {
-                                        setFeil(false);
-                                        props.onSubmit(value);
-                                    }
-                            }}>Send</Hovedknapp>
+                <Hovedknapp
+                    spinner={props.loading}
+                    disabled={props.loading}
+                    onClick={() => {
+                        if (value === undefined) {
+                            setFeil(true);
+                        } else {
+                            setFeil(false);
+                            props.onSubmit(value);
+                        }
+                    }}
+                >
+                    Send
+                </Hovedknapp>
             </div>
             <Lenke href={props.fallbackUrl}>
                 Avbryt

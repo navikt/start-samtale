@@ -6,12 +6,12 @@ export enum FetchActionTypes {
 
 interface FetchState {
     loading: boolean;
-    failure: boolean
+    failure: boolean;
 }
 
 export interface FetchAction {
-    type: FetchActionTypes,
-    value?: string
+    type: FetchActionTypes;
+    value?: string;
 }
 
 export const initialFetchState = {
@@ -27,5 +27,7 @@ export const fetchReducer = (state: FetchState, action: FetchAction) => {
             return {...state, loading: false};
         case FetchActionTypes.FAILURE:
             return {...state, loading: false, failure: true};
+        default:
+            throw new Error('Not supported action');
     }
 };

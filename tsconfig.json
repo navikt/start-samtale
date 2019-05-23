@@ -24,6 +24,16 @@
     "noUnusedParameters": true,
     "jsx": "preserve"
   },
+  "exclude": [
+    "node_modules",
+    "src/**/*.test.*",
+    "build",
+    "scripts",
+    "acceptance-tests",
+    "webpack",
+    "jest",
+    "src/setupTests.ts"
+  ],
   "include": [
     "src"
   ]

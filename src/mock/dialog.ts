@@ -1,4 +1,4 @@
-import {DialogData, NyDialogMeldingData} from "../components/api/dataTypes";
+import { DialogData, NyDialogMeldingData } from '../components/api/dataTypes';
 
 const dialogData: DialogData = {
     id: '1234',
@@ -19,4 +19,3 @@ export function opprettDialog(update: NyDialogMeldingData): DialogData {
     return dialogData;
 
 }
-

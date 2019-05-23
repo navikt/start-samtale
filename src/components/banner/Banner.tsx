@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Systemtittel } from 'nav-frontend-typografi';
-import './Banner.less'
+import './Banner.less';
 
 function Banner () {
     return(
