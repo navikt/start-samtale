@@ -6,11 +6,13 @@ import Veilederpanel from "nav-frontend-veilederpanel";
 import Stegindikator from "../../../components/stegindikator/Stegindikator";
 import {ReactComponent as SVG} from '../veileder_motestotte.svg'
 import Lenke from "nav-frontend-lenker";
+import AlleredeSvart from "../../../components/allerede-svar/AlleredeSvart";
 
 interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
-    fallbackUrl: string
+    fallbackUrl: string;
+    answered: boolean;
 }
 
 const initTextState: string = '';
@@ -36,19 +38,20 @@ function HvaMotetSkalHandleOmView(props: Props) {
                 </div>
             </div>
             <div className="spm">
+                <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Undertittel className="spm-row">
                     Hva ønsker du å snakke om?
                 </Undertittel>
                 <div className="spm-row">
-            <Textarea
-                placeholder="Skriv noen stikkord til samtalen, eller hopp over"
-                textareaClass="spm-text-area"
-                disabled={props.loading}
-                label={false}
-                tellerTekst={() => false}
-                value={value}
-                onChange={(e) => setValue((e.target as HTMLInputElement).value)}
-            />
+                    <Textarea
+                        placeholder="Skriv noen stikkord til samtalen, eller hopp over"
+                        textareaClass="spm-text-area"
+                        disabled={props.loading}
+                        label={false}
+                        tellerTekst={() => false}
+                        value={value}
+                        onChange={(e) => setValue((e.target as HTMLInputElement).value)}
+                    />
                 </div>
                 <Hovedknapp spinner={props.loading}
                             disabled={props.loading}

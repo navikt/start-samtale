@@ -11,6 +11,7 @@ export const PAGE_ID = 'din-situasjon';
 function DinSituasjonSporsmal(props: RouteComponentProps) {
     const [fetchState, fetchDispatch] = useReducer(fetchReducer, initialFetchState);
     const dialogId = getQueryParam(props.location.search, 'dialogId');
+    const answered = getQueryParam(props.location.search, 'answered') === 'true';
 
     const onSubmit = (value: string) => {
         if (value.length !== 0) {
@@ -30,6 +31,7 @@ function DinSituasjonSporsmal(props: RouteComponentProps) {
 
     return <DinSituasjonView onSubmit={onSubmit}
                              loading={fetchState.loading}
+                             answered={answered}
                              fallbackUrl={href}/>;
 }
 

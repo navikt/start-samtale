@@ -5,6 +5,7 @@ import {Hovedknapp} from "nav-frontend-knapper";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import {ReactComponent as SVG} from '../veileder_motestotte.svg'
 import Lenke from "nav-frontend-lenker";
+import AlleredeSvart from "../../../components/allerede-svar/AlleredeSvart";
 
 const initTextState: string = '';
 
@@ -12,7 +13,8 @@ const initTextState: string = '';
 interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
-    fallbackUrl: string
+    fallbackUrl: string;
+    answered: boolean;
 }
 
 function DinSituasjonView(props: Props) {
@@ -36,6 +38,7 @@ function DinSituasjonView(props: Props) {
                 </div>
             </div>
             <div className="spm">
+                <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <div className="spm-row">
                     <Textarea
                         placeholder="Skriv til veilederen din"

@@ -9,13 +9,12 @@ import {PAGE_ID as HANDLER_OM_PAGE_ID} from "../hva-skal-mote-handle-om/HvaMotet
 import {dispatchMotestotte} from "../../dispatchMotestotteData";
 import {getQueryParam} from "../../../components/util/querystring-utils";
 
-export const PAGE_ID = 'onsket-mote-form';
-
 function OnsketMoteFormSporsmal(props: RouteComponentProps) {
     const [fetchDialogState, fetchDialogDispatch] = useReducer(fetchReducer, initialFetchState);
     const [fetchMotestotteState, fetchMotestotteDispatch] = useReducer(fetchReducer, initialFetchState);
 
     const dialogId = getQueryParam(props.location.search, 'dialogId');
+    const answered = getQueryParam(props.location.search, 'answered') === 'true';
 
     const onSubmit = (value: string) => {
         frontendLogger('forberede-moete.motetype', {}, {type: value});
@@ -41,7 +40,8 @@ function OnsketMoteFormSporsmal(props: RouteComponentProps) {
     const href = `aktivitetsplan/dialog${dialogIdLink}`;
     return <OnsketMoteFormView onSubmit={onSubmit}
                                loading={fetchDialogState.loading || fetchMotestotteState.loading}
-                               fallbackUrl={href}/>
+                               fallbackUrl={href}
+                               answered={answered}/>
 }
 
 export default withRouter(OnsketMoteFormSporsmal);

@@ -4,6 +4,7 @@ import {RadioPanelGruppe} from "nav-frontend-skjema";
 import {Hovedknapp} from "nav-frontend-knapper";
 import Stegindikator from "../../../components/stegindikator/Stegindikator";
 import Lenke from "nav-frontend-lenker";
+import AlleredeSvart from "../../../components/allerede-svar/AlleredeSvart";
 
 export type MoteForm = 'MEET' | 'PHONE' | 'WRITE'
 
@@ -26,6 +27,7 @@ interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
     fallbackUrl: string
+    answered: boolean
 }
 
 
@@ -39,6 +41,7 @@ function OnsketMoteFormView(props: Props) {
         <>
             <Stegindikator aktivtSteg={0}/>
             <div className="spm">
+                <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Undertittel className="spm-row">
                     Hvor vil du starte samtalen med veilederen din?
                 </Undertittel>
@@ -66,7 +69,9 @@ function OnsketMoteFormView(props: Props) {
                                         setFeil(false);
                                         props.onSubmit(value);
                                     }
-                            }}>Send</Hovedknapp>
+                            }}>
+                    Send
+                </Hovedknapp>
             </div>
             <Lenke href={props.fallbackUrl}>
                 Avbryt

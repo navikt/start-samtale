@@ -4,11 +4,13 @@ import {Input} from "nav-frontend-skjema";
 import {Flatknapp, Hovedknapp} from "nav-frontend-knapper";
 import Stegindikator from "../../../components/stegindikator/Stegindikator";
 import Lenke from "nav-frontend-lenker";
+import AlleredeSvart from "../../../components/allerede-svar/AlleredeSvart";
 
 interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
-    fallbackUrl: string
+    fallbackUrl: string;
+    answered: boolean;
 }
 
 const inputState: string = '';
@@ -29,6 +31,7 @@ function NarPasserMotetView(props: Props) {
                 <Undertittel className="spm-row">
                     Er det noe tidspunkt som ikke passer?
                 </Undertittel>
+                <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Input
                     className="spm-row"
                     label={false}
