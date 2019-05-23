@@ -1,9 +1,8 @@
-import {fetchData} from "./fetchData";
-import {DialogData, NyDialogMeldingData} from "./dataTypes";
+import { fetchData } from './fetchData';
+import { DialogData, NyDialogMeldingData } from './dataTypes';
 
 export const API_VEILARBDIALOG = '/veilarbdialog/api/dialog';
 export const API_VEILARBVEDTAKINFO = '/veilarbvedtakinfo/api/motestotte';
-
 
 function getCookie(name: string) {
     const re = new RegExp(`${name}=([^;]+)`);

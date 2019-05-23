@@ -1,10 +1,10 @@
-import React, {useState} from 'react';
-import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
-import {Input} from "nav-frontend-skjema";
-import {Flatknapp, Hovedknapp} from "nav-frontend-knapper";
-import Stegindikator from "../../../components/stegindikator/Stegindikator";
-import Lenke from "nav-frontend-lenker";
-import AlleredeSvart from "../../../components/allerede-svar/AlleredeSvart";
+import React, { useState } from 'react';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
+import { Input } from 'nav-frontend-skjema';
+import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
+import Stegindikator from '../../../components/stegindikator/Stegindikator';
+import Lenke from 'nav-frontend-lenker';
+import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
 
 interface Props {
     loading: boolean;
@@ -40,14 +40,18 @@ function NarPasserMotetView(props: Props) {
                     placeholder="Skriv her"
                     onChange={(e) => setValue((e.target as HTMLInputElement).value)}
                 />
-                <Hovedknapp spinner={props.loading}
-                            disabled={props.loading}
-                            onClick={() => props.onSubmit(value)}>
+                <Hovedknapp
+                    spinner={props.loading}
+                    disabled={props.loading}
+                    onClick={() => props.onSubmit(value)}
+                >
                     Send
                 </Hovedknapp>
-                <Flatknapp className="ferdig-knapp"
-                           disabled={props.loading}
-                           onClick={() => props.onSubmit('')}>
+                <Flatknapp
+                    className="ferdig-knapp"
+                    disabled={props.loading}
+                    onClick={() => props.onSubmit('')}
+                >
                     Hopp over
                 </Flatknapp>
             </div>
@@ -55,7 +59,7 @@ function NarPasserMotetView(props: Props) {
                 Avbryt
             </Lenke>
         </>
-    )
+    );
 }
 
 export default NarPasserMotetView;

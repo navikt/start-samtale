@@ -6,12 +6,9 @@ export function getQueryParam(locationSearch: string, key: string): string | und
 
     if (Array.isArray(parsedKey)) {
         return parsedKey[0];
-    }
-    else if (parsedKey === null){
+    } else if (parsedKey === null) {
         return undefined;
-    }
-    else {
+    } else {
         return parsedKey;
     }
 }
-

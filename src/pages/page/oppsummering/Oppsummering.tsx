@@ -1,7 +1,7 @@
 import React from 'react';
-import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { AlertStripeSuksess } from 'nav-frontend-alertstriper';
-import {RouteComponentProps, withRouter} from "react-router-dom";
+import { RouteComponentProps, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 
 export const PAGE_ID = 'oppsumering';
@@ -9,7 +9,7 @@ export const PAGE_ID = 'oppsumering';
 function Oppsummering(props: RouteComponentProps) {
     const parsed = queryString.parse(props.location.search);
 
-    const dialogIdLink = parsed['dialogId'] ? `/${parsed['dialogId']}` : '';
+    const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : '';
     const href = `aktivitetsplan/dialog${dialogIdLink}`;
 
     return (

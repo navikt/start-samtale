@@ -1,5 +1,5 @@
-import React from "react";
-import {AlertStripeInfo} from "nav-frontend-alertstriper";
+import React from 'react';
+import { AlertStripeInfo } from 'nav-frontend-alertstriper';
 
 interface Props {
     visible: boolean;

@@ -4,7 +4,6 @@ export function fetchData<T>(url: string, config = {}): Promise<T> { // tslint:d
         .then(toJson);
 }
 
-
 export function sjekkStatuskode(response: Response) {
     if (
         response.status >= 200 &&
