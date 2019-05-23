@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Input} from "nav-frontend-skjema";
-import {Hovedknapp} from "nav-frontend-knapper";
+import {Flatknapp, Hovedknapp} from "nav-frontend-knapper";
 import Stegindikator from "../../../components/stegindikator/Stegindikator";
 import Lenke from "nav-frontend-lenker";
 
@@ -22,7 +22,7 @@ function NarPasserMotetView(props: Props) {
                 <Stegindikator aktivtSteg={2}/>
                 <Normaltekst className="custom-infotext">
                     Hvis det er tidspunkt som ikke passer, kan du skrive det under.
-                    Vi prøver å ta hensyn til det når vi kaller deg inn til møte.
+                    Vi prøver å ta hensyn til det.
                 </Normaltekst>
             </div>
             <div className="spm">
@@ -42,6 +42,11 @@ function NarPasserMotetView(props: Props) {
                             onClick={() => props.onSubmit(value)}>
                     Send
                 </Hovedknapp>
+                <Flatknapp className="ferdig-knapp"
+                           disabled={props.loading}
+                           onClick={() => props.onSubmit('')}>
+                    Hopp over
+                </Flatknapp>
             </div>
             <Lenke href={props.fallbackUrl}>
                 Avbryt

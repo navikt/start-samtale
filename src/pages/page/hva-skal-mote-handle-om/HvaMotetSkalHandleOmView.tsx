@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Normaltekst, Undertittel} from 'nav-frontend-typografi';
 import {Textarea} from "nav-frontend-skjema";
-import {Hovedknapp} from "nav-frontend-knapper";
+import {Flatknapp, Hovedknapp} from "nav-frontend-knapper";
 import Veilederpanel from "nav-frontend-veilederpanel";
 import Stegindikator from "../../../components/stegindikator/Stegindikator";
 import {ReactComponent as SVG} from '../veileder_motestotte.svg'
@@ -55,6 +55,11 @@ function HvaMotetSkalHandleOmView(props: Props) {
                             onClick={() => props.onSubmit(value)}>
                     Send
                 </Hovedknapp>
+                <Flatknapp className="ferdig-knapp"
+                           disabled={props.loading}
+                           onClick={() => props.onSubmit('')}>
+                    Hopp over
+                </Flatknapp>
             </div>
             <Lenke href={props.fallbackUrl}>
                 Avbryt
