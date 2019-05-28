@@ -27,10 +27,11 @@ export function moteFormValue(form: MoteForm): string {
     }
 }
 
+export const SPORSMAL = 'Hvor vil du starte samtalen med veilederen din?';
+
 interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
-    fallbackUrl: string;
     answered: boolean;
 }
 
@@ -46,7 +47,7 @@ function OnsketMoteFormView(props: Props) {
             <div className="spm">
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Undertittel className="spm-row">
-                    Hvor vil du starte samtalen med veilederen din?
+                    {SPORSMAL}
                 </Undertittel>
 
                 <RadioPanelGruppe
@@ -78,7 +79,7 @@ function OnsketMoteFormView(props: Props) {
                     Send
                 </Hovedknapp>
             </div>
-            <Lenke href={props.fallbackUrl} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href="/veientilarbeid" onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>

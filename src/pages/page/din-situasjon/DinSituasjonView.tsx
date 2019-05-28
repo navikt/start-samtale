@@ -14,12 +14,16 @@ const initTextState: string = '';
 interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
-    fallbackUrl: string;
     answered: boolean;
 }
 
+export const SPORSMAL = 'Fortell';
+
 function DinSituasjonView(props: Props) {
     const [value, setValue] = useState(initTextState);
+    const [feilState, setFeil] = useState(false);
+
+    const feil = feilState ? {feilmelding: 'Fortell noe om situasjonen din, slik at du kan få veiledning som passer for deg.'} : undefined;
 
     return (
         <>
@@ -32,7 +36,7 @@ function DinSituasjonView(props: Props) {
                         <div>
                             <ul>
                                 <li>hva slags jobb du ønsker deg</li>
-                                <li>hva som hindrer deg i å jobbe</li>
+                                <li>hva som kan hindre deg i å jobbe</li>
                             </ul>
                         </div>
                     </Veilederpanel>
@@ -49,17 +53,25 @@ function DinSituasjonView(props: Props) {
                         value={value}
                         disabled={props.loading}
                         onChange={(e) => setValue((e.target as HTMLInputElement).value)}
+                        feil={feil}
                     />
                 </div>
                 <Hovedknapp
                     spinner={props.loading}
                     disabled={props.loading}
-                    onClick={() => props.onSubmit(value)}
+                    onClick={() => {
+                        if (value === '') {
+                            setFeil(true);
+                        } else {
+                            setFeil(false);
+                            props.onSubmit(value);
+                        }
+                    }}
                 >
                     Send
                 </Hovedknapp>
             </div>
-            <Lenke href={props.fallbackUrl} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href="/veientilarbeid" onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>

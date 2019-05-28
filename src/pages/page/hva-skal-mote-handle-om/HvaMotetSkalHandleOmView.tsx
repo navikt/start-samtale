@@ -13,11 +13,12 @@ import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal';
 interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
-    fallbackUrl: string;
     answered: boolean;
 }
 
 const initTextState: string = '';
+
+export const SPORSMAL = 'Hva ønsker du å snakke om?';
 
 function HvaMotetSkalHandleOmView(props: Props) {
     const [value, setValue] = useState(initTextState);
@@ -42,7 +43,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
             <div className="spm">
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Undertittel className="spm-row">
-                    Hva ønsker du å snakke om?
+                    {SPORSMAL}
                 </Undertittel>
                 <div className="spm-row">
                     <Textarea
@@ -70,7 +71,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
                     Hopp over
                 </Flatknapp>
             </div>
-            <Lenke href={props.fallbackUrl} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href="/veientilarbeid" onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>

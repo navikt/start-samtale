@@ -8,10 +8,11 @@ import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
 import { avbrytMetrikk } from '../../../components/util/frontendlogger';
 import { PAGE_ID } from './NarPasserMotetSporsmal';
 
+export const SPORSMAL = 'Er det noe tidspunkt som ikke passer?';
+
 interface Props {
     loading: boolean;
     onSubmit: (arg: string) => void;
-    fallbackUrl: string;
     answered: boolean;
 }
 
@@ -25,13 +26,12 @@ function NarPasserMotetView(props: Props) {
             <div className="veileder-budskap">
                 <Stegindikator aktivtSteg={2}/>
                 <Normaltekst className="custom-infotext">
-                    Hvis det er tidspunkt som ikke passer, kan du skrive det under.
-                    Vi prøver å ta hensyn til det.
+                    Hvis det er tidspunkt som ikke passer, kan du skrive det under. Vi prøver å ta hensyn til det.
                 </Normaltekst>
             </div>
             <div className="spm">
                 <Undertittel className="spm-row">
-                    Er det noe tidspunkt som ikke passer?
+                    Er det noe tidspunkt som <i>ikke</i> passer?
                 </Undertittel>
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Input
@@ -43,6 +43,7 @@ function NarPasserMotetView(props: Props) {
                     onChange={(e) => setValue((e.target as HTMLInputElement).value)}
                 />
                 <Hovedknapp
+                    className="send-knapp"
                     spinner={props.loading}
                     disabled={props.loading}
                     onClick={() => props.onSubmit(value)}
@@ -57,7 +58,7 @@ function NarPasserMotetView(props: Props) {
                     Hopp over
                 </Flatknapp>
             </div>
-            <Lenke href={props.fallbackUrl} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href="/veientilarbeid" onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>

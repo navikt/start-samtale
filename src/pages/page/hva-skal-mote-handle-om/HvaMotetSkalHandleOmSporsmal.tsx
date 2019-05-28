@@ -1,5 +1,5 @@
 import React, { useReducer } from 'react';
-import HvaMotetSkalHandleOmView from './HvaMotetSkalHandleOmView';
+import HvaMotetSkalHandleOmView, { SPORSMAL } from './HvaMotetSkalHandleOmView';
 import { fetchReducer, initialFetchState } from '../../fetchReducer';
 import { dispatchDialogData } from '../../dispatchDialogData';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
@@ -15,7 +15,9 @@ function HvaMotetSkalHandleOmSporsmal(props: RouteComponentProps) {
 
     const onSubmit = (value: string) => {
         if (value.length !== 0) {
-            dispatchDialogData(fetchDispatch, value, dialogId)
+            const dialogInputData = {svar: value, spm: SPORSMAL, dialogId: dialogId};
+
+            dispatchDialogData(dialogInputData, fetchDispatch)
                 .then((res) => {
                     props.history.replace(props.location.pathname + `?dialogId=${res.id}&answered=true`);
                     props.history.push(`/${NAR_PAGE_ID}?dialogId=${res.id}`);
@@ -26,14 +28,10 @@ function HvaMotetSkalHandleOmSporsmal(props: RouteComponentProps) {
         }
     };
 
-    const dialogIdLink = dialogId ? `/${dialogId}` : '';
-    const href = `aktivitetsplan/dialog${dialogIdLink}`;
-
     return (
         <HvaMotetSkalHandleOmView
             onSubmit={onSubmit}
             loading={fetchState.loading}
-            fallbackUrl={href}
             answered={answered}
         />
     );

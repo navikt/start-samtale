@@ -30,7 +30,7 @@ function Oppsummering(props: RouteComponentProps) {
 
                     </AlertStripeSuksess>
                 </div>
-                <a href="/veientilarbeid">
+                <a className="ferdig-knapp" href="/veientilarbeid">
                     Ferdig
                 </a>
             </div>

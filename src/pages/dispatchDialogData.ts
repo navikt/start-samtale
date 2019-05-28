@@ -2,9 +2,16 @@ import { FetchAction as FetchAction, FetchActionTypes as FetchActionTypes } from
 import { DialogData, NyDialogMeldingData } from '../components/api/dataTypes';
 import { postDialog } from '../components/api/api';
 
-export function dispatchDialogData(dispatch: (value: FetchAction) => void, value: string, dialogId?: string): Promise<DialogData> {
+interface InputData {
+    spm: string;
+    svar: string;
+    dialogId?: string;
+}
+
+export function dispatchDialogData(inputData: InputData, dispatch: (value: FetchAction) => void): Promise<DialogData> {
     dispatch({type: FetchActionTypes.LOADING});
-    const data: NyDialogMeldingData = {dialogId: dialogId, tekst: value, overskrift: 'Mitt første møte med NAV'};
+    const tekst = `Spørsmål fra NAV: ${inputData.spm}\n Svaret mitt: ${inputData.svar}`;
+    const data: NyDialogMeldingData = {dialogId: inputData.dialogId, tekst: tekst, overskrift: 'Veiledning'};
     return postDialog(data)
         .then(res => {
             dispatch({type: FetchActionTypes.OK, value: res.id});

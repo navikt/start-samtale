@@ -1,6 +1,6 @@
 import React, { useReducer } from 'react';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
-import OnsketMoteFormView, { MoteForm, moteFormValue, WRITE } from './OnsketMoteFormView';
+import OnsketMoteFormView, { MoteForm, moteFormValue, SPORSMAL, WRITE } from './OnsketMoteFormView';
 import { fetchReducer, initialFetchState } from '../../fetchReducer';
 import { frontendLogger } from '../../../components/util/frontendlogger';
 import { dispatchDialogData } from '../../dispatchDialogData';
@@ -19,32 +19,27 @@ function OnsketMoteFormSporsmal(props: RouteComponentProps) {
     const answered = getQueryParam(props.location.search, 'answered') === 'true';
 
     const onSubmit = (value: string) => {
-        frontendLogger('forberede-moete.motetype', {}, {type: value});
-        if (value === WRITE) {
-            dispatchMotestotte(fetchMotestotteDispatch).then(() => {
-                props.history.replace(props.location.pathname + `?answered=true`);
-                props.history.push(`/${DIN_SITUASJON_PAGE_ID}`);
-            });
+        const dialogInputData = {svar: moteFormValue(value as MoteForm), spm: SPORSMAL, dialogId: dialogId};
 
-        } else {
-            dispatchMotestotte(fetchMotestotteDispatch)
-                .then(() =>
-                    dispatchDialogData(fetchDialogDispatch, moteFormValue(value as MoteForm), dialogId)
-                        .then((res) => {
-                            props.history.replace(props.location.pathname + `?dialogId=${res.id}&answered=true`);
+        frontendLogger('forberede-moete.motetype', {}, {type: value});
+        dispatchMotestotte(fetchMotestotteDispatch)
+            .then(() =>
+                dispatchDialogData(dialogInputData, fetchDialogDispatch)
+                    .then((res) => {
+                        props.history.replace(props.location.pathname + `?dialogId=${res.id}&answered=true`);
+                        if (value === WRITE) {
+                            props.history.push(`/${DIN_SITUASJON_PAGE_ID}`);
+                        } else {
                             props.history.push(`/${HANDLER_OM_PAGE_ID}?dialogId=${res.id}`);
-                        })
-                );
-        }
+                        }
+                    })
+            );
     };
 
-    const dialogIdLink = dialogId ? `/${dialogId}` : '';
-    const href = `aktivitetsplan/dialog${dialogIdLink}`;
     return (
         <OnsketMoteFormView
             onSubmit={onSubmit}
             loading={fetchDialogState.loading || fetchMotestotteState.loading}
-            fallbackUrl={href}
             answered={answered}
         />
     );
