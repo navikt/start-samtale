@@ -28,7 +28,7 @@ function OnsketMoteFormSporsmal(props: RouteComponentProps) {
                     .then((res) => {
                         props.history.replace(props.location.pathname + `?dialogId=${res.id}&answered=true`);
                         if (value === WRITE) {
-                            props.history.push(`/${DIN_SITUASJON_PAGE_ID}`);
+                            props.history.push(`/${DIN_SITUASJON_PAGE_ID}?dialogId=${res.id}`);
                         } else {
                             props.history.push(`/${HANDLER_OM_PAGE_ID}?dialogId=${res.id}`);
                         }
