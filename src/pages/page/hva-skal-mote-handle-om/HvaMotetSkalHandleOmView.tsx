@@ -9,6 +9,7 @@ import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
 import { avbrytMetrikk } from '../../../components/util/frontendlogger';
 import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal';
+import { feilmelding, tekstTeller } from '../../../components/util/text-area-utils';
 
 interface Props {
     loading: boolean;
@@ -17,11 +18,16 @@ interface Props {
 }
 
 const initTextState: string = '';
+const maksLengde = 500;
 
 export const SPORSMAL = 'Hva ønsker du å snakke om?';
 
 function HvaMotetSkalHandleOmView(props: Props) {
     const [value, setValue] = useState(initTextState);
+    const [feilState, setFeil] = useState(false);
+
+    const feil = feilmelding(feilState, maksLengde, value);
+    const customTekstTeller = tekstTeller(350);
 
     return (
         <>
@@ -51,7 +57,9 @@ function HvaMotetSkalHandleOmView(props: Props) {
                         textareaClass="spm-text-area"
                         disabled={props.loading}
                         label={false}
-                        tellerTekst={() => false}
+                        tellerTekst={customTekstTeller}
+                        maxLength={maksLengde}
+                        feil={feil}
                         value={value}
                         onChange={(e) => setValue((e.target as HTMLInputElement).value)}
                     />
@@ -59,7 +67,14 @@ function HvaMotetSkalHandleOmView(props: Props) {
                 <Hovedknapp
                     spinner={props.loading}
                     disabled={props.loading}
-                    onClick={() => props.onSubmit(value)}
+                    onClick={() => {
+                        if (value.length >= maksLengde) {
+                            setFeil(true);
+                        } else {
+                            setFeil(false);
+                            props.onSubmit(value);
+                        }
+                    }}
                 >
                     Send
                 </Hovedknapp>

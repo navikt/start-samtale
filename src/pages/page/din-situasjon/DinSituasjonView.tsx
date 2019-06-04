@@ -8,6 +8,7 @@ import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
 import { avbrytMetrikk } from '../../../components/util/frontendlogger';
 import { PAGE_ID } from './DinSituasjonSporsmal';
+import { feilmelding, tekstTeller } from '../../../components/util/text-area-utils';
 
 const initTextState: string = '';
 
@@ -18,12 +19,15 @@ interface Props {
 }
 
 export const SPORSMAL = 'Fortell';
+const customFeil = 'Fortell noe om situasjonen din, slik at du kan få veiledning som passer for deg.';
+const maksLengde = 5000;
 
 function DinSituasjonView(props: Props) {
     const [value, setValue] = useState(initTextState);
     const [feilState, setFeil] = useState(false);
 
-    const feil = feilState ? {feilmelding: 'Fortell noe om situasjonen din, slik at du kan få veiledning som passer for deg.'} : undefined;
+    const feil = feilmelding(feilState, maksLengde, value, customFeil);
+    const customTekstTeller = tekstTeller(3500);
 
     return (
         <>
@@ -49,7 +53,8 @@ function DinSituasjonView(props: Props) {
                         placeholder="Skriv til veilederen din"
                         textareaClass="spm-text-area"
                         label={false}
-                        tellerTekst={() => false}
+                        tellerTekst={customTekstTeller}
+                        maxLength={maksLengde}
                         value={value}
                         disabled={props.loading}
                         onChange={(e) => setValue((e.target as HTMLInputElement).value)}
@@ -60,7 +65,7 @@ function DinSituasjonView(props: Props) {
                     spinner={props.loading}
                     disabled={props.loading}
                     onClick={() => {
-                        if (value === '') {
+                        if (value === '' || value.length > maksLengde) {
                             setFeil(true);
                         } else {
                             setFeil(false);
