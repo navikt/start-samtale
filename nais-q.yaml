@@ -20,7 +20,7 @@ spec:
     cpuThresholdPercentage: 50
   prometheus:
     enabled: true
-    path: arbeid/dialog/internal/metrics
+    path: arbeid/start-samtale/internal/metrics
   ingresses:
     - https://start-samtale-{{namespace}}.nais.oera-q.local
     - https://start-samtale-{{namespace}}.dev-sbs.nais.io
