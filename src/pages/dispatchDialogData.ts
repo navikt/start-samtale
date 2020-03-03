@@ -1,4 +1,4 @@
-import { FetchAction as FetchAction, FetchActionTypes as FetchActionTypes } from './fetchReducer';
+import { FetchAction, FetchActionTypes } from './fetchReducer';
 import { DialogData, NyDialogMeldingData } from '../components/api/dataTypes';
 import { postDialog } from '../components/api/api';
 

@@ -9,9 +9,11 @@ import './Sporsmal.less';
 import PageChangeListener from '../components/pange-change-listener/PageChangeListener';
 
 function Sporsmal() {
+    const basename = process.env.PUBLIC_URL;
+
     return (
         <>
-            <BrowserRouter>
+            <BrowserRouter basename={basename}>
                 <Route
                     path="/"
                     exact={true}

@@ -57,7 +57,7 @@ function DinSituasjonView(props: Props) {
                         maxLength={maksLengde}
                         value={value}
                         disabled={props.loading}
-                        onChange={(e) => setValue((e.target as HTMLInputElement).value)}
+                        onChange={(e) => setValue(e.target.value)}
                         feil={feil}
                     />
                 </div>

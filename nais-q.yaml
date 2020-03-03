@@ -1,0 +1,35 @@
+apiVersion: 'nais.io/v1alpha1'
+kind: 'Application'
+metadata:
+  name: start-samtale
+  namespace: {{namespace}}
+  labels:
+    team: pto
+spec:
+  image: {{image}}
+  port: 8080
+  liveness:
+    path: arbeid/start-samtale/internal/isAlive
+    initialDelay: 20
+  readiness:
+    path: arbeid/start-samtale/internal/selftest
+    initialDelay: 20
+  replicas:
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 50
+  prometheus:
+    enabled: true
+    path: arbeid/dialog/internal/metrics
+  ingresses:
+    - https://start-samtale-{{namespace}}.nais.oera-q.local
+    - https://start-samtale-{{namespace}}.dev-sbs.nais.io
+    - https://www-{{namespace}}.nav.no/arbeid/start-samtale
+  vault:
+    enabled: true
+  webproxy: true
+  env:
+    - name: DITTNAV_LINK_URL
+      value: 'https://tjenester-{{namespace}}.nav.no/dittnav/'
+  envFrom:
+    - configmap: pto-config

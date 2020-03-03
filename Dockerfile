@@ -1,14 +1,7 @@
-ARG BASE_IMAGE_PREFIX="docker.adeo.no:5000/pus/"
-FROM ${BASE_IMAGE_PREFIX}node as builder
+FROM navikt/pus-decorator
 
-ADD / /source
-ENV CI=true
-WORKDIR /source
-RUN npm ci
-ENV NODE_ENV=production
-RUN npm run build
+ENV APPLICATION_NAME=start-samtale
+ENV GZIP_ENABLED=true
+COPY /build /app
 
-FROM docker.adeo.no:5000/pus/decorator
-COPY --from=builder /source/build /app
 ADD decorator.yaml /decorator.yaml
-ENV CONTEXT_PATH /

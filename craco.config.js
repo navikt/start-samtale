@@ -1,14 +1,11 @@
 const path = require('path');
 const CracoLessPlugin = require('craco-less');
-const NpmImportPlugin = require('less-plugin-npm-import');
 const BUILD_PATH = path.resolve(__dirname, './build');
 
 const removeCssHashPlugin = {
     overrideWebpackConfig: ({ webpackConfig, cracoConfig, pluginOptions, context: { env, paths } }) => {
-
         const plugins = webpackConfig.plugins;
         plugins.forEach(plugin => {
-
             const options = plugin.options;
 
             if (!options) {
@@ -16,10 +13,8 @@ const removeCssHashPlugin = {
             }
 
             if (options.filename && options.filename.endsWith('.css')) {
-                options.filename = "static/css/[name].css";
-                options.chunkFilename = "static/css/[name].chunk.css";
+                options.moduleFilename = () => 'static/css/[name].css';
             }
-
         });
         return webpackConfig;
     }
@@ -27,22 +22,39 @@ const removeCssHashPlugin = {
 
 module.exports = {
     plugins: [
-        { plugin: CracoLessPlugin,
+        { plugin: CracoLessPlugin },
+        {
+            plugin: CracoLessPlugin,
             options: {
-                lessLoaderOptions: {
-                    loader: new NpmImportPlugin({ prefix: '~' })
+                modifyLessRule: function(lessRule, _context) {
+                    lessRule.test = /\.(module)\.(less)$/;
+                    lessRule.exclude = /node_modules/;
+
+                    return lessRule;
+                },
+                cssLoaderOptions: {
+                    modules: { localIdentName: '[local]_[hash:base64:5]' }
                 }
             }
         },
-        { plugin: removeCssHashPlugin },
+        { plugin: removeCssHashPlugin }
     ],
     webpack: {
         configure: {
+            optimization: {
+                splitChunks: {
+                    cacheGroups: {
+                        default: false,
+                        vendors: false
+                    }
+                },
+                runtimeChunk: false
+            },
             output: {
                 path: BUILD_PATH,
                 filename: 'static/js/[name].js',
-                chunkFilename: 'static/js/[name].chunk.js',
-            },
+                chunkFilename: 'static/js/[name].chunk.js'
+            }
         }
     }
 };
