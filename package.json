@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": "https://github.com/navikt/start-samtale.git",
   "scripts": {
-    "start": "cross-env REACT_APP_MOCK=true craco start",
+    "start": "cross-env REACT_APP_MOCK=true PUBLIC_URL=/  craco start",
     "build": "cross-env REACT_APP_MOCK=false craco build",
     "test": "craco test",
     "test:coverage": "npm test -- --coverage --watchAll=false",
