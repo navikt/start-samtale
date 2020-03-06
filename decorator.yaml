@@ -6,10 +6,10 @@ auth:
 
 proxy:
   - contextPath: "/arbeid/start-samtale/veilarbdialog"
-    baseUrl: "http://veilarbproxy"
+    baseUrl: "http://veilarbproxy/veilarbdialog"
     requestRewrite: REMOVE_CONTEXT_PATH
   - contextPath: "/arbeid/start-samtale/veilarbvedtakinfo"
-    baseUrl: "http://veilarbproxy"
+    baseUrl: "http://veilarbproxy/veilarbvedtakinfo"
     requestRewrite: REMOVE_CONTEXT_PATH
 
 
