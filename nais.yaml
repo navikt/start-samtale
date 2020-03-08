@@ -20,7 +20,7 @@ spec:
     cpuThresholdPercentage: 50
   prometheus:
     enabled: true
-    path: start-samtale/internal/metrics
+    path: arbeid/start-samtale/internal/metrics
   ingresses:
     - https://www.nav.no/arbeid/start-samtale
   vault:
