@@ -30,10 +30,10 @@ function NarPasserMotetView(props: Props) {
                 </Normaltekst>
             </div>
             <div className="spm">
+                <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Undertittel className="spm-row">
                     Er det noe tidspunkt som <i>ikke</i> passer?
                 </Undertittel>
-                <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <Input
                     className="spm-row"
                     label={false}
