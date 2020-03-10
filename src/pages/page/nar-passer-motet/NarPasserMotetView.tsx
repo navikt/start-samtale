@@ -63,7 +63,7 @@ function NarPasserMotetView(props: Props) {
                     Send
                 </Hovedknapp>
                 <Flatknapp
-                    className="ferdig-knapp"
+                    className="hopp-knapp"
                     disabled={props.loading}
                     onClick={() => props.onSubmit('')}
                 >

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import {Flatknapp, Hovedknapp} from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import { ReactComponent as SVG } from '../veileder_motestotte.svg';
 import Lenke from 'nav-frontend-lenker';
@@ -62,6 +62,7 @@ function DinSituasjonView(props: Props) {
                     />
                 </div>
                 <Hovedknapp
+                    className="send-knapp"
                     spinner={props.loading}
                     disabled={props.loading}
                     onClick={() => {

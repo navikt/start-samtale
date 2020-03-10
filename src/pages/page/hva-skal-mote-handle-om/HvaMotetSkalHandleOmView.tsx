@@ -37,7 +37,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
                 <div className="custom-veilederpanel">
                     <Veilederpanel kompakt={true} svg={<SVG id="veileder-icon"/>}>
                         <Undertittel>
-                            I samtalen ønsker veilederen din
+                            I samtalen ønsker veilederen
                         </Undertittel>
                         <ul>
                             <li><Normaltekst>å bli bedre kjent med situasjonen din</Normaltekst></li>
@@ -66,6 +66,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
                     />
                 </div>
                 <Hovedknapp
+                    className="send-knapp"
                     spinner={props.loading}
                     disabled={props.loading}
                     onClick={() => {
@@ -80,7 +81,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
                     Send
                 </Hovedknapp>
                 <Flatknapp
-                    className="ferdig-knapp"
+                    className="hopp-knapp"
                     disabled={props.loading}
                     onClick={() => props.onSubmit('')}
                 >
