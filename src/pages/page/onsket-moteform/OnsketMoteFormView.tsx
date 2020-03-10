@@ -39,7 +39,7 @@ function OnsketMoteFormView(props: Props) {
     const [value, setValue] = useState<string | undefined>(undefined);
     const [feilState, setFeil] = useState(false);
 
-    const feil = feilState ? {feilmelding: 'Obligatorisk felt'} : undefined;
+    const feil = feilState ? 'Velg ett alternativ' : undefined;
 
     return (
         <>
@@ -79,7 +79,7 @@ function OnsketMoteFormView(props: Props) {
                     Send
                 </Hovedknapp>
             </div>
-            <Lenke href="/veientilarbeid" onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href={`${process.env.PUBLIC_URL}/veientilarbeid`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>

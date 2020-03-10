@@ -10,7 +10,7 @@ function Oppsummering(props: RouteComponentProps) {
     const parsed = queryString.parse(props.location.search);
 
     const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : '';
-    const href = `aktivitetsplan/dialog${dialogIdLink}`;
+    const href = `${process.env.PUBLIC_URL}/aktivitetsplan/dialog${dialogIdLink}`;
 
     return (
         <>
@@ -30,7 +30,7 @@ function Oppsummering(props: RouteComponentProps) {
 
                     </AlertStripeSuksess>
                 </div>
-                <a className="ferdig-knapp" href="/veientilarbeid">
+                <a className="ferdig-knapp" href={`${process.env.PUBLIC_URL}/veientilarbeid`}>
                     Ferdig
                 </a>
             </div>

@@ -20,6 +20,9 @@ const inputState: string = '';
 
 function NarPasserMotetView(props: Props) {
     const [value, setValue] = useState(inputState);
+    const [feilState, setFeil] = useState(false);
+
+    const feil = feilState ? 'Du kan ikke sende en tom melding' : undefined;
 
     return (
         <>
@@ -40,13 +43,22 @@ function NarPasserMotetView(props: Props) {
                     disabled={props.loading}
                     value={value}
                     placeholder="Skriv her"
+                    feil={feil}
                     onChange={(e) => setValue((e.target as HTMLInputElement).value)}
                 />
                 <Hovedknapp
                     className="send-knapp"
                     spinner={props.loading}
                     disabled={props.loading}
-                    onClick={() => props.onSubmit(value)}
+                    onClick={() => {
+                        if (value === '') {
+                            setFeil(true);
+                        } else {
+                            setFeil(false);
+                            props.onSubmit(value);
+                        }
+                    }}
+
                 >
                     Send
                 </Hovedknapp>
@@ -58,7 +70,7 @@ function NarPasserMotetView(props: Props) {
                     Hopp over
                 </Flatknapp>
             </div>
-            <Lenke href="/veientilarbeid" onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href={`${process.env.PUBLIC_URL}/veientilarbeid`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>

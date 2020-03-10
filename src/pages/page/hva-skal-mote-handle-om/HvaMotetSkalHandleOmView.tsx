@@ -21,12 +21,13 @@ const initTextState: string = '';
 const maksLengde = 500;
 
 export const SPORSMAL = 'Hva ønsker du å snakke om?';
+const customFeil = 'Du kan ikke sende en tom melding.';
 
 function HvaMotetSkalHandleOmView(props: Props) {
     const [value, setValue] = useState(initTextState);
     const [feilState, setFeil] = useState(false);
 
-    const feil = feilmelding(feilState, maksLengde, value);
+    const feil = feilmelding(feilState, maksLengde, value, customFeil);
     const customTekstTeller = tekstTeller(350);
 
     return (
@@ -68,7 +69,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
                     spinner={props.loading}
                     disabled={props.loading}
                     onClick={() => {
-                        if (value.length >= maksLengde) {
+                        if (value === '' || value.length >= maksLengde) {
                             setFeil(true);
                         } else {
                             setFeil(false);
@@ -86,7 +87,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
                     Hopp over
                 </Flatknapp>
             </div>
-            <Lenke href="/veientilarbeid" onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href={`${process.env.PUBLIC_URL}/veientilarbeid`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>
