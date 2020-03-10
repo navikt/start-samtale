@@ -42,7 +42,7 @@ function NarPasserMotetView(props: Props) {
                     label={false}
                     disabled={props.loading}
                     value={value}
-                    placeholder="Skriv her"
+                    placeholder="Det passer ikke på..."
                     feil={feil}
                     onChange={(e) => setValue((e.target as HTMLInputElement).value)}
                 />
