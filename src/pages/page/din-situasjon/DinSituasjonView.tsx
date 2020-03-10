@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
-import {Flatknapp, Hovedknapp} from 'nav-frontend-knapper';
+import {Hovedknapp} from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import { ReactComponent as SVG } from '../veileder_motestotte.svg';
 import Lenke from 'nav-frontend-lenker';
