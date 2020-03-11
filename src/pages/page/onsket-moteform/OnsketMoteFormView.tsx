@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
-import { Hovedknapp } from 'nav-frontend-knapper';
+import {Hovedknapp} from 'nav-frontend-knapper';
 import Stegindikator from '../../../components/stegindikator/Stegindikator';
 import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
@@ -39,7 +39,7 @@ function OnsketMoteFormView(props: Props) {
     const [value, setValue] = useState<string | undefined>(undefined);
     const [feilState, setFeil] = useState(false);
 
-    const feil = feilState ? {feilmelding: 'Obligatorisk felt'} : undefined;
+    const feil = feilState ? 'Velg ett alternativ' : undefined;
 
     return (
         <>
@@ -65,6 +65,7 @@ function OnsketMoteFormView(props: Props) {
                 />
 
                 <Hovedknapp
+                    className="send-knapp"
                     spinner={props.loading}
                     disabled={props.loading}
                     onClick={() => {
@@ -79,7 +80,7 @@ function OnsketMoteFormView(props: Props) {
                     Send
                 </Hovedknapp>
             </div>
-            <Lenke href="/veientilarbeid" onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href={`${process.env.PUBLIC_URL}/veientilarbeid`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>

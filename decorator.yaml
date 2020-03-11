@@ -14,7 +14,7 @@ proxy:
 
 
 redirect:
-  - from: /arbeid/dialog/aktivitetsplan
+  - from: /arbeid/start-samtale/aktivitetsplan
     to: {{AKTIVITETSPLAN_URL}}
-  - from: /arbeid/dialog/veientilarbeid
+  - from: /arbeid/start-samtale/veientilarbeid
     to: {{VEIENTILARBEID_URL}}

@@ -17,7 +17,7 @@ export function feilmelding(feil: boolean, maksLengde: number, value: string, cu
         return;
     }
     if (maksLengde < value.length) {
-        return {feilmelding: `Du må korte ned teksten til ${maksLengde} tegn`};
+        return `Du må korte ned teksten til ${maksLengde} tegn`;
     }
-    return {feilmelding: customFeil};
+    return customFeil;
 }

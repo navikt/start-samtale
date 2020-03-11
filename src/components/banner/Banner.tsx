@@ -5,7 +5,7 @@ import './Banner.less';
 function Banner () {
     return(
         <div className="bs-banner">
-            <Systemtittel tag="h1">Møte med NAV</Systemtittel>
+            <Systemtittel tag="h1">Start en samtale med NAV</Systemtittel>
         </div>
     );
 }
