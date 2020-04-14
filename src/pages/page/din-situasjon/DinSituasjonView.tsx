@@ -77,7 +77,7 @@ function DinSituasjonView(props: Props) {
                     Send
                 </Hovedknapp>
             </div>
-            <Lenke href={`${process.env.PUBLIC_URL}/veientilarbeid`} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href={`${process.env.PUBLIC_URL}/ditt-nav`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>
