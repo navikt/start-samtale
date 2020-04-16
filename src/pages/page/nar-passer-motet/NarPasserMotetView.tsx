@@ -70,7 +70,7 @@ function NarPasserMotetView(props: Props) {
                     Hopp over
                 </Flatknapp>
             </div>
-            <Lenke href={`${process.env.PUBLIC_URL}/veientilarbeid`} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Lenke href={`${process.env.PUBLIC_URL}/ditt-nav`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Lenke>
         </>

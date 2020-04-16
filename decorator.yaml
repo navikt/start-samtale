@@ -16,5 +16,5 @@ proxy:
 redirect:
   - from: /arbeid/start-samtale/arbeidsrettet-dialog
     to: {{ARBEIDSRETTET_DIALOG_URL}}
-  - from: /arbeid/start-samtale/veientilarbeid
-    to: {{VEIENTILARBEID_URL}}
+  - from: /arbeid/start-samtale/ditt-nav
+    to: {{DITTNAV_URL}}

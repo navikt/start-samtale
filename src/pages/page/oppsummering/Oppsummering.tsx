@@ -4,7 +4,7 @@ import {AlertStripeInfo, AlertStripeSuksess} from 'nav-frontend-alertstriper';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 
-export const PAGE_ID = 'oppsumering';
+export const PAGE_ID = 'oppsummering';
 
 function Oppsummering(props: RouteComponentProps) {
     const parsed = queryString.parse(props.location.search);
@@ -35,7 +35,7 @@ function Oppsummering(props: RouteComponentProps) {
                         </AlertStripeInfo>
                     </div>
                 </div>
-                <a className="ferdig-knapp" href={`${process.env.PUBLIC_URL}/veientilarbeid`}>
+                <a className="knapp knapp--flat ferdig-knapp" href={`${process.env.PUBLIC_URL}/ditt-nav`}>
                     Ferdig
                 </a>
             </div>
