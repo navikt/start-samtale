@@ -10,7 +10,7 @@ function Oppsummering(props: RouteComponentProps) {
     const parsed = queryString.parse(props.location.search);
 
     const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : '';
-    const href = `${process.env.PUBLIC_URL}/aktivitetsplan/dialog${dialogIdLink}`;
+    const href = `${process.env.PUBLIC_URL}/arbeidsrettet-dialog${dialogIdLink}`;
 
     return (
         <>
