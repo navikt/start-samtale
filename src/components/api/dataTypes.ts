@@ -13,3 +13,10 @@ export interface DialogData {
     overskrift: string;
     henvendelser: DialogMeldingData[];
 }
+
+export interface OppfolgingData {
+    reservasjonKRR: boolean;
+    kanVarsles: boolean;
+    manuell: boolean;
+    underOppfolging: boolean;
+}

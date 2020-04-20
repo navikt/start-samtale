@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import { BrowserRouter, Route } from 'react-router-dom';
 import OnsketMoteFormSporsmal from './page/onsket-moteform/OnsketMoteFormSporsmal';
 import HvaMotetSkalHandleOmSporsmal, { PAGE_ID as HVA_PAGE_ID } from './page/hva-skal-mote-handle-om/HvaMotetSkalHandleOmSporsmal';
@@ -7,9 +7,50 @@ import DinSituasjonSporsmal, { PAGE_ID as SITUASJON_PAGE_ID } from './page/din-s
 import Oppsummering, { PAGE_ID as OPPSUMMERING_PAGE_ID } from './page/oppsummering/Oppsummering';
 import './Sporsmal.less';
 import PageChangeListener from '../components/pange-change-listener/PageChangeListener';
+import {getOppfolging} from "../components/api/api";
+import {OppfolgingData} from "../components/api/dataTypes";
+import {AlertStripeAdvarsel} from "nav-frontend-alertstriper";
+import NavFrontendSpinner from "nav-frontend-spinner";
+
+function erProd() {
+    //trengs da ingen av brukerne er registrert i krr i testmiljø
+    return window.location.hostname === 'www.nav.no' || window.location.hostname === 'app.adeo.no';
+}
+
+function invalidOppfolging(oppfolging: OppfolgingData | undefined){
+    if (!oppfolging){
+        return true;
+    }
+
+    return !oppfolging.underOppfolging || (!oppfolging.kanVarsles && erProd()) || oppfolging.manuell || oppfolging.reservasjonKRR;
+}
+
+function StatusAdvarsel(){
+    return <div className="spm-alert">
+        <AlertStripeAdvarsel>Du må være registrert hos NAV for å ha tilgang.</AlertStripeAdvarsel>
+    </div>
+}
+
 
 function Sporsmal() {
     const basename = process.env.PUBLIC_URL;
+    const [laster, setLaster] = useState(true);
+    const [oppfolging, setOppfolging] = useState<undefined | OppfolgingData>();
+    useEffect(() => {
+        getOppfolging().then(data => {
+                setOppfolging(data);
+                setLaster(false);
+            }
+        )
+    }, [setOppfolging, setLaster]);
+
+    if (laster) {
+        return <NavFrontendSpinner type="XL"/>
+    }
+
+    if (invalidOppfolging(oppfolging)){
+        return <StatusAdvarsel/>
+    }
 
     return (
         <>

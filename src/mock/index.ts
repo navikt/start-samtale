@@ -1,6 +1,7 @@
 // tslint:disable
 import FetchMock, {Middleware, MiddlewareUtils, ResponseUtils} from 'yet-another-fetch-mock';
 import {opprettDialog} from "./dialog";
+import {oppfolging} from "./oppfolging";
 
 (window as any).frontendlogger = { info: function(){}, warn: function(){}, error: function(){}, event: function(){
         console.log("event-triggered", arguments)
@@ -36,5 +37,7 @@ const mock = FetchMock.configure({
 
 mock.post('/veilarbdialog/api/dialog', ({ body }): any => opprettDialog(body));
 mock.post('/veilarbvedtakinfo/api/motestotte', ResponseUtils.statusCode(204));
+mock.get('/veilarboppfolging/api/oppfolging', oppfolging);
+
 
 export default mock;
