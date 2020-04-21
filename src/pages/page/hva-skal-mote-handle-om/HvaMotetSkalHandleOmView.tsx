@@ -49,15 +49,12 @@ function HvaMotetSkalHandleOmView(props: Props) {
             </div>
             <div className="spm">
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
-                <Undertittel className="spm-row">
-                    {SPORSMAL}
-                </Undertittel>
                 <div className="spm-row">
                     <Textarea
                         placeholder="Skriv noen stikkord til samtalen, eller hopp over"
                         textareaClass="spm-text-area"
                         disabled={props.loading}
-                        label={false}
+                        label={<Undertittel className="spm-row">{SPORSMAL}</Undertittel>}
                         tellerTekst={customTekstTeller}
                         maxLength={maksLengde}
                         feil={feil}

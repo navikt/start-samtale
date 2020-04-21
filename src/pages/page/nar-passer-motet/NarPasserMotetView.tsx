@@ -34,12 +34,9 @@ function NarPasserMotetView(props: Props) {
             </div>
             <div className="spm">
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
-                <Undertittel className="spm-row">
-                    Er det noe tidspunkt som <i>ikke</i> passer?
-                </Undertittel>
                 <Input
                     className="spm-row"
-                    label={false}
+                    label={<Undertittel className="spm-row">Er det noe tidspunkt som <i>ikke</i> passer?</Undertittel>}
                     disabled={props.loading}
                     value={value}
                     placeholder="Det passer ikke på..."
