@@ -46,13 +46,9 @@ function OnsketMoteFormView(props: Props) {
             <Stegindikator aktivtSteg={0}/>
             <div className="spm">
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
-                <Undertittel className="spm-row">
-                    {SPORSMAL}
-                </Undertittel>
-
                 <RadioPanelGruppe
                     className="spm-row"
-                    legend=""
+                    legend={<Undertittel className="spm-row">{SPORSMAL}</Undertittel>}
                     name=""
                     radios={[
                         {label: moteFormValue(MEET), disabled: props.loading, value: MEET},
