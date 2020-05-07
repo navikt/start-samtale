@@ -1,6 +1,6 @@
 import React from 'react';
 import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import {AlertStripeInfo, AlertStripeSuksess} from 'nav-frontend-alertstriper';
+import {AlertStripeSuksess} from 'nav-frontend-alertstriper';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 
@@ -29,11 +29,6 @@ function Oppsummering(props: RouteComponentProps) {
                         </Normaltekst>
 
                     </AlertStripeSuksess>
-                    <div style={{marginTop: '1rem'}}>
-                        <AlertStripeInfo>
-                            <Normaltekst>Svartiden kan bli lenger enn vanlig på grunn av situasjonen rundt korona.</Normaltekst>
-                        </AlertStripeInfo>
-                    </div>
                 </div>
                 <a className="knapp knapp--flat ferdig-knapp" href={`${process.env.PUBLIC_URL}/ditt-nav`}>
                     Ferdig
