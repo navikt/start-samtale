@@ -1,5 +1,5 @@
 # Start-samtale
-Gi brukeren mer påvirkningskraft til første arbeidsrettet møte med NAV
+Gi brukeren mer påvirkningskraft til første arbeidsrettet møte med NAV.
 
 ## Kjøre appen
 
