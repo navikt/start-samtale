@@ -8,10 +8,11 @@ import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
 import { avbrytMetrikk } from '../../../components/util/frontendlogger';
 import { PAGE_ID } from './OnsketMoteFormSporsmal';
 
-export type MoteForm = 'MEET' | 'PHONE' | 'WRITE';
+export type MoteForm = 'MEET' | 'PHONE' | 'WRITE' | 'VIDEO';
 
 const MEET: MoteForm = 'MEET';
 const PHONE: MoteForm = 'PHONE';
+const VIDEO: MoteForm = 'VIDEO';
 export const WRITE: MoteForm = 'WRITE';
 
 export function moteFormValue(form: MoteForm): string {
@@ -20,6 +21,8 @@ export function moteFormValue(form: MoteForm): string {
             return 'I et møte på NAV-kontoret';
         case 'PHONE':
             return 'I en telefonsamtale';
+        case 'VIDEO':
+            return 'I et videomøte';
         case 'WRITE':
             return 'Jeg vil skrive her';
         default:
@@ -53,6 +56,7 @@ function OnsketMoteFormView(props: Props) {
                     radios={[
                         {label: moteFormValue(MEET), disabled: props.loading, value: MEET},
                         {label: moteFormValue(PHONE), disabled: props.loading, value: PHONE},
+                        {label: moteFormValue(VIDEO), disabled: props.loading, value: VIDEO},
                         {label: moteFormValue(WRITE), disabled: props.loading, value: WRITE},
                     ]}
                     checked={value}
