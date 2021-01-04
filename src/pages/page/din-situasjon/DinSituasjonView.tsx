@@ -28,12 +28,12 @@ function DinSituasjonView(props: Props) {
 
     const feil = feilmelding(feilState, maksLengde, value, customFeil);
     const customTekstTeller = tekstTeller(3500);
-
+    const labelTekst = 'Skriv til veilederen din';
     return (
         <>
             <div className="veileder-budskap">
                 <div className="custom-veilederpanel">
-                    <Veilederpanel kompakt={true} svg={<SVG id="veileder-icon"/>}>
+                    <Veilederpanel kompakt svg={<SVG id="veileder-icon"/>}>
                         <Undertittel>
                             Fortell om
                         </Undertittel>
@@ -50,12 +50,13 @@ function DinSituasjonView(props: Props) {
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <div className="spm-row">
                     <Textarea
-                        placeholder="Skriv til veilederen din"
+                        placeholder={labelTekst}
                         textareaClass="spm-text-area"
                         label={false}
                         tellerTekst={customTekstTeller}
                         maxLength={maksLengde}
                         value={value}
+                        aria-label={labelTekst}
                         disabled={props.loading}
                         onChange={(e) => setValue(e.target.value)}
                         feil={feil}
