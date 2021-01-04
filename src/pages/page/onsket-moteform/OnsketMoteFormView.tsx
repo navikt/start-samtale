@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import {Hovedknapp} from 'nav-frontend-knapper';
-import Stegindikator from '../../../components/stegindikator/Stegindikator';
+import Stegindikator from '../../../components/stegindikator/StegindikatorWrapper';
 import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
 import { avbrytMetrikk } from '../../../components/util/frontendlogger';
