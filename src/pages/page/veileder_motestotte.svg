@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<svg width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg focusable="false" width="80px" height="80px" viewBox="0 0 80 80" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" >
     <!-- Generator: Sketch 53 (72520) - https://sketchapp.com -->
-    <title>Group 15</title>
-    <desc>Created with Sketch.</desc>
+    <title>Veileder</title>
     <defs>
         <circle id="path-1" cx="40" cy="40" r="40"></circle>
         <path d="M27.4063608,0.242510934 C29.5268775,0.811391232 32.675263,2.38182007 35.2935315,4.96110353 C37.9118304,7.54041696 40,11.4196115 40,14.4298672 L40,32.5217391 L0,32.5217391 L0,14.4298672 C0,11.4256971 2.04408177,7.5531124 4.61485002,4.9767535 C7.26955063,2.31627972 10.4858904,0.724313678 12.5929459,0.196454216 C12.6321734,3.73959703 15.9333975,7.39130435 20,7.39130435 C24.0489843,7.39130435 27.3392078,3.77116978 27.4063608,0.242510934 Z" id="path-3"></path>
