@@ -3,13 +3,13 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
-import Stegindikator from '../../../components/StartSamtaleStegindikator';
 import { ReactComponent as SVG } from '../veileder_motestotte.svg';
 import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../components/AlleredeSvart';
 import { avbrytMetrikk } from '../../components/util/frontendlogger';
 import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal';
 import { feilmelding, tekstTeller } from '../../components/util/text-area-utils';
+import StartSamtaleStegindikator from '../../components/StartSamtaleStegindikator';
 
 interface Props {
     loading: boolean;
@@ -33,7 +33,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
     return (
         <>
             <div className="veileder-budskap">
-                <Stegindikator aktivtSteg={1}/>
+                <StartSamtaleStegindikator aktivtSteg={1}/>
                 <div className="custom-veilederpanel">
                     <Veilederpanel kompakt={true} svg={<SVG id="veileder-icon"/>}>
                         <Undertittel>
