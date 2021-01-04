@@ -5,10 +5,10 @@ import {Hovedknapp} from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import { ReactComponent as SVG } from '../veileder_motestotte.svg';
 import Lenke from 'nav-frontend-lenker';
-import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
-import { avbrytMetrikk } from '../../../components/util/frontendlogger';
+import AlleredeSvart from '../../components/AlleredeSvart';
+import { avbrytMetrikk } from '../../components/util/frontendlogger';
 import { PAGE_ID } from './DinSituasjonSporsmal';
-import { feilmelding, tekstTeller } from '../../../components/util/text-area-utils';
+import { feilmelding, tekstTeller } from '../../components/util/text-area-utils';
 
 const initTextState: string = '';
 
