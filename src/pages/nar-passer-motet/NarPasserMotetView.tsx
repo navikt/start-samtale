@@ -4,8 +4,8 @@ import { Input } from 'nav-frontend-skjema';
 import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import Stegindikator from '../../../components/StartSamtaleStegindikator';
 import Lenke from 'nav-frontend-lenker';
-import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
-import { avbrytMetrikk } from '../../../components/util/frontendlogger';
+import AlleredeSvart from '../../components/AlleredeSvart';
+import { avbrytMetrikk } from '../../components/util/frontendlogger';
 import { PAGE_ID } from './NarPasserMotetSporsmal';
 
 export const SPORSMAL = 'Er det noe tidspunkt som ikke passer?';

@@ -4,8 +4,8 @@ import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import {Hovedknapp} from 'nav-frontend-knapper';
 import Stegindikator from '../../../components/StartSamtaleStegindikator';
 import Lenke from 'nav-frontend-lenker';
-import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
-import { avbrytMetrikk } from '../../../components/util/frontendlogger';
+import AlleredeSvart from '../../components/AlleredeSvart';
+import { avbrytMetrikk } from '../../components/util/frontendlogger';
 import { PAGE_ID } from './OnsketMoteFormSporsmal';
 
 export type MoteForm = 'MEET' | 'PHONE' | 'WRITE' | 'VIDEO';
