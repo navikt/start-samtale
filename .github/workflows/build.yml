@@ -36,13 +36,13 @@ jobs:
           docker build -t ${IMAGE} .
           docker push ${IMAGE}
 
-      - name: deply q0 sbs
+      - name: deply q1 sbs
         if: github.ref == 'refs/heads/dev'
         uses: nais/deploy/actions/deploy@v1
         env:
           CLUSTER: dev-sbs
           RESOURCE: nais-q.yaml
-          VAR: namespace=q0
+          VAR: namespace=q1
 
       - name: deply prod sbs
         if: github.ref == 'refs/heads/master'

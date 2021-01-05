@@ -2,11 +2,11 @@ import React, { useState } from 'react';
 import { Undertittel } from 'nav-frontend-typografi';
 import { RadioPanelGruppe } from 'nav-frontend-skjema';
 import {Hovedknapp} from 'nav-frontend-knapper';
-import Stegindikator from '../../../components/stegindikator/Stegindikator';
 import Lenke from 'nav-frontend-lenker';
-import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
-import { avbrytMetrikk } from '../../../components/util/frontendlogger';
+import AlleredeSvart from '../../components/AlleredeSvart';
+import { avbrytMetrikk } from '../../components/util/frontendlogger';
 import { PAGE_ID } from './OnsketMoteFormSporsmal';
+import StartSamtaleStegindikator from '../../components/StartSamtaleStegindikator';
 
 export type MoteForm = 'MEET' | 'PHONE' | 'WRITE' | 'VIDEO';
 
@@ -46,7 +46,7 @@ function OnsketMoteFormView(props: Props) {
 
     return (
         <>
-            <Stegindikator aktivtSteg={0}/>
+            <StartSamtaleStegindikator aktivtSteg={0}/>
             <div className="spm">
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <RadioPanelGruppe

@@ -7,7 +7,7 @@ const steg = [
     {label: 'Ønsket møtetid', index: 2},
 ];
 
-function StegindikatorWrapper(props: { aktivtSteg: number }) {
+function StartSamtaleStegindikator(props: { aktivtSteg: number }) {
     const aktivtSteg = props.aktivtSteg;
     if (aktivtSteg >= steg.length) {
         return null;
@@ -22,4 +22,4 @@ function StegindikatorWrapper(props: { aktivtSteg: number }) {
     );
 }
 
-export default StegindikatorWrapper;
+export default StartSamtaleStegindikator;

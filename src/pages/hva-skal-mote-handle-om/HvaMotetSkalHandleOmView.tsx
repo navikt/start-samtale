@@ -1,16 +1,15 @@
 import React, { useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
+import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import { Textarea } from 'nav-frontend-skjema';
-import {Hovedknapp} from 'nav-frontend-knapper';
+import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
 import Veilederpanel from 'nav-frontend-veilederpanel';
 import { ReactComponent as SVG } from '../veileder_motestotte.svg';
 import Lenke from 'nav-frontend-lenker';
-import AlleredeSvart from '../../../components/allerede-svar/AlleredeSvart';
-import { avbrytMetrikk } from '../../../components/util/frontendlogger';
-import { PAGE_ID } from './DinSituasjonSporsmal';
-import { feilmelding, tekstTeller } from '../../../components/util/text-area-utils';
-
-const initTextState: string = '';
+import AlleredeSvart from '../../components/AlleredeSvart';
+import { avbrytMetrikk } from '../../components/util/frontendlogger';
+import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal';
+import { feilmelding, tekstTeller } from '../../components/util/text-area-utils';
+import StartSamtaleStegindikator from '../../components/StartSamtaleStegindikator';
 
 interface Props {
     loading: boolean;
@@ -18,31 +17,33 @@ interface Props {
     answered: boolean;
 }
 
-export const SPORSMAL = 'Fortell';
-const customFeil = 'Fortell noe om situasjonen din, slik at du kan få veiledning som passer for deg.';
-const maksLengde = 5000;
+const initTextState: string = '';
+const maksLengde = 500;
 
-function DinSituasjonView(props: Props) {
+export const SPORSMAL = 'Hva ønsker du å snakke om?';
+const customFeil = 'Du kan ikke sende en tom melding.';
+
+function HvaMotetSkalHandleOmView(props: Props) {
     const [value, setValue] = useState(initTextState);
     const [feilState, setFeil] = useState(false);
 
     const feil = feilmelding(feilState, maksLengde, value, customFeil);
-    const customTekstTeller = tekstTeller(3500);
+    const customTekstTeller = tekstTeller(350);
 
     return (
         <>
             <div className="veileder-budskap">
+                <StartSamtaleStegindikator aktivtSteg={1}/>
                 <div className="custom-veilederpanel">
                     <Veilederpanel kompakt={true} svg={<SVG id="veileder-icon"/>}>
                         <Undertittel>
-                            Fortell om
+                            I samtalen ønsker veilederen
                         </Undertittel>
-                        <div>
-                            <ul>
-                                <li>hva slags jobb du ønsker deg</li>
-                                <li>hva som kan hindre deg i å jobbe</li>
-                            </ul>
-                        </div>
+                        <ul>
+                            <li><Normaltekst>å bli bedre kjent med situasjonen din</Normaltekst></li>
+                            <li><Normaltekst>å snakke om jobbmulighetene dine</Normaltekst>
+                            </li>
+                        </ul>
                     </Veilederpanel>
                 </div>
             </div>
@@ -50,15 +51,15 @@ function DinSituasjonView(props: Props) {
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
                 <div className="spm-row">
                     <Textarea
-                        placeholder="Skriv til veilederen din"
+                        placeholder="Skriv noen stikkord til samtalen, eller hopp over"
                         textareaClass="spm-text-area"
-                        label={false}
+                        disabled={props.loading}
+                        label={<Undertittel className="spm-row">{SPORSMAL}</Undertittel>}
                         tellerTekst={customTekstTeller}
                         maxLength={maksLengde}
-                        value={value}
-                        disabled={props.loading}
-                        onChange={(e) => setValue(e.target.value)}
                         feil={feil}
+                        value={value}
+                        onChange={(e) => setValue(e.target.value)}
                     />
                 </div>
                 <Hovedknapp
@@ -66,7 +67,7 @@ function DinSituasjonView(props: Props) {
                     spinner={props.loading}
                     disabled={props.loading}
                     onClick={() => {
-                        if (value === '' || value.length > maksLengde) {
+                        if (value === '' || value.length >= maksLengde) {
                             setFeil(true);
                         } else {
                             setFeil(false);
@@ -76,6 +77,13 @@ function DinSituasjonView(props: Props) {
                 >
                     Send
                 </Hovedknapp>
+                <Flatknapp
+                    className="hopp-knapp"
+                    disabled={props.loading}
+                    onClick={() => props.onSubmit('')}
+                >
+                    Hopp over
+                </Flatknapp>
             </div>
             <Lenke href={`${process.env.PUBLIC_URL}/ditt-nav`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
@@ -84,4 +92,4 @@ function DinSituasjonView(props: Props) {
     );
 }
 
-export default DinSituasjonView;
+export default HvaMotetSkalHandleOmView;
