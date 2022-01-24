@@ -1,4 +1,4 @@
-name: pto frontend container dev
+name: pto frontend container
 
 on:
   push:
