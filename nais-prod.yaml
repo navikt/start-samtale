@@ -15,43 +15,42 @@ spec:
     path: /internal/isReady
     initialDelay: 20
   replicas:
-    min: 1
-    max: 2
-    cpuThresholdPercentage: 75
+    min: 2
+    max: 4
+    cpuThresholdPercentage: 50
+  ingresses:
+    - https://www.nav.no/arbeid/test/start-samtale
   resources:
     limits:
-      cpu: "1"
-      memory: 512Mi
+      cpu: "3"
+      memory: 2048Mi
     requests:
-      cpu: 250m
-      memory: 256Mi
-  ingresses:
-    - https://www-q1.nav.no/arbeid/start-samtale
-    - https://dev.nav.no/arbeid/start-samtale
+      cpu: 500m
+      memory: 512Mi
   accessPolicy:
     outbound:
       rules:
         - application: pto-proxy
       external:
-        - host: navtestb2c.b2clogin.com
+        - host: navnob2c.b2clogin.com
   gcp:
     buckets:
-      - name: start-samtale-dev
+      - name: start-samtale-prod
   envFrom:
     - configmap: pto-config
   env:
     - name: ENFORCE_LOGIN
       value: "true"
     - name: LOGIN_REDIRECT_URL
-      value: https://loginservice.dev.nav.no/login?redirect={RETURN_TO_URL}&level=Level4
+      value: https://loginservice.nav.no/login?redirect={RETURN_TO_URL}&level=Level4
     - name: OIDC_DISCOVERY_URL
-      value: https://navtestb2c.b2clogin.com/navtestb2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_idporten_ver1
+      value: https://navnob2c.b2clogin.com/navnob2c.onmicrosoft.com/v2.0/.well-known/openid-configuration?p=B2C_1A_idporten
     - name: OIDC_CLIENT_ID
-      value: 0090b6e1-ffcc-4c37-bc21-049f7d1f0fe5
+      value: 45104d6a-f5bc-4e8c-b352-4bbfc9381f25
     - name: TOKEN_COOKIE_NAME
       value: selvbetjening-idtoken
     - name: GCS_BUCKET_NAME
-      value: start-samtale-dev
+      value: start-samtale-prod
     - name: JSON_CONFIG
       value: >
         {
@@ -60,5 +59,16 @@ spec:
             { "from": "/veilarblest", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
             { "from": "/veilarboppfolging", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
             { "from": "/veilarbdialog", "to": "http://pto-proxy/proxy", "preserveContextPath": true }
+          ],
+          "redirects": [
+            {
+              "from": "/dittnav",
+              "to": "{{DITTNAV_URL}}"
+            },
+            {
+              "from": "/arbeidsrettet-dialog",
+              "to": "{{ARBEIDSRETTET_DIALOG_URL}}",
+              "preserveContextPath": "true"
+            }
           ]
         }

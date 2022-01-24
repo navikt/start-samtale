@@ -1,0 +1,35 @@
+name: pto frontend container dev
+
+on:
+  push:
+    branches:
+      - 'main'
+    paths:
+      - '.github/workflows/pto-frontend-container.yml'
+      - 'nais-dev.yaml'
+      - 'nais-prod.yaml'
+  workflow_dispatch:
+
+concurrency:
+  group: pto_frontend_container_dev
+  cancel-in-progress: true
+
+env:
+  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+
+jobs:
+  deploy-dev:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: deploy dev
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          CLUSTER: dev-gcp
+          RESOURCE: nais-dev.yaml
+      - name: deploy prod
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          CLUSTER: prod-gcp
+          RESOURCE: nais-prod.yaml
