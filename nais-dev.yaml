@@ -57,18 +57,18 @@ spec:
       value: >
         {
           "proxies": [
-            { "from": "/veilarbvedtakinfo", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
-            { "from": "/veilarblest", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
-            { "from": "/veilarboppfolging", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
-            { "from": "/veilarbdialog", "to": "http://pto-proxy/proxy", "preserveContextPath": true }
+            { "from": "/arbeid/start-samtale/veilarbvedtakinfo", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
+            { "from": "/arbeid/start-samtale/veilarblest", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
+            { "from": "/arbeid/start-samtale/veilarboppfolging", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
+            { "from": "/arbeid/start-samtale/veilarbdialog", "to": "http://pto-proxy/proxy", "preserveContextPath": true }
           ],
           "redirects": [
             {
-              "from": "/dittnav",
+              "from": "/arbeid/start-samtale/dittnav",
               "to": "{{DITTNAV_URL}}"
             },
             {
-              "from": "/arbeidsrettet-dialog",
+              "from": "/arbeid/start-samtale/arbeidsrettet-dialog",
               "to": "{{ARBEIDSRETTET_DIALOG_URL}}",
               "preserveContextPath": "true"
             }
