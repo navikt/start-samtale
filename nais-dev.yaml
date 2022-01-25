@@ -59,7 +59,7 @@ spec:
           "proxies": [
             { "from": "/veilarbvedtakinfo", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
             { "from": "/veilarblest", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
-            { "from": "/arbeid/start-samtale/veilarboppfolging", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
+            { "from": "/veilarboppfolging", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
             { "from": "/veilarbdialog", "to": "http://pto-proxy/proxy", "preserveContextPath": true }
           ],
           "redirects": [
