@@ -56,10 +56,11 @@ spec:
     - name: JSON_CONFIG
       value: >
         {
+          "fallbackStrategy": "serve",
           "proxies": [
             { "from": "/arbeid/start-samtale/veilarbvedtakinfo", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
             { "from": "/arbeid/start-samtale/veilarblest", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
-            { "from": "/arbeid/start-samtale/veilarboppfolging", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
+            { "from": "/veilarboppfolging", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
             { "from": "/arbeid/start-samtale/veilarbdialog", "to": "http://pto-proxy/proxy", "preserveContextPath": true }
           ],
           "redirects": [
