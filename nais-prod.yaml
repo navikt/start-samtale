@@ -63,7 +63,7 @@ spec:
           ],
           "redirects": [
             {
-              "from": "/dittnav",
+              "from": "/ditt-nav",
               "to": "{{DITTNAV_URL}}"
             },
             {
