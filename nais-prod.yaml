@@ -54,7 +54,7 @@ spec:
     - name: CONTEXT_PATH
       value: /arbeid/start-samtale
     - name: ENABLE_FRONTEND_ENV
-      value: true
+      value: "true"
     - name: PUBLIC_DEKORATOR_URL
       value: https://www.nav.no/dekoratoren
     - name: JSON_CONFIG
