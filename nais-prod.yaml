@@ -6,7 +6,7 @@ metadata:
   labels:
     team: pto
 spec:
-  image: ghcr.io/navikt/pto-frontend/pto-frontend:2022.01.05_11.06-a439c18e8d0d
+  image: ghcr.io/navikt/pto-frontend/pto-frontend:2022.01.31_12.28-883b24c9ea53
   port: 8080
   liveness:
     path: /internal/isAlive
@@ -57,10 +57,9 @@ spec:
       value: >
         {
           "proxies": [
-            { "from": "/veilarbvedtakinfo", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
-            { "from": "/veilarblest", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
-            { "from": "/veilarboppfolging", "to": "http://pto-proxy/proxy", "preserveContextPath": true },
-            { "from": "/veilarbdialog", "to": "http://pto-proxy/proxy", "preserveContextPath": true }
+            { "from": "/veilarbvedtakinfo", "to": "http://pto-proxy/proxy/veilarbvedtakinfo" },
+            { "from": "/veilarboppfolging", "to": "http://pto-proxy/proxy/veilarboppfolging" },
+            { "from": "/veilarbdialog", "to": "http://pto-proxy/proxy/veilarbdialog" }
           ],
           "redirects": [
             {
