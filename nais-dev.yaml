@@ -53,10 +53,6 @@ spec:
       value: start-samtale-dev
     - name: CONTEXT_PATH
       value: /arbeid/start-samtale
-    - name: ENABLE_FRONTEND_ENV
-      value: "true"
-    - name: PUBLIC_DEKORATOR_URL
-      value: https://dekoratoren.ekstern.dev.nav.no
     - name: JSON_CONFIG
       value: >
         {
