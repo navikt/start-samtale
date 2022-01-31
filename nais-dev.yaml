@@ -64,11 +64,11 @@ spec:
           ],
           "redirects": [
             {
-              "from": "/arbeid/start-samtale/dittnav",
+              "from": "/dittnav",
               "to": "{{DITTNAV_URL}}"
             },
             {
-              "from": "/arbeid/start-samtale/arbeidsrettet-dialog",
+              "from": "/arbeidsrettet-dialog",
               "to": "{{ARBEIDSRETTET_DIALOG_URL}}",
               "preserveContextPath": "true"
             }
