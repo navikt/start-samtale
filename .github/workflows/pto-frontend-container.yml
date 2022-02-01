@@ -11,7 +11,7 @@ on:
   workflow_dispatch:
 
 concurrency:
-  group: pto_frontend_container_dev
+  group: pto_frontend_container
   cancel-in-progress: true
 
 env:
