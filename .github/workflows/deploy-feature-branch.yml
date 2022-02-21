@@ -1,14 +1,9 @@
-name: GCP dev
-
+name: Deploy feature branch
 on:
-  push:
-    paths-ignore:
-      - '.github/workflows/pto-frontend-container.yml'
-      - 'nais-dev.yaml'
   workflow_dispatch:
 
 concurrency:
-  group: deploy-dev
+  group: deploy-feature-branch
   cancel-in-progress: true
 
 jobs:
