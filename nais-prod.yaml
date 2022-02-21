@@ -19,7 +19,7 @@ spec:
     max: 4
     cpuThresholdPercentage: 50
   ingresses:
-    - https://www.nav.no/arbeid/dialog
+    - https://www.nav.no/arbeid/start-samtale
   resources:
     limits:
       cpu: "3"
