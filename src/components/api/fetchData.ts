@@ -6,7 +6,10 @@ export function fetchData<T>(url: string, config = {}): Promise<T> { // tslint:d
 
 export function sjekkStatuskode(response: Response) {
     if (
-        response.status >= 200 && response.status < 300 && response.ok
+        response.status >= 200 &&
+        response.status < 300 &&
+        response.ok &&
+        !response.redirected
     ) {
         return response;
     }
