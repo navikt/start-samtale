@@ -1,0 +1,23 @@
+contextPath: /arbeid/start-samtale
+
+auth:
+  enforce: true
+  loginUrl: {{ LOGINSERVICE_URL }}
+
+proxy:
+  - contextPath: "/arbeid/start-samtale/veilarbdialog"
+    baseUrl: "http://veilarbproxy/veilarbdialog"
+    requestRewrite: REMOVE_CONTEXT_PATH
+  - contextPath: "/arbeid/start-samtale/veilarbvedtakinfo"
+    baseUrl: "http://veilarbproxy/veilarbvedtakinfo"
+    requestRewrite: REMOVE_CONTEXT_PATH
+  - contextPath: '/arbeid/start-samtale/veilarboppfolging'
+    baseUrl: 'http://veilarbproxy/veilarboppfolging'
+    requestRewrite: REMOVE_CONTEXT_PATH
+
+
+redirect:
+  - from: /arbeid/start-samtale/arbeidsrettet-dialog
+    to: {{ARBEIDSRETTET_DIALOG_URL}}
+  - from: /arbeid/start-samtale/ditt-nav
+    to: {{DITTNAV_URL}}

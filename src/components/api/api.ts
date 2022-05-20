@@ -15,7 +15,6 @@ function getHeaders() {
     return new Headers({
         'Content-Type': 'application/json',
         'NAV_CSRF_PROTECTION': getCookie('NAV_CSRF_PROTECTION'),
-        'Nav-Consumer-Id': 'start-samtale',
     });
 }
 
