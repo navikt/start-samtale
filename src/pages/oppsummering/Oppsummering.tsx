@@ -30,7 +30,7 @@ function Oppsummering(props: RouteComponentProps) {
 
                     </AlertStripeSuksess>
                 </div>
-                <a className="knapp knapp--flat ferdig-knapp" href={`${process.env.PUBLIC_URL}/ditt-nav`}>
+                <a className="knapp knapp--flat ferdig-knapp" href={`${process.env.PUBLIC_URL}/minside`}>
                     Ferdig
                 </a>
             </div>
