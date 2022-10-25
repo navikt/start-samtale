@@ -61,7 +61,7 @@ spec:
           ],
           "redirects": [
             {
-              "from": "/ditt-nav",
+              "from": "/minside",
               "to": "{{DITTNAV_URL}}"
             },
             {
