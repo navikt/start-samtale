@@ -22,11 +22,12 @@ jobs:
         run: npm run test
       - name: Build application
         run: npm run build
-      - name: Setup gcloud
-        uses: google-github-actions/setup-gcloud@master
+      - name: Gcloud auth
+        uses: google-github-actions/auth@v0
         with:
-          service_account_key: ${{ secrets.GCS_SA_KEY_DEV }}
-          export_default_credentials: true
+          credentials_json: ${{ secrets.GCS_SA_KEY_DEV }}
+      - name: Setup gcloud
+        uses: google-github-actions/setup-gcloud@v0
       - name: Upload files to GCS
         run: gsutil -m rsync -r build gs://start-samtale-dev
       - name: Create release
