@@ -62,7 +62,7 @@ spec:
           "redirects": [
             {
               "from": "/minside",
-              "to": "{{DITTNAV_URL}}"
+              "to": "{{MINSIDE_URL}}"
             },
             {
               "from": "/arbeidsrettet-dialog",
