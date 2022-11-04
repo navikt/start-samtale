@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { BrowserRouter, Route } from 'react-router-dom';
+import {BrowserRouter, HashRouter, Route} from 'react-router-dom';
 import OnsketMoteFormSporsmal from './onsket-moteform/OnsketMoteFormSporsmal';
 import HvaMotetSkalHandleOmSporsmal, { PAGE_ID as HVA_PAGE_ID } from './hva-skal-mote-handle-om/HvaMotetSkalHandleOmSporsmal';
 import NarPasserMotetSporsmal, { PAGE_ID as NAR_PAGE_ID } from './nar-passer-motet/NarPasserMotetSporsmal';
@@ -31,6 +31,12 @@ function StatusAdvarsel(){
     </div>
 }
 
+function Router(props: { basename:string, children?: React.ReactNode }) {
+    if (process.env.REACT_APP_USE_HASH_ROUTER === 'true') {
+        return <HashRouter>{props.children}</HashRouter>;
+    }
+    return <BrowserRouter basename={props.basename}>{props.children}</BrowserRouter>;
+}
 
 function Sporsmal() {
     const basename = process.env.PUBLIC_URL;
@@ -54,7 +60,7 @@ function Sporsmal() {
 
     return (
         <>
-            <BrowserRouter basename={basename}>
+            <Router basename={basename}>
                 <Route
                     path="/"
                     exact={true}
@@ -77,7 +83,7 @@ function Sporsmal() {
                     component={Oppsummering}
                 />
                 <PageChangeListener/>
-            </BrowserRouter>
+            </Router>
         </>
     );
 
