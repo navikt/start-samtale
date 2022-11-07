@@ -4,6 +4,9 @@
   "homepage": "/arbeid/start-samtale",
   "license": "MIT",
   "repository": "https://github.com/navikt/start-samtale.git",
+  "engines": {
+    "node": "16.15.1"
+  },
   "scripts": {
     "start": "cross-env REACT_APP_MOCK=true PUBLIC_URL=/  craco start",
     "build": "cross-env REACT_APP_MOCK=false craco build",
@@ -74,6 +77,7 @@
     "react-dom": "^16.13.1",
     "react-router-dom": "^5.1.2",
     "react-scripts": "^5.0.1",
+    "serve": "^14.0.1",
     "typescript": "^3.8.3"
   },
   "devDependencies": {
@@ -86,7 +90,6 @@
     "craco-less": "^2.0.0",
     "cross-env": "^6.0.3",
     "enzyme": "^3.11.0",
-    "serve": "^14.0.1",
     "yet-another-fetch-mock": "^3.4.0"
   }
 }
