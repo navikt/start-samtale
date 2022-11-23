@@ -3,7 +3,7 @@ import FetchMock, {Middleware, MiddlewareUtils, ResponseUtils} from 'yet-another
 import {opprettDialog} from "./dialog";
 import {oppfolging} from "./oppfolging";
 
-(window as any).frontendlogger = { info: function(){}, warn: function(){}, error: function(){}, event: function(){
+(window as any).frontendlogger = { info: function(){/* ingenting */}, warn: function(){/* ingenting */}, error: function(){/* ingenting */}, event: function(){
         console.log("event-triggered", arguments)
     }};
 
@@ -34,10 +34,8 @@ const mock = FetchMock.configure({
     )
 });
 
-
-mock.post('/veilarbdialog/api/dialog', ({ body }): any => opprettDialog(body));
-mock.post('/veilarbvedtakinfo/api/motestotte', ResponseUtils.statusCode(204));
-mock.get('/veilarboppfolging/api/oppfolging', oppfolging);
-
+mock.post(`${process.env.PUBLIC_URL}/veilarbdialog/api/dialog`, ({ body }): any => opprettDialog(body));
+mock.post(`${process.env.PUBLIC_URL}/veilarbvedtakinfo/api/motestotte`, ResponseUtils.statusCode(204));
+mock.get(`${process.env.PUBLIC_URL}/veilarboppfolging/api/oppfolging`, oppfolging);
 
 export default mock;
