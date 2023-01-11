@@ -1,5 +1,5 @@
 import amplitude from "amplitude-js";
-import {SkjemaProps} from "./constants";
+import {Eventnavn, LovligEvent, SkjemaProps} from "./constants";
 
 export const initAmplitude = (): void => {
     amplitude.getInstance().init('default', '', {
@@ -9,11 +9,9 @@ export const initAmplitude = (): void => {
         includeReferrer: true,
         platform: window.location.toString(),
     });
-
-    console.log("initierte amplitude");
 };
 
-const log = (eventNavn: string): void => {
+const log = (eventNavn: LovligEvent): void => {
     setTimeout(() => {
         try {
             amplitude.getInstance().logEvent(eventNavn, SkjemaProps);
@@ -24,5 +22,5 @@ const log = (eventNavn: string): void => {
     });
 }
 
-export const logSkjemaStartet = (): void => log("skjema startet");
-export const logSkjemaFullført = (): void => log("skjema fullf\u00F8rt");
+export const logSkjemaStartet = (): void => log(Eventnavn.STARTET);
+export const logSkjemaFullført = (): void => log(Eventnavn.FULLFORT);
