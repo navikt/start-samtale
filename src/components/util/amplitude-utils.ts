@@ -17,10 +17,10 @@ const log = (eventNavn: LovligEvent): void => {
             amplitude.getInstance().logEvent(eventNavn, SkjemaProps);
         } catch (error) {
             // eslint-disable-next-line no-console
-            console.error(error);
+            console.error(`Kunne ikke logge ${eventNavn} til Amplitude: `, error);
         }
     });
 }
 
-export const logSkjemaStartet = (): void => log(Eventnavn.STARTET);
-export const logSkjemaFullført = (): void => log(Eventnavn.FULLFORT);
+export const logSkjemaStartet = (): void => log(Eventnavn.SKJEMA_STARTET);
+export const logSkjemaFullført = (): void => log(Eventnavn.SKJEMA_FULLFORT);
