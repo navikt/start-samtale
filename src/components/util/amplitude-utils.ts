@@ -11,10 +11,12 @@ export const initAmplitude = (): void => {
     });
 };
 
-const log = (eventNavn: LovligEvent): void => {
+interface LogProps { skjemanavn: string; skjemaId: string; steg?: number }
+
+const log = (eventNavn: LovligEvent, skjemaProps: LogProps): void => {
     setTimeout(() => {
         try {
-            amplitude.getInstance().logEvent(eventNavn, SkjemaProps);
+            amplitude.getInstance().logEvent(eventNavn, skjemaProps);
         } catch (error) {
             // eslint-disable-next-line no-console
             console.error(`Kunne ikke logge ${eventNavn} til Amplitude: `, error);
@@ -22,5 +24,6 @@ const log = (eventNavn: LovligEvent): void => {
     });
 }
 
-export const logSkjemaStartet = (): void => log(Eventnavn.SKJEMA_STARTET);
-export const logSkjemaFullført = (): void => log(Eventnavn.SKJEMA_FULLFORT);
+export const logSkjemaStartet = (): void => log(Eventnavn.SKJEMA_STARTET, SkjemaProps);
+export const logSkjemastegFullført = (steg: number): void => log(Eventnavn.SKJEMASTEG_FULLFORT, {...SkjemaProps, steg});
+export const logSkjemaFullført = (): void => log(Eventnavn.SKJEMA_FULLFORT, SkjemaProps);

@@ -3,6 +3,7 @@ import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
 import {AlertStripeSuksess} from 'nav-frontend-alertstriper';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
+import {logSkjemaFullført} from "../../components/util/amplitude-utils";
 
 export const PAGE_ID = 'oppsummering';
 
@@ -11,6 +12,7 @@ function Oppsummering(props: RouteComponentProps) {
 
     const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : '';
     const href = `${process.env.PUBLIC_URL}/arbeidsrettet-dialog${dialogIdLink}`;
+    logSkjemaFullført();
 
     return (
         <>
