@@ -1,13 +1,14 @@
 import React from "react"
 import ReactDOM from "react-dom"
 import App from "./App"
+import { createRoot } from "react-dom/client"
 
 if (import.meta.env.DEV) {
   import("./mock")
     .then(({ default: startWorker }) => startWorker())
-    .then(() => ReactDOM.render(<App />, document.getElementById("root")))
+    .then(() => createRoot(document.getElementById("root")!!).render(<App />))
 } else {
-  ReactDOM.render(<App />, document.getElementById("root"))
+  createRoot(document.getElementById("root")!!).render(<App />)
 }
 
 if (import.meta.env.PROD) {
