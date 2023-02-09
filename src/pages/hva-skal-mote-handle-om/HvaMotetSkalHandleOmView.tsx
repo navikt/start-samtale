@@ -1,79 +1,80 @@
-import React, { useState } from 'react';
-import AlleredeSvart from '../../components/AlleredeSvart';
-import { avbrytMetrikk } from '../../components/util/frontendlogger';
-import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal';
-import { feilmelding } from '../../components/util/text-area-utils';
-import {Button, GuidePanel, Link, Textarea} from "@navikt/ds-react";
+import React, { useState } from "react"
+import AlleredeSvart from "../../components/AlleredeSvart"
+import { PAGE_ID } from "./HvaMotetSkalHandleOmSporsmal"
+import { feilmelding } from "../../components/util/text-area-utils"
+import { Button, GuidePanel, Textarea, TextField } from "@navikt/ds-react"
+import AvbrytButton from "../../components/AvbrytButton"
 
 interface Props {
-    loading: boolean;
-    onSubmit: (arg: string) => void;
-    answered: boolean;
+  loading: boolean
+  onSubmit: (arg: string) => void
+  answered: boolean
 }
 
-const initTextState: string = '';
-const maksLengde = 500;
+const initTextState: string = ""
+const maksLengde = 500
 
-export const SPORSMAL = 'Hva ønsker du å snakke om?';
-const customFeil = 'Du kan ikke sende en tom melding.';
+export const SPORSMAL = "Hva ønsker du å snakke om?"
+const customFeil = "Du kan ikke sende en tom melding."
 
 function HvaMotetSkalHandleOmView(props: Props) {
-    const [value, setValue] = useState(initTextState);
-    const [feilState, setFeil] = useState(false);
+  const [temaSvar, setTemaSvar] = useState(initTextState)
+  const [tidspunktSvar, setTidspunktSvar] = useState(initTextState)
+  const [feilState, setFeil] = useState(false)
 
-    const feil = feilmelding(feilState, maksLengde, value, customFeil);
+  const feil = feilmelding(feilState, maksLengde, temaSvar, customFeil)
 
-    return (
-        <>
-            <div className="veileder-budskap">
-                <div className="custom-veilederpanel">
-                    <GuidePanel>
-                        I samtalen ønsker veilederen å bli bedre kjent med situasjonen din, og å snakke om jobbmulighetene dine.
-                    </GuidePanel>
-                </div>
-            </div>
-            <div className="spm">
-                <AlleredeSvart visible={props.answered} className="spm-row"/>
-                <div className="spm-row">
-                    <Textarea
-                        placeholder="Skriv noen stikkord til samtalen, eller hopp over"
-                        disabled={props.loading}
-                        label={SPORSMAL}
-                        maxLength={maksLengde}
-                        error={feil}
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                    />
-                </div>
-                <Button
-                    className="send-knapp"
-                    loading={props.loading}
-                    disabled={props.loading}
-                    onClick={() => {
-                        if (value === '' || value.length >= maksLengde) {
-                            setFeil(true);
-                        } else {
-                            setFeil(false);
-                            props.onSubmit(value);
-                        }
-                    }}
-                >
-                    Send
-                </Button>
-                <Button
-                    className="hopp-knapp"
-                    disabled={props.loading}
-                    variant="secondary"
-                    onClick={() => props.onSubmit('')}
-                >
-                    Hopp over
-                </Button>
-            </div>
-            <Link href={`${import.meta.env.BASE_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
-                Avbryt
-            </Link>
-        </>
-    );
+  return (
+    <div className="space-y-8">
+      <GuidePanel>
+        I samtalen ønsker veilederen å bli bedre kjent med situasjonen din, og å
+        snakke om jobbmulighetene dine.
+      </GuidePanel>
+      <AlleredeSvart visible={props.answered} />
+      <Textarea
+        label="Hva ønsker du å snakke om? (valgfritt)"
+        description="Skriv gjerne noen stikkord til samtalen"
+        disabled={props.loading}
+        maxLength={maksLengde}
+        error={feil}
+        value={temaSvar}
+        onChange={(e) => setTemaSvar(e.target.value)}
+      />
+      <TextField
+        label="Er det tidspunkt som ikke passer? (valgfritt)"
+        description="Vi vil prøve å ta hensyn til dine ønsker"
+        disabled={props.loading}
+        value={tidspunktSvar}
+        error={feil}
+        onChange={(e) => setTidspunktSvar((e.target as HTMLInputElement).value)}
+      />
+      <div>
+        <Button
+          className="mr-4"
+          disabled={props.loading}
+          variant="secondary"
+          onClick={() => props.onSubmit("")}
+        >
+          Hopp over
+        </Button>
+        <Button
+          loading={props.loading}
+          disabled={props.loading}
+          onClick={() => {
+            if (temaSvar === "" || temaSvar.length >= maksLengde) {
+              setFeil(true)
+            } else {
+              setFeil(false)
+              props.onSubmit(temaSvar)
+            }
+          }}
+        >
+          Send
+        </Button>
+      </div>
+      <AvbrytButton pageId={PAGE_ID} />
+    </div>
+  )
 }
 
-export default HvaMotetSkalHandleOmView;
+export default HvaMotetSkalHandleOmView

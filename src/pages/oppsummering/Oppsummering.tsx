@@ -1,42 +1,47 @@
-import React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import queryString from 'query-string';
-import {logSkjemaFullført} from "../../components/util/amplitude-utils";
-import {Alert, BodyLong, Heading} from "@navikt/ds-react";
+import React from "react"
+import { useLocation, useNavigate } from "react-router-dom"
+import queryString from "query-string"
+import { logSkjemaFullført } from "../../components/util/amplitude-utils"
+import { Alert, BodyLong, Button, Heading, Link } from "@navikt/ds-react"
 
-export const PAGE_ID = 'oppsummering';
+export const PAGE_ID = "oppsummering"
 
-function Oppsummering(props: RouteComponentProps) {
-    const parsed = queryString.parse(props.location.search);
+function Oppsummering() {
+  const location = useLocation()
+  const parsed = queryString.parse(location.search)
+  const navigate = useNavigate()
 
-    const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : '';
-    const href = `${import.meta.env.BASE_URL}/arbeidsrettet-dialog${dialogIdLink}`;
-    logSkjemaFullført();
+  const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : ""
+  const href = `${import.meta.env.BASE_URL}/arbeidsrettet-dialog${dialogIdLink}`
+  logSkjemaFullført()
 
-    return (
-        <>
-            <div className="spm">
-                <Heading level="2" className="spm-row" size="medium">
-                    Takk for tilbakemelding
-                </Heading>
-                <div className="spm-row">
-                    <Alert variant="success">
-                        <BodyLong>
-                            Svarene er&nbsp;
-                            <a href={`${href}`}>delt med veilederen din.</a>&nbsp;
-                        </BodyLong>
-                        <BodyLong>
-                            Veilederen vil kontakte deg i løpet av noen dager.
-                        </BodyLong>
-
-                    </Alert>
-                </div>
-                <a className="knapp knapp--flat ferdig-knapp" href={`${import.meta.env.BASE_URL}/minside`}>
-                    Ferdig
-                </a>
-            </div>
-        </>
-    );
+  return (
+    <div className="space-y-8">
+      <Heading level="2" size="medium">
+        Takk for tilbakemelding
+      </Heading>
+      <Alert variant="success">
+        <BodyLong>
+          Svarene er&nbsp;
+          <Link href={`${href}`}>
+            delt med veilederen din. Du kan lese svaret ditt der.
+          </Link>
+          &nbsp;
+        </BodyLong>
+        <BodyLong className="pt-2">
+          Veilederen vil kontakte deg i løpet av noen dager.
+        </BodyLong>
+      </Alert>
+      <Button
+        variant="secondary"
+        onClick={() => {
+          navigate(`${import.meta.env.BASE_URL}minside`)
+        }}
+      >
+        Jeg er ferdig
+      </Button>
+    </div>
+  )
 }
 
-export default withRouter(Oppsummering);
+export default Oppsummering

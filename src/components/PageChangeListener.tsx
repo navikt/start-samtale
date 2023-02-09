@@ -1,13 +1,13 @@
-import {useLayoutEffect} from 'react';
-import { withRouter, RouteComponentProps } from 'react-router-dom';
+import { useLayoutEffect } from "react"
+import { useLocation } from "react-router-dom"
 
-function PageChangeListener(props: RouteComponentProps) {
-    useLayoutEffect(() => {
-        window.scroll(0,0);
-    }, [props.location.pathname]);
+function PageChangeListener() {
+  const location = useLocation()
+  useLayoutEffect(() => {
+    window.scroll(0, 0)
+  }, [location.pathname])
 
-    return null;
-
+  return null
 }
 
-export default withRouter(PageChangeListener);
+export default PageChangeListener
