@@ -8,15 +8,13 @@
     "node": "16.15.1"
   },
   "scripts": {
-    "start": "cross-env REACT_APP_MOCK=true PUBLIC_URL=/  craco start",
-    "build": "cross-env REACT_APP_MOCK=false craco build",
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
     "test": "craco test",
     "test:coverage": "npm test -- --coverage --watchAll=false",
     "eject": "craco eject",
-    "build-github-pages": "cross-env REACT_APP_MOCK=true REACT_APP_USE_HASH_ROUTER=true PUBLIC_URL=/start-samtale craco build",
-    "heroku-serve": "serve -s build -l $PORT",
-    "heroku-postbuild": "cross-env REACT_APP_MOCK=true PUBLIC_URL=/ craco build",
-    "lint": "echo \"Not implemented\""
+    "build-github-pages": "cross-env REACT_APP_MOCK=true REACT_APP_USE_HASH_ROUTER=true PUBLIC_URL=/start-samtale craco build"
   },
   "husky": {
     "hooks": {
@@ -50,6 +48,7 @@
     "@navikt/ds-react": "^2.1.6",
     "@navikt/ds-tokens": "^2.1.6",
     "@navikt/fnrvalidator": "^1.1.0",
+    "@vitejs/plugin-react": "^3.1.0",
     "amplitude-js": "^8.21.3",
     "babel-polyfill": "^6.26.0",
     "classnames": "^2.2.6",
@@ -62,7 +61,8 @@
     "react-router-dom": "^5.1.2",
     "react-scripts": "^5.0.1",
     "serve": "^14.0.1",
-    "typescript": "^3.8.3"
+    "typescript": "^3.8.3",
+    "vite": "^4.1.1"
   },
   "devDependencies": {
     "@craco/craco": "^6.2.0",

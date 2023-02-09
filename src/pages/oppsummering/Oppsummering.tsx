@@ -10,7 +10,7 @@ function Oppsummering(props: RouteComponentProps) {
     const parsed = queryString.parse(props.location.search);
 
     const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : '';
-    const href = `${process.env.PUBLIC_URL}/arbeidsrettet-dialog${dialogIdLink}`;
+    const href = `${import.meta.env.BASE_URL}/arbeidsrettet-dialog${dialogIdLink}`;
     logSkjemaFullført();
 
     return (
@@ -31,7 +31,7 @@ function Oppsummering(props: RouteComponentProps) {
 
                     </Alert>
                 </div>
-                <a className="knapp knapp--flat ferdig-knapp" href={`${process.env.PUBLIC_URL}/minside`}>
+                <a className="knapp knapp--flat ferdig-knapp" href={`${import.meta.env.BASE_URL}/minside`}>
                     Ferdig
                 </a>
             </div>

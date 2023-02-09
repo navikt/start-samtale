@@ -34,8 +34,8 @@ const mock = FetchMock.configure({
     )
 });
 
-mock.post(`${process.env.PUBLIC_URL}/veilarbdialog/api/dialog`, ({ body }): any => opprettDialog(body));
-mock.post(`${process.env.PUBLIC_URL}/veilarbvedtakinfo/api/motestotte`, ResponseUtils.statusCode(204));
-mock.get(`${process.env.PUBLIC_URL}/veilarboppfolging/api/oppfolging`, oppfolging);
+mock.post(`${import.meta.env.BASE_URL}/veilarbdialog/api/dialog`, ({ body }): any => opprettDialog(body));
+mock.post(`${import.meta.env.BASE_URL}/veilarbvedtakinfo/api/motestotte`, ResponseUtils.statusCode(204));
+mock.get(`${import.meta.env.BASE_URL}/veilarboppfolging/api/oppfolging`, oppfolging);
 
 export default mock;

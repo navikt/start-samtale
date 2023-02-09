@@ -63,7 +63,7 @@ function DinSituasjonView(props: Props) {
                     Send
                 </Button>
             </div>
-            <Link href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Link href={`${import.meta.env.BASE_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
             </Link>
         </>

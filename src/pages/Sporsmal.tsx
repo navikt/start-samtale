@@ -31,14 +31,14 @@ function StatusAdvarsel(){
 }
 
 function Router(props: { basename:string, children?: React.ReactNode }) {
-    if (process.env.REACT_APP_USE_HASH_ROUTER === 'true') {
+    if (import.meta.env.USE_HASH_ROUTER === 'true') {
         return <HashRouter>{props.children}</HashRouter>;
     }
     return <BrowserRouter basename={props.basename}>{props.children}</BrowserRouter>;
 }
 
 function Sporsmal() {
-    const basename = process.env.PUBLIC_URL;
+    const basename = import.meta.env.BASE_URL;
     const [laster, setLaster] = useState(true);
     const [oppfolging, setOppfolging] = useState<undefined | OppfolgingData>();
     useEffect(() => {

@@ -1,5 +1,4 @@
 import React from 'react';
-// import "@navikt/ds-tokens/dist/tokens";
 import "@navikt/ds-css";
 import './App.less';
 import Banner from './components/banner/Banner';
