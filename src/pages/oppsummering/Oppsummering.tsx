@@ -1,9 +1,8 @@
 import React from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import {AlertStripeSuksess} from 'nav-frontend-alertstriper';
 import { RouteComponentProps, withRouter } from 'react-router-dom';
 import queryString from 'query-string';
 import {logSkjemaFullført} from "../../components/util/amplitude-utils";
+import {Alert, BodyLong, Heading} from "@navikt/ds-react";
 
 export const PAGE_ID = 'oppsummering';
 
@@ -17,20 +16,20 @@ function Oppsummering(props: RouteComponentProps) {
     return (
         <>
             <div className="spm">
-                <Undertittel className="spm-row">
+                <Heading level="2" className="spm-row" size="medium">
                     Takk for tilbakemelding
-                </Undertittel>
+                </Heading>
                 <div className="spm-row">
-                    <AlertStripeSuksess>
-                        <Normaltekst>
+                    <Alert variant="success">
+                        <BodyLong>
                             Svarene er&nbsp;
                             <a href={`${href}`}>delt med veilederen din.</a>&nbsp;
-                        </Normaltekst>
-                        <Normaltekst>
+                        </BodyLong>
+                        <BodyLong>
                             Veilederen vil kontakte deg i løpet av noen dager.
-                        </Normaltekst>
+                        </BodyLong>
 
-                    </AlertStripeSuksess>
+                    </Alert>
                 </div>
                 <a className="knapp knapp--flat ferdig-knapp" href={`${process.env.PUBLIC_URL}/minside`}>
                     Ferdig

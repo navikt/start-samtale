@@ -1,5 +1,5 @@
 import React from 'react';
-import {AlertStripeInfo} from 'nav-frontend-alertstriper';
+import {Alert} from "@navikt/ds-react";
 
 interface Props {
     visible: boolean;
@@ -7,9 +7,9 @@ interface Props {
 }
 
 const AlleredeSvart = (props: Props) => (
-    props.visible ? <AlertStripeInfo className={props.className}>
+    props.visible ? <Alert variant="info" className={props.className}>
         Du har allerede sendt et svar. Du kan gjerne svare igjen hvis du ønsker det.
-    </AlertStripeInfo> : null
+    </Alert> : null
 );
 
 export default AlleredeSvart;

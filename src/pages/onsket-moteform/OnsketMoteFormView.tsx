@@ -1,19 +1,15 @@
 import React, { useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
-import { RadioPanelGruppe } from 'nav-frontend-skjema';
-import {Hovedknapp} from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
+import {Button, Link, Radio, RadioGroup} from '@navikt/ds-react';
 import AlleredeSvart from '../../components/AlleredeSvart';
 import { avbrytMetrikk } from '../../components/util/frontendlogger';
 import { PAGE_ID } from './OnsketMoteFormSporsmal';
-import StartSamtaleStegindikator from '../../components/StartSamtaleStegindikator';
 
 export type MoteForm = 'MEET' | 'PHONE' | 'WRITE' | 'VIDEO';
 
-const MEET: MoteForm = 'MEET';
-const PHONE: MoteForm = 'PHONE';
-const VIDEO: MoteForm = 'VIDEO';
-export const WRITE: MoteForm = 'WRITE';
+const MEET = 'MEET';
+const PHONE = 'PHONE';
+const VIDEO = 'VIDEO';
+export const WRITE = 'WRITE';
 
 export function moteFormValue(form: MoteForm): string {
     switch (form) {
@@ -46,27 +42,24 @@ function OnsketMoteFormView(props: Props) {
 
     return (
         <>
-            <StartSamtaleStegindikator aktivtSteg={0}/>
             <div className="spm">
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
-                <RadioPanelGruppe
+                <RadioGroup
                     className="spm-row"
-                    legend={<Undertittel className="spm-row">{SPORSMAL}</Undertittel>}
-                    name=""
-                    radios={[
-                        {label: moteFormValue(MEET), disabled: props.loading, value: MEET},
-                        {label: moteFormValue(PHONE), disabled: props.loading, value: PHONE},
-                        {label: moteFormValue(VIDEO), disabled: props.loading, value: VIDEO},
-                        {label: moteFormValue(WRITE), disabled: props.loading, value: WRITE},
-                    ]}
-                    checked={value}
-                    onChange={(_, val) => setValue(val)}
-                    feil={feil}
-                />
+                    legend={SPORSMAL}
+                    onChange={(val: MoteForm) => setValue(val)}
+                    error={feil}
+                >
+                    <Radio value={MEET} disabled={props.loading}>{moteFormValue(MEET)}</Radio>
+                    <Radio value={PHONE} disabled={props.loading}>{moteFormValue(PHONE)}</Radio>
+                    <Radio value={VIDEO} disabled={props.loading}>{moteFormValue(VIDEO)}</Radio>
+                    <Radio value={WRITE} disabled={props.loading}>{moteFormValue(WRITE)}</Radio>
+                </RadioGroup>
 
-                <Hovedknapp
+
+                <Button
                     className="send-knapp"
-                    spinner={props.loading}
+                    loading={props.loading}
                     disabled={props.loading}
                     onClick={() => {
                         if (value === undefined) {
@@ -78,11 +71,11 @@ function OnsketMoteFormView(props: Props) {
                     }}
                 >
                     Send
-                </Hovedknapp>
+                </Button>
             </div>
-            <Lenke href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Link href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
-            </Lenke>
+            </Link>
         </>
     );
 }

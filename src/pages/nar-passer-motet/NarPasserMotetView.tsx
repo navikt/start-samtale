@@ -1,12 +1,8 @@
 import React, { useState } from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { Input } from 'nav-frontend-skjema';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../components/AlleredeSvart';
 import { avbrytMetrikk } from '../../components/util/frontendlogger';
 import { PAGE_ID } from './NarPasserMotetSporsmal';
-import StartSamtaleStegindikator from '../../components/StartSamtaleStegindikator';
+import {Button, Label, Link, TextField} from "@navikt/ds-react";
 
 export const SPORSMAL = 'Er det noe tidspunkt som ikke passer?';
 
@@ -27,25 +23,24 @@ function NarPasserMotetView(props: Props) {
     return (
         <>
             <div className="veileder-budskap">
-                <StartSamtaleStegindikator aktivtSteg={2}/>
-                <Normaltekst className="custom-infotext">
+                <Label className="custom-infotext">
                     Hvis det er tidspunkt som ikke passer, kan du skrive det under. Vi prøver å ta hensyn til det.
-                </Normaltekst>
+                </Label>
             </div>
             <div className="spm">
                 <AlleredeSvart visible={props.answered} className="spm-row"/>
-                <Input
+                <TextField
                     className="spm-row"
-                    label={<Undertittel className="spm-row">Er det noe tidspunkt som <i>ikke</i> passer?</Undertittel>}
+                    label="Er det noe tidspunkt som ikke passer?"
                     disabled={props.loading}
                     value={value}
                     placeholder="Det passer ikke på..."
-                    feil={feil}
+                    error={feil}
                     onChange={(e) => setValue((e.target as HTMLInputElement).value)}
                 />
-                <Hovedknapp
+                <Button
                     className="send-knapp"
-                    spinner={props.loading}
+                    loading={props.loading}
                     disabled={props.loading}
                     onClick={() => {
                         if (value === '') {
@@ -55,21 +50,21 @@ function NarPasserMotetView(props: Props) {
                             props.onSubmit(value);
                         }
                     }}
-
                 >
                     Send
-                </Hovedknapp>
-                <Flatknapp
+                </Button>
+                <Button
+                    variant="secondary"
                     className="hopp-knapp"
                     disabled={props.loading}
                     onClick={() => props.onSubmit('')}
                 >
                     Hopp over
-                </Flatknapp>
+                </Button>
             </div>
-            <Lenke href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Link href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
-            </Lenke>
+            </Link>
         </>
     );
 }

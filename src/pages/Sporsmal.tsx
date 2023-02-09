@@ -9,8 +9,7 @@ import './Sporsmal.less';
 import PageChangeListener from '../components/PageChangeListener';
 import {getOppfolging} from "../components/api/api";
 import {OppfolgingData} from "../components/api/dataTypes";
-import {AlertStripeAdvarsel} from "nav-frontend-alertstriper";
-import NavFrontendSpinner from "nav-frontend-spinner";
+import {Alert, Loader} from "@navikt/ds-react";
 
 function erProd() {
     //trengs da ingen av brukerne er registrert i krr i testmiljø
@@ -27,7 +26,7 @@ function invalidOppfolging(oppfolging: OppfolgingData | undefined){
 
 function StatusAdvarsel(){
     return <div className="spm-alert">
-        <AlertStripeAdvarsel>Du har ikke tilgang til denne siden.</AlertStripeAdvarsel>
+        <Alert variant="warning">Du har ikke tilgang til denne siden.</Alert>
     </div>
 }
 
@@ -51,7 +50,7 @@ function Sporsmal() {
     }, [setOppfolging, setLaster]);
 
     if (laster) {
-        return <NavFrontendSpinner type="XL"/>
+        return <Loader size="xlarge"/>
     }
 
     if (invalidOppfolging(oppfolging)){

@@ -1,14 +1,9 @@
-import React, { useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
-import { Textarea } from 'nav-frontend-skjema';
-import {Hovedknapp} from 'nav-frontend-knapper';
-import Veilederpanel from 'nav-frontend-veilederpanel';
-import { ReactComponent as SVG } from '../veileder_motestotte.svg';
-import Lenke from 'nav-frontend-lenker';
+import React, {useState} from 'react';
 import AlleredeSvart from '../../components/AlleredeSvart';
-import { avbrytMetrikk } from '../../components/util/frontendlogger';
-import { PAGE_ID } from './DinSituasjonSporsmal';
-import { feilmelding, tekstTeller } from '../../components/util/text-area-utils';
+import {avbrytMetrikk} from '../../components/util/frontendlogger';
+import {PAGE_ID} from './DinSituasjonSporsmal';
+import {feilmelding } from '../../components/util/text-area-utils';
+import {Button, GuidePanel, Link, Textarea} from "@navikt/ds-react";
 
 const initTextState: string = '';
 
@@ -27,23 +22,14 @@ function DinSituasjonView(props: Props) {
     const [feilState, setFeil] = useState(false);
 
     const feil = feilmelding(feilState, maksLengde, value, customFeil);
-    const customTekstTeller = tekstTeller(3500);
     const labelTekst = 'Skriv til veilederen din';
     return (
         <>
             <div className="veileder-budskap">
                 <div className="custom-veilederpanel">
-                    <Veilederpanel kompakt svg={<SVG id="veileder-icon"/>}>
-                        <Undertittel>
-                            Fortell om
-                        </Undertittel>
-                        <div>
-                            <ul>
-                                <li>hva slags jobb du ønsker deg</li>
-                                <li>hva som kan hindre deg i å jobbe</li>
-                            </ul>
-                        </div>
-                    </Veilederpanel>
+                    <GuidePanel>
+                        Fortell gjerne om hva slags jobb du ønsker deg, og om hva som kan hindre deg i å jobbe.
+                    </GuidePanel>
                 </div>
             </div>
             <div className="spm">
@@ -51,20 +37,19 @@ function DinSituasjonView(props: Props) {
                 <div className="spm-row">
                     <Textarea
                         placeholder={labelTekst}
-                        textareaClass="spm-text-area"
                         label={false}
-                        tellerTekst={customTekstTeller}
                         maxLength={maksLengde}
                         value={value}
                         aria-label={labelTekst}
                         disabled={props.loading}
                         onChange={(e) => setValue(e.target.value)}
-                        feil={feil}
+                        error={feil}
                     />
                 </div>
-                <Hovedknapp
+
+                <Button
                     className="send-knapp"
-                    spinner={props.loading}
+                    loading={props.loading}
                     disabled={props.loading}
                     onClick={() => {
                         if (value === '' || value.length > maksLengde) {
@@ -76,11 +61,11 @@ function DinSituasjonView(props: Props) {
                     }}
                 >
                     Send
-                </Hovedknapp>
+                </Button>
             </div>
-            <Lenke href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Link href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
-            </Lenke>
+            </Link>
         </>
     );
 }

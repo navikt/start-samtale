@@ -1,15 +1,9 @@
 import React, { useState } from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { Textarea } from 'nav-frontend-skjema';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
-import Veilederpanel from 'nav-frontend-veilederpanel';
-import { ReactComponent as SVG } from '../veileder_motestotte.svg';
-import Lenke from 'nav-frontend-lenker';
 import AlleredeSvart from '../../components/AlleredeSvart';
 import { avbrytMetrikk } from '../../components/util/frontendlogger';
 import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal';
-import { feilmelding, tekstTeller } from '../../components/util/text-area-utils';
-import StartSamtaleStegindikator from '../../components/StartSamtaleStegindikator';
+import { feilmelding } from '../../components/util/text-area-utils';
+import {Button, GuidePanel, Link, Textarea} from "@navikt/ds-react";
 
 interface Props {
     loading: boolean;
@@ -28,23 +22,14 @@ function HvaMotetSkalHandleOmView(props: Props) {
     const [feilState, setFeil] = useState(false);
 
     const feil = feilmelding(feilState, maksLengde, value, customFeil);
-    const customTekstTeller = tekstTeller(350);
 
     return (
         <>
             <div className="veileder-budskap">
-                <StartSamtaleStegindikator aktivtSteg={1}/>
                 <div className="custom-veilederpanel">
-                    <Veilederpanel kompakt={true} svg={<SVG id="veileder-icon"/>}>
-                        <Undertittel>
-                            I samtalen ønsker veilederen
-                        </Undertittel>
-                        <ul>
-                            <li><Normaltekst>å bli bedre kjent med situasjonen din</Normaltekst></li>
-                            <li><Normaltekst>å snakke om jobbmulighetene dine</Normaltekst>
-                            </li>
-                        </ul>
-                    </Veilederpanel>
+                    <GuidePanel>
+                        I samtalen ønsker veilederen å bli bedre kjent med situasjonen din, og å snakke om jobbmulighetene dine.
+                    </GuidePanel>
                 </div>
             </div>
             <div className="spm">
@@ -52,19 +37,17 @@ function HvaMotetSkalHandleOmView(props: Props) {
                 <div className="spm-row">
                     <Textarea
                         placeholder="Skriv noen stikkord til samtalen, eller hopp over"
-                        textareaClass="spm-text-area"
                         disabled={props.loading}
-                        label={<Undertittel className="spm-row">{SPORSMAL}</Undertittel>}
-                        tellerTekst={customTekstTeller}
+                        label={SPORSMAL}
                         maxLength={maksLengde}
-                        feil={feil}
+                        error={feil}
                         value={value}
                         onChange={(e) => setValue(e.target.value)}
                     />
                 </div>
-                <Hovedknapp
+                <Button
                     className="send-knapp"
-                    spinner={props.loading}
+                    loading={props.loading}
                     disabled={props.loading}
                     onClick={() => {
                         if (value === '' || value.length >= maksLengde) {
@@ -76,18 +59,19 @@ function HvaMotetSkalHandleOmView(props: Props) {
                     }}
                 >
                     Send
-                </Hovedknapp>
-                <Flatknapp
+                </Button>
+                <Button
                     className="hopp-knapp"
                     disabled={props.loading}
+                    variant="secondary"
                     onClick={() => props.onSubmit('')}
                 >
                     Hopp over
-                </Flatknapp>
+                </Button>
             </div>
-            <Lenke href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
+            <Link href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
                 Avbryt
-            </Lenke>
+            </Link>
         </>
     );
 }
