@@ -76,9 +76,12 @@
     "craco-less": "^2.0.0",
     "cross-env": "^6.0.3",
     "enzyme": "^3.11.0",
+    "msw": "^1.0.0",
     "postcss": "^8.4.21",
     "prettier": "2.8.4",
-    "tailwindcss": "^3.2.6",
-    "yet-another-fetch-mock": "^3.4.0"
+    "tailwindcss": "^3.2.6"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

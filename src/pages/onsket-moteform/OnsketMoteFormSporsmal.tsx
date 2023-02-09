@@ -13,7 +13,7 @@ import OnsketMoteFormView from "./OnsketMoteFormView"
 
 export const PAGE_ID = "onsket-mote-form"
 
-function OnsketMoteFormSporsmal(props: {}) {
+function OnsketMoteFormSporsmal() {
   const [fetchDialogState, fetchDialogDispatch] = useReducer(
     fetchReducer,
     initialFetchState
