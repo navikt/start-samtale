@@ -7,7 +7,7 @@ interface Props {
 }
 
 const AlleredeSvart = (props: Props) =>
-  true ? (
+  props.visible ? (
     <Alert variant="info" className={props.className || undefined}>
       Du har allerede sendt et svar. Du kan gjerne svare igjen hvis du ønsker
       det.

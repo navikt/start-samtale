@@ -18,8 +18,7 @@ interface Props {
 }
 
 export const SPORSMAL = "Fortell"
-const customFeil =
-  "Fortell noe om situasjonen din, slik at du kan få veiledning som passer for deg."
+const customFeil = "Du må skrive noe for å starte en samtale"
 const maksLengde = 5000
 
 function DinSituasjonView(props: Props) {
