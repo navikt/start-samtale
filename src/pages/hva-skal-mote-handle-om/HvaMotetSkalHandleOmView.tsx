@@ -7,7 +7,7 @@ import AvbrytButton from "../../components/AvbrytButton"
 
 interface Props {
   loading: boolean
-  onSubmit: (arg: string) => void
+  onSubmit: (temaSvar?: string, tidspunktSvar?: string) => void
   answered: boolean
 }
 
@@ -53,7 +53,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
           className="mr-4"
           disabled={props.loading}
           variant="secondary"
-          onClick={() => props.onSubmit("")}
+          onClick={() => props.onSubmit(undefined, undefined)}
         >
           Hopp over
         </Button>
@@ -65,7 +65,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
               setFeil(true)
             } else {
               setFeil(false)
-              props.onSubmit(temaSvar)
+              props.onSubmit(temaSvar, tidspunktSvar)
             }
           }}
         >

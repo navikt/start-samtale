@@ -8,7 +8,7 @@ export function getQueryParam(
   const parsedKey = parsed[key]
 
   if (Array.isArray(parsedKey)) {
-    return parsedKey[0]
+    return (parsedKey as string[])[0]
   } else if (parsedKey === null) {
     return undefined
   } else {

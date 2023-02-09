@@ -18,14 +18,28 @@ function HvaMotetSkalHandleOmSporsmal() {
   const answered = getQueryParam(location.search, "answered") === "true"
   const navigate = useNavigate()
 
-  const onSubmit = (value: string) => {
-    if (value.length !== 0) {
+  const onSubmitNar = (narSvar?: string) => {
+    if (narSvar && narSvar?.length !== 0) {
       const dialogInputData = {
-        svar: value,
+        svar: narSvar,
         spm: SPORSMAL,
         dialogId: dialogId,
       }
-
+      dispatchDialogData(dialogInputData, fetchDispatch).then((res) => {
+        navigate(location.pathname + `?dialogId=${res.id}&answered=true`, {
+          replace: true,
+        })
+        navigate(`/${OPPSUMMERING_PAGE_ID}?dialogId=${res.id}`)
+      })
+    }
+  }
+  const onSubmit = async (temaSvar?: string, tidspunktSvar?: string) => {
+    if (temaSvar && temaSvar.length !== 0) {
+      const dialogInputData = {
+        svar: temaSvar,
+        spm: SPORSMAL,
+        dialogId: dialogId,
+      }
       dispatchDialogData(dialogInputData, fetchDispatch).then((res) => {
         navigate(location.pathname + `?dialogId=${res.id}&answered=true`, {
           replace: true,
