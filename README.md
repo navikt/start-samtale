@@ -6,7 +6,7 @@ Gi brukeren mer påvirkningskraft til første arbeidsrettet møte med NAV.
 
 ```console
 $ npm install
-$ npm start
+$ npm run dev
 ```
 
 # Henvendelser

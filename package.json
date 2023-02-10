@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "build-github-pages": "cross-env REACT_APP_MOCK=true REACT_APP_USE_HASH_ROUTER=true PUBLIC_URL=/start-samtale craco build"
+    "build-demo": "vite build --mode demo"
   },
   "browserslist": {
     "production": [
