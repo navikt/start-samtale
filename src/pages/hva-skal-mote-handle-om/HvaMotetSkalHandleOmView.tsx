@@ -48,7 +48,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
         error={feil}
         onChange={(e) => setTidspunktSvar((e.target as HTMLInputElement).value)}
       />
-      <div>
+      <div className="flex">
         <Button
           className="mr-4"
           disabled={props.loading}

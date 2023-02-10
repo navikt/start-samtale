@@ -60,7 +60,11 @@ function Sporsmal() {
   }, [setOppfolging, setLaster])
 
   if (laster) {
-    return <Loader size="xlarge" />
+    return (
+      <div className="flex justify-center mt-20">
+        <Loader size="xlarge" />
+      </div>
+    )
   }
 
   if (invalidOppfolging(oppfolging)) {

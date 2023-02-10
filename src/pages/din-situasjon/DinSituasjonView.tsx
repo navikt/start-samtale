@@ -44,7 +44,7 @@ function DinSituasjonView(props: Props) {
         onChange={(e) => setValue(e.target.value)}
         error={feil}
       />
-      <div>
+      <div className="flex">
         <Button
           variant="secondary"
           className="mr-4"
