@@ -2,20 +2,6 @@
 import { rest, setupWorker } from 'msw'
 import { opprettDialog } from './dialog'
 import { oppfolging } from './oppfolging'
-;(window as any).frontendlogger = {
-  info: function () {
-    /* ingenting */
-  },
-  warn: function () {
-    /* ingenting */
-  },
-  error: function () {
-    /* ingenting */
-  },
-  event: function () {
-    console.log('event-triggered', arguments)
-  },
-}
 
 const handlers = [
   rest.post(`/veilarbdialog/api/dialog`, async (req, res, ctx) =>

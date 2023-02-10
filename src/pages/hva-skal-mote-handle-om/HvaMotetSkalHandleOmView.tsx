@@ -1,6 +1,5 @@
 import React, { useState } from 'react'
 import AlleredeSvart from '../../components/AlleredeSvart'
-import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal'
 import { feilmelding } from '../../components/util/text-area-utils'
 import { Button, GuidePanel, Textarea, TextField } from '@navikt/ds-react'
 import AvbrytButton from '../../components/AvbrytButton'
@@ -74,7 +73,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
           Send
         </Button>
       </div>
-      <AvbrytButton pageId={PAGE_ID} />
+      <AvbrytButton />
     </div>
   )
 }

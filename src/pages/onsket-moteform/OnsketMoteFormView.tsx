@@ -61,7 +61,7 @@ function OnsketMoteFormView(props: Props) {
         >
           Neste steg
         </Button>
-        <AvbrytButton pageId={PAGE_ID} />
+        <AvbrytButton />
       </div>
     </div>
   )

@@ -1,10 +1,7 @@
 import React, { useState } from 'react'
 import AlleredeSvart from '../../components/AlleredeSvart'
-import { avbrytMetrikk } from '../../components/util/frontendlogger'
-import { PAGE_ID } from './DinSituasjonSporsmal'
 import { feilmelding } from '../../components/util/text-area-utils'
 import { Button, GuidePanel, Textarea } from '@navikt/ds-react'
-import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/Oppsummering'
 
 import AvbrytButton from '../../components/AvbrytButton'
 import { useNavigate } from 'react-router-dom'
@@ -49,7 +46,6 @@ function DinSituasjonView(props: Props) {
           variant="secondary"
           className="mr-4"
           onClick={() => {
-            avbrytMetrikk(PAGE_ID)
             navigate(-1)
           }}
         >
@@ -70,7 +66,7 @@ function DinSituasjonView(props: Props) {
           Send
         </Button>
       </div>
-      <AvbrytButton pageId={OPPSUMMERING_PAGE_ID} />
+      <AvbrytButton />
     </div>
   )
 }
