@@ -8,7 +8,7 @@ import { PAGE_ID as DIN_SITUASJON_PAGE_ID } from '../din-situasjon/DinSituasjonS
 import { PAGE_ID as HANDLER_OM_PAGE_ID } from '../hva-skal-mote-handle-om/HvaMotetSkalHandleOmSporsmal'
 import { dispatchMotestotte } from '../dispatchMotestotteData'
 import { getQueryParam } from '../../components/util/querystring-utils'
-import { logSkjemastegFullført } from '../../components/util/amplitude-utils'
+import { logSkjemastegFullfoert } from '../../components/util/amplitude-utils'
 import OnsketMoteFormView from './OnsketMoteFormView'
 
 export const PAGE_ID = 'onsket-mote-form'
@@ -29,7 +29,7 @@ function OnsketMoteFormSporsmal() {
   const navigate = useNavigate()
 
   const onSubmit = (value: string) => {
-    logSkjemastegFullført(1)
+    logSkjemastegFullfoert(1)
     const dialogInputData = {
       svar: moteFormValue(value as MoteForm),
       spm: SPORSMAL,

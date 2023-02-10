@@ -30,7 +30,9 @@ const log = (eventNavn: LovligEvent, skjemaProps: LogProps): void => {
 
 export const logSkjemaStartet = (): void =>
   log(Eventnavn.SKJEMA_STARTET, SkjemaProps)
-export const logSkjemastegFullført = (steg: number): void =>
+
+export const logSkjemastegFullfoert = (steg: number): void =>
   log(Eventnavn.SKJEMASTEG_FULLFORT, { ...SkjemaProps, steg })
-export const logSkjemaFullført = (): void =>
+
+export const logSkjemaFullfoert = (): void =>
   log(Eventnavn.SKJEMA_FULLFORT, SkjemaProps)

@@ -14,12 +14,12 @@ function getCookie(name: string) {
   return match !== null ? match[1] : ''
 }
 
-function getHeaders() {
-  return new Headers({
+const getHeaders = () => {
+  return {
     'Content-Type': 'application/json',
     NAV_CSRF_PROTECTION: getCookie('NAV_CSRF_PROTECTION'),
     'Nav-Consumer-Id': 'start-samtale',
-  })
+  }
 }
 
 const CONFIG = {

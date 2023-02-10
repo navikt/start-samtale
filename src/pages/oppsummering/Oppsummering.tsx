@@ -1,7 +1,7 @@
 import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import queryString from 'query-string'
-import { logSkjemaFullført } from '../../components/util/amplitude-utils'
+import { logSkjemaFullfoert } from '../../components/util/amplitude-utils'
 import { Alert, BodyLong, Button, Heading, Link } from '@navikt/ds-react'
 
 export const PAGE_ID = 'oppsummering'
@@ -13,7 +13,7 @@ function Oppsummering() {
 
   const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : ''
   const href = `${import.meta.env.BASE_URL}/arbeidsrettet-dialog${dialogIdLink}`
-  logSkjemaFullført()
+  logSkjemaFullfoert()
 
   return (
     <div className="space-y-8">
