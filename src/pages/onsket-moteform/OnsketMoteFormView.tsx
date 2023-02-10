@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import { Button, Radio, RadioGroup } from '@navikt/ds-react'
 import AlleredeSvart from '../../components/AlleredeSvart'
-import { PAGE_ID } from './OnsketMoteFormSporsmal'
 import {
   SPORSMAL,
   WRITE,
