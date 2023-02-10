@@ -1,24 +1,24 @@
-import React, { useEffect, useState } from "react"
-import { BrowserRouter, HashRouter, Route, Routes } from "react-router-dom"
-import OnsketMoteFormSporsmal from "./onsket-moteform/OnsketMoteFormSporsmal"
+import React, { useEffect, useState } from 'react'
+import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
+import OnsketMoteFormSporsmal from './onsket-moteform/OnsketMoteFormSporsmal'
 import HvaMotetSkalHandleOmSporsmal, {
   PAGE_ID as HVA_PAGE_ID,
-} from "./hva-skal-mote-handle-om/HvaMotetSkalHandleOmSporsmal"
+} from './hva-skal-mote-handle-om/HvaMotetSkalHandleOmSporsmal'
 import DinSituasjonSporsmal, {
   PAGE_ID as SITUASJON_PAGE_ID,
-} from "./din-situasjon/DinSituasjonSporsmal"
+} from './din-situasjon/DinSituasjonSporsmal'
 import Oppsummering, {
   PAGE_ID as OPPSUMMERING_PAGE_ID,
-} from "./oppsummering/Oppsummering"
-import { getOppfolging } from "../components/api/api"
-import { OppfolgingData } from "../components/api/dataTypes"
-import { Alert, Loader } from "@navikt/ds-react"
+} from './oppsummering/Oppsummering'
+import { getOppfolging } from '../components/api/api'
+import { OppfolgingData } from '../components/api/dataTypes'
+import { Alert, Loader } from '@navikt/ds-react'
 
 function erProd() {
   //trengs da ingen av brukerne er registrert i krr i testmiljø
   return (
-    window.location.hostname === "www.nav.no" ||
-    window.location.hostname === "app.adeo.no"
+    window.location.hostname === 'www.nav.no' ||
+    window.location.hostname === 'app.adeo.no'
   )
 }
 
@@ -40,7 +40,7 @@ function StatusAdvarsel() {
 }
 
 function Router(props: { basename: string; children?: React.ReactNode }) {
-  if (import.meta.env.USE_HASH_ROUTER === "true") {
+  if (import.meta.env.USE_HASH_ROUTER === 'true') {
     return <HashRouter>{props.children}</HashRouter>
   }
   return (

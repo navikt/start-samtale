@@ -1,7 +1,7 @@
 // tslint:disable
-import { rest, setupWorker } from "msw"
-import { opprettDialog } from "./dialog"
-import { oppfolging } from "./oppfolging"
+import { rest, setupWorker } from 'msw'
+import { opprettDialog } from './dialog'
+import { oppfolging } from './oppfolging'
 ;(window as any).frontendlogger = {
   info: function () {
     /* ingenting */
@@ -13,7 +13,7 @@ import { oppfolging } from "./oppfolging"
     /* ingenting */
   },
   event: function () {
-    console.log("event-triggered", arguments)
+    console.log('event-triggered', arguments)
   },
 }
 
@@ -42,7 +42,7 @@ export default () =>
     // turn off MSW warnings for specific routes
     onUnhandledRequest(req, print) {
       // specify routes to exclude
-      const excludedRoutes = ["/favicon.ico", "/manifest.json", "/src"]
+      const excludedRoutes = ['/favicon.ico', '/manifest.json', '/src']
 
       // check if the req.url.pathname contains excludedRoutes
       const isExcluded = excludedRoutes.some((route) =>

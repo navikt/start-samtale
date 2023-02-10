@@ -1,9 +1,9 @@
-import amplitude from "amplitude-js"
-import { Eventnavn, LovligEvent, SkjemaProps } from "./constants"
+import amplitude from 'amplitude-js'
+import { Eventnavn, LovligEvent, SkjemaProps } from './constants'
 
 export const initAmplitude = (): void => {
-  amplitude.getInstance().init("default", "", {
-    apiEndpoint: "amplitude.nav.no/collect-auto",
+  amplitude.getInstance().init('default', '', {
+    apiEndpoint: 'amplitude.nav.no/collect-auto',
     saveEvents: false,
     includeUtm: true,
     includeReferrer: true,

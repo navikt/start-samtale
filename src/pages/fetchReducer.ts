@@ -28,6 +28,6 @@ export const fetchReducer = (state: FetchState, action: FetchAction) => {
     case FetchActionTypes.FAILURE:
       return { ...state, loading: false, failure: true }
     default:
-      throw new Error("Not supported action")
+      throw new Error('Not supported action')
   }
 }

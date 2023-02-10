@@ -1,7 +1,7 @@
-import React, { useState } from "react"
-import { Button, Radio, RadioGroup } from "@navikt/ds-react"
-import AlleredeSvart from "../../components/AlleredeSvart"
-import { PAGE_ID } from "./OnsketMoteFormSporsmal"
+import React, { useState } from 'react'
+import { Button, Radio, RadioGroup } from '@navikt/ds-react'
+import AlleredeSvart from '../../components/AlleredeSvart'
+import { PAGE_ID } from './OnsketMoteFormSporsmal'
 import {
   SPORSMAL,
   WRITE,
@@ -10,8 +10,8 @@ import {
   moteFormValue,
   MoteForm,
   VIDEO,
-} from "./moteFormUtil"
-import AvbrytButton from "../../components/AvbrytButton"
+} from './moteFormUtil'
+import AvbrytButton from '../../components/AvbrytButton'
 
 interface Props {
   loading: boolean
@@ -23,7 +23,7 @@ function OnsketMoteFormView(props: Props) {
   const [value, setValue] = useState<string | undefined>(undefined)
   const [feilState, setFeil] = useState(false)
 
-  const feil = feilState ? "Du må oppgi hvor du vil starte samtalen" : undefined
+  const feil = feilState ? 'Du må oppgi hvor du vil starte samtalen' : undefined
 
   return (
     <div className="space-y-8">

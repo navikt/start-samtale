@@ -1,6 +1,6 @@
 export const oppfolging = {
   fnr: null,
-  veilederId: "101010",
+  veilederId: '101010',
   reservasjonKRR: false,
   manuell: false,
   underOppfolging: true,
@@ -12,5 +12,5 @@ export const oppfolging = {
   harSkriveTilgang: true,
   kanReaktiveres: false,
   kanVarsles: true,
-  inaktiveringsdato: "2018-08-31T10:46:10.971+01:00",
+  inaktiveringsdato: '2018-08-31T10:46:10.971+01:00',
 }

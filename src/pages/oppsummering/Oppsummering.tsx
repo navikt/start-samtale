@@ -1,17 +1,17 @@
-import React from "react"
-import { useLocation, useNavigate } from "react-router-dom"
-import queryString from "query-string"
-import { logSkjemaFullført } from "../../components/util/amplitude-utils"
-import { Alert, BodyLong, Button, Heading, Link } from "@navikt/ds-react"
+import React from 'react'
+import { useLocation, useNavigate } from 'react-router-dom'
+import queryString from 'query-string'
+import { logSkjemaFullført } from '../../components/util/amplitude-utils'
+import { Alert, BodyLong, Button, Heading, Link } from '@navikt/ds-react'
 
-export const PAGE_ID = "oppsummering"
+export const PAGE_ID = 'oppsummering'
 
 function Oppsummering() {
   const location = useLocation()
   const parsed = queryString.parse(location.search)
   const navigate = useNavigate()
 
-  const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : ""
+  const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : ''
   const href = `${import.meta.env.BASE_URL}/arbeidsrettet-dialog${dialogIdLink}`
   logSkjemaFullført()
 

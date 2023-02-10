@@ -1,6 +1,6 @@
-import { FetchAction, FetchActionTypes } from "./fetchReducer"
-import { DialogData, NyDialogMeldingData } from "../components/api/dataTypes"
-import { postDialog } from "../components/api/api"
+import { FetchAction, FetchActionTypes } from './fetchReducer'
+import { DialogData, NyDialogMeldingData } from '../components/api/dataTypes'
+import { postDialog } from '../components/api/api'
 
 interface InputData {
   spm: string
@@ -17,7 +17,7 @@ export function dispatchDialogData(
   const data: NyDialogMeldingData = {
     dialogId: inputData.dialogId,
     tekst: tekst,
-    overskrift: "Veiledning",
+    overskrift: 'Veiledning',
   }
   return postDialog(data)
     .then((res) => {

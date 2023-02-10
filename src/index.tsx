@@ -1,18 +1,18 @@
-import React from "react"
-import ReactDOM from "react-dom"
-import App from "./App"
-import { createRoot } from "react-dom/client"
+import React from 'react'
+import ReactDOM from 'react-dom'
+import App from './App'
+import { createRoot } from 'react-dom/client'
 
 if (import.meta.env.DEV) {
-  import("./mock")
+  import('./mock')
     .then(({ default: startWorker }) => startWorker())
-    .then(() => createRoot(document.getElementById("root")!!).render(<App />))
+    .then(() => createRoot(document.getElementById('root')!!).render(<App />))
 } else {
-  createRoot(document.getElementById("root")!!).render(<App />)
+  createRoot(document.getElementById('root')!!).render(<App />)
 }
 
 if (import.meta.env.PROD) {
-  import("./components/util/amplitude-utils").then((amplitude) =>
+  import('./components/util/amplitude-utils').then((amplitude) =>
     amplitude.initAmplitude()
   )
 }

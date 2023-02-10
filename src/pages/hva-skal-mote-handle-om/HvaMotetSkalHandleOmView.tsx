@@ -1,9 +1,9 @@
-import React, { useState } from "react"
-import AlleredeSvart from "../../components/AlleredeSvart"
-import { PAGE_ID } from "./HvaMotetSkalHandleOmSporsmal"
-import { feilmelding } from "../../components/util/text-area-utils"
-import { Button, GuidePanel, Textarea, TextField } from "@navikt/ds-react"
-import AvbrytButton from "../../components/AvbrytButton"
+import React, { useState } from 'react'
+import AlleredeSvart from '../../components/AlleredeSvart'
+import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal'
+import { feilmelding } from '../../components/util/text-area-utils'
+import { Button, GuidePanel, Textarea, TextField } from '@navikt/ds-react'
+import AvbrytButton from '../../components/AvbrytButton'
 
 interface Props {
   loading: boolean
@@ -11,11 +11,11 @@ interface Props {
   answered: boolean
 }
 
-const initTextState: string = ""
+const initTextState: string = ''
 const maksLengde = 500
 
-export const SPORSMAL = "Hva ønsker du å snakke om?"
-const customFeil = "Du kan ikke sende en tom melding."
+export const SPORSMAL = 'Hva ønsker du å snakke om?'
+const customFeil = 'Du kan ikke sende en tom melding.'
 
 function HvaMotetSkalHandleOmView(props: Props) {
   const [temaSvar, setTemaSvar] = useState(initTextState)
@@ -61,7 +61,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
           loading={props.loading}
           disabled={props.loading}
           onClick={() => {
-            if (temaSvar === "" || temaSvar.length >= maksLengde) {
+            if (temaSvar === '' || temaSvar.length >= maksLengde) {
               setFeil(true)
             } else {
               setFeil(false)

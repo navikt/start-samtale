@@ -14,5 +14,5 @@ export function frontendLogger(
 }
 
 export function avbrytMetrikk(side: string) {
-  frontendLogger("forberede-moete.avbryt", undefined, { side: side })
+  frontendLogger('forberede-moete.avbryt', undefined, { side: side })
 }

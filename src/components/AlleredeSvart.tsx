@@ -1,5 +1,5 @@
-import React from "react"
-import { Alert } from "@navikt/ds-react"
+import React from 'react'
+import { Alert } from '@navikt/ds-react'
 
 interface Props {
   visible: boolean

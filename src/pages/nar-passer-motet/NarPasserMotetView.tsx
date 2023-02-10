@@ -1,10 +1,10 @@
-import React, { useState } from "react"
-import AlleredeSvart from "../../components/AlleredeSvart"
-import { PAGE_ID } from "./NarPasserMotetSporsmal"
-import { Button, Label, Link, TextField } from "@navikt/ds-react"
-import AvbrytButton from "../../components/AvbrytButton"
+import React, { useState } from 'react'
+import AlleredeSvart from '../../components/AlleredeSvart'
+import { PAGE_ID } from './NarPasserMotetSporsmal'
+import { Button, Label, Link, TextField } from '@navikt/ds-react'
+import AvbrytButton from '../../components/AvbrytButton'
 
-export const SPORSMAL = "Er det noe tidspunkt som ikke passer?"
+export const SPORSMAL = 'Er det noe tidspunkt som ikke passer?'
 
 interface Props {
   loading: boolean
@@ -12,13 +12,13 @@ interface Props {
   answered: boolean
 }
 
-const inputState: string = ""
+const inputState: string = ''
 
 function NarPasserMotetView(props: Props) {
   const [value, setValue] = useState(inputState)
   const [feilState, setFeil] = useState(false)
 
-  const feil = feilState ? "Du kan ikke sende en tom melding" : undefined
+  const feil = feilState ? 'Du kan ikke sende en tom melding' : undefined
 
   return (
     <>
@@ -40,7 +40,7 @@ function NarPasserMotetView(props: Props) {
           variant="secondary"
           className="mr-4"
           disabled={props.loading}
-          onClick={() => props.onSubmit("")}
+          onClick={() => props.onSubmit('')}
         >
           Hopp over
         </Button>
@@ -48,7 +48,7 @@ function NarPasserMotetView(props: Props) {
           loading={props.loading}
           disabled={props.loading}
           onClick={() => {
-            if (value === "") {
+            if (value === '') {
               setFeil(true)
             } else {
               setFeil(false)

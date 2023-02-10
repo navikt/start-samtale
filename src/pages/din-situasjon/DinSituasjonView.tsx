@@ -1,15 +1,15 @@
-import React, { useState } from "react"
-import AlleredeSvart from "../../components/AlleredeSvart"
-import { avbrytMetrikk } from "../../components/util/frontendlogger"
-import { PAGE_ID } from "./DinSituasjonSporsmal"
-import { feilmelding } from "../../components/util/text-area-utils"
-import { Button, GuidePanel, Textarea } from "@navikt/ds-react"
-import { PAGE_ID as OPPSUMMERING_PAGE_ID } from "../oppsummering/Oppsummering"
+import React, { useState } from 'react'
+import AlleredeSvart from '../../components/AlleredeSvart'
+import { avbrytMetrikk } from '../../components/util/frontendlogger'
+import { PAGE_ID } from './DinSituasjonSporsmal'
+import { feilmelding } from '../../components/util/text-area-utils'
+import { Button, GuidePanel, Textarea } from '@navikt/ds-react'
+import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/Oppsummering'
 
-import AvbrytButton from "../../components/AvbrytButton"
-import { useNavigate } from "react-router-dom"
+import AvbrytButton from '../../components/AvbrytButton'
+import { useNavigate } from 'react-router-dom'
 
-const initTextState: string = ""
+const initTextState: string = ''
 
 interface Props {
   loading: boolean
@@ -17,8 +17,8 @@ interface Props {
   answered: boolean
 }
 
-export const SPORSMAL = "Fortell"
-const customFeil = "Du må skrive noe for å starte en samtale"
+export const SPORSMAL = 'Fortell'
+const customFeil = 'Du må skrive noe for å starte en samtale'
 const maksLengde = 5000
 
 function DinSituasjonView(props: Props) {
@@ -27,7 +27,7 @@ function DinSituasjonView(props: Props) {
   const [feilState, setFeil] = useState(false)
 
   const feil = feilmelding(feilState, maksLengde, value, customFeil)
-  const labelTekst = "Skriv til veilederen din"
+  const labelTekst = 'Skriv til veilederen din'
   return (
     <div className="space-y-8">
       <GuidePanel>
@@ -36,7 +36,7 @@ function DinSituasjonView(props: Props) {
       </GuidePanel>
       <AlleredeSvart visible={props.answered} />
       <Textarea
-        label={"Skriv til veilederen din (obligatorisk)"}
+        label={'Skriv til veilederen din (obligatorisk)'}
         maxLength={maksLengde}
         value={value}
         aria-label={labelTekst}
@@ -59,7 +59,7 @@ function DinSituasjonView(props: Props) {
           loading={props.loading}
           disabled={props.loading}
           onClick={() => {
-            if (value === "" || value.length > maksLengde) {
+            if (value === '' || value.length > maksLengde) {
               setFeil(true)
             } else {
               setFeil(false)

@@ -1,6 +1,6 @@
-import { avbrytMetrikk } from "./util/frontendlogger"
-import { Button } from "@navikt/ds-react"
-import React from "react"
+import { avbrytMetrikk } from './util/frontendlogger'
+import { Button } from '@navikt/ds-react'
+import React from 'react'
 
 interface Props {
   pageId: string
