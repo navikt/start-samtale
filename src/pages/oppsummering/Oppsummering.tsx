@@ -22,10 +22,8 @@ function Oppsummering() {
       </Heading>
       <Alert variant="success">
         <BodyLong>
-          Svarene er&nbsp;
-          <Link href={`${href}`}>
-            delt med veilederen din. Du kan lese svaret ditt der.
-          </Link>
+          Svarene er delt med veilederen din i dialogen dere har sammen.
+          <Link href={`${href}`}>Du kan lese svaret ditt der.</Link>
           &nbsp;
         </BodyLong>
         <BodyLong className="pt-2">

@@ -19,20 +19,15 @@ import { oppfolging } from './oppfolging'
 
 const handlers = [
   rest.post(`/veilarbdialog/api/dialog`, async (req, res, ctx) =>
-    res(
-      ctx.status(200),
-      ctx.json(opprettDialog(await req.json())),
-      ctx.delay(1000)
-    )
+    res(ctx.status(200), ctx.json(opprettDialog(await req.json())))
   ),
   rest.post(
     `${import.meta.env.BASE_URL}veilarbvedtakinfo/api/motestotte`,
-    (req, res, ctx) => res(ctx.status(204), ctx.delay(1000))
+    (req, res, ctx) => res(ctx.status(204))
   ),
   rest.get(
     `${import.meta.env.BASE_URL}veilarboppfolging/api/oppfolging`,
-    (req, res, ctx) =>
-      res(ctx.status(200), ctx.json(oppfolging), ctx.delay(1000))
+    (req, res, ctx) => res(ctx.status(200), ctx.json(oppfolging))
   ),
 ]
 

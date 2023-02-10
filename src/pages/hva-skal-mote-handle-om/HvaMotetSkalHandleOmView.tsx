@@ -12,9 +12,11 @@ interface Props {
 }
 
 const initTextState: string = ''
-const maksLengde = 500
+const maksLengde = 400
 
-export const SPORSMAL = 'Hva ønsker du å snakke om?'
+export const SPORSMAL_TEMA = 'Hva ønsker du å snakke om?'
+export const SPORSMAL_TIDSPUNKT = 'Er det tidspunkt som ikke passer?'
+
 const customFeil = 'Du kan ikke sende en tom melding.'
 
 function HvaMotetSkalHandleOmView(props: Props) {
@@ -32,7 +34,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
       </GuidePanel>
       <AlleredeSvart visible={props.answered} />
       <Textarea
-        label="Hva ønsker du å snakke om? (valgfritt)"
+        label={`${SPORSMAL_TEMA} (valgfritt)`}
         description="Skriv gjerne noen stikkord til samtalen"
         disabled={props.loading}
         maxLength={maksLengde}
@@ -41,7 +43,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
         onChange={(e) => setTemaSvar(e.target.value)}
       />
       <TextField
-        label="Er det tidspunkt som ikke passer? (valgfritt)"
+        label={`${SPORSMAL_TIDSPUNKT} (valgfritt)`}
         description="Vi vil prøve å ta hensyn til dine ønsker"
         disabled={props.loading}
         value={tidspunktSvar}

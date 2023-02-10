@@ -1,11 +1,11 @@
-export type MoteForm = 'MEET' | 'PHONE' | 'WRITE' | 'VIDEO'
+export type MoteForm = typeof MEET | typeof PHONE | typeof VIDEO | typeof WRITE
 
 export const MEET = 'MEET'
 export const PHONE = 'PHONE'
 export const VIDEO = 'VIDEO'
 export const WRITE = 'WRITE'
 
-export const SPORSMAL = 'Hvor vil du starte samtalen med veilederen din?'
+export const SPORSMAL = 'Hvor vil du starte samtalen? (obligatorisk)'
 
 export function moteFormValue(form: MoteForm): string {
   switch (form) {

@@ -35,10 +35,6 @@ function invalidOppfolging(oppfolging: OppfolgingData | undefined) {
   )
 }
 
-function StatusAdvarsel() {
-  return <Alert variant="warning">Du har ikke tilgang til denne siden.</Alert>
-}
-
 function Router(props: { basename: string; children?: React.ReactNode }) {
   if (import.meta.env.USE_HASH_ROUTER === 'true') {
     return <HashRouter>{props.children}</HashRouter>
@@ -68,7 +64,7 @@ function Sporsmal() {
   }
 
   if (invalidOppfolging(oppfolging)) {
-    return <StatusAdvarsel />
+    return <Alert variant="warning">Du har ikke tilgang til denne siden.</Alert>
   }
 
   return (
@@ -80,11 +76,6 @@ function Sporsmal() {
             path={`/${HVA_PAGE_ID}`}
             element={<HvaMotetSkalHandleOmSporsmal />}
           />
-          {/*
-          <Route
-            path={`/${NAR_PAGE_ID}`}
-            element={<NarPasserMotetSporsmal />}
-          />*/}
           <Route
             path={`/${SITUASJON_PAGE_ID}`}
             element={<DinSituasjonSporsmal />}

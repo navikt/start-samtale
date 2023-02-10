@@ -19,7 +19,7 @@ interface Props {
 
 export const SPORSMAL = 'Fortell'
 const customFeil = 'Du må skrive noe for å starte en samtale'
-const maksLengde = 5000
+const maksLengde = 400
 
 function DinSituasjonView(props: Props) {
   const navigate = useNavigate()
