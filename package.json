@@ -47,6 +47,7 @@
     "@navikt/ds-react": "^2.1.7",
     "@navikt/ds-tailwind": "^2.1.7",
     "@navikt/ds-tokens": "^2.1.7",
+    "@types/node": "^18.13.0",
     "@vitejs/plugin-react": "^3.1.0",
     "amplitude-js": "^8.21.4",
     "classnames": "^2.3.2",
