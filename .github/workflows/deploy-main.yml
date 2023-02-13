@@ -36,7 +36,7 @@ jobs:
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v0
       - name: Upload files to GCS
-        run: gsutil -m rsync -r build gs://start-samtale-dev
+        run: gsutil -m rsync -r dist gs://start-samtale-dev
       - name: Create release
         uses: actions/create-release@v1
         env:
@@ -69,7 +69,7 @@ jobs:
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v0
       - name: Upload files to GCS
-        run: gsutil -m rsync -r build gs://start-samtale-prod
+        run: gsutil -m rsync -r dist gs://start-samtale-prod
       - name: Create release
         uses: actions/create-release@v1
         env:

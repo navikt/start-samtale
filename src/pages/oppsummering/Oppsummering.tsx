@@ -2,7 +2,7 @@ import React from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import queryString from 'query-string'
 import { logSkjemaFullfoert } from '../../components/util/amplitude-utils'
-import { Alert, BodyLong, Button, Heading, Link } from '@navikt/ds-react'
+import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react'
 import AvsluttKnapp from '../../components/AvsluttKnapp'
 
 export const PAGE_ID = 'oppsummering'
@@ -10,7 +10,6 @@ export const PAGE_ID = 'oppsummering'
 function Oppsummering() {
   const location = useLocation()
   const parsed = queryString.parse(location.search)
-  const navigate = useNavigate()
 
   const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : ''
   const href = `${import.meta.env.BASE_URL}arbeidsrettet-dialog${dialogIdLink}`
