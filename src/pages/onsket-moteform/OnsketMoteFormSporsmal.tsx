@@ -1,8 +1,7 @@
 import React, { useReducer } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { MoteForm, moteFormValue, SPORSMAL, WRITE } from './moteFormUtil'
+import { WRITE } from './moteFormUtil'
 import { fetchReducer, initialFetchState } from '../fetchReducer'
-import { dispatchDialogData } from '../dispatchDialogData'
 import { PAGE_ID as DIN_SITUASJON_PAGE_ID } from '../din-situasjon/DinSituasjonSporsmal'
 import { PAGE_ID as HANDLER_OM_PAGE_ID } from '../hva-skal-mote-handle-om/HvaMotetSkalHandleOmSporsmal'
 import { dispatchMotestotte } from '../dispatchMotestotteData'
@@ -29,24 +28,24 @@ function OnsketMoteFormSporsmal() {
 
   const onSubmit = (value: string) => {
     logSkjemastegFullfoert(1)
-    const dialogInputData = {
-      svar: moteFormValue(value as MoteForm),
-      spm: SPORSMAL,
-      dialogId: dialogId,
-    }
 
-    dispatchMotestotte(fetchMotestotteDispatch).then(() =>
-      dispatchDialogData(dialogInputData, fetchDialogDispatch).then((res) => {
-        navigate(location.pathname + `?dialogId=${res.id}&answered=true`, {
-          replace: true,
+    dispatchMotestotte(fetchMotestotteDispatch).then(() => {
+      if (value === WRITE) {
+        navigate(`/${DIN_SITUASJON_PAGE_ID}`, {
+          state: {
+            kanal: value,
+            answered: true,
+          },
         })
-        if (value === WRITE) {
-          navigate(`/${DIN_SITUASJON_PAGE_ID}?dialogId=${res.id}`)
-        } else {
-          navigate(`/${HANDLER_OM_PAGE_ID}?dialogId=${res.id}`)
-        }
-      })
-    )
+      } else {
+        navigate(`/${HANDLER_OM_PAGE_ID}?kanal=${value}&answered=true`, {
+          state: {
+            kanal: value,
+            answered: true,
+          },
+        })
+      }
+    })
   }
 
   return (

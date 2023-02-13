@@ -48,6 +48,7 @@ function Sporsmal() {
   const basename = import.meta.env.BASE_URL
   const [laster, setLaster] = useState(true)
   const [oppfolging, setOppfolging] = useState<undefined | OppfolgingData>()
+
   useEffect(() => {
     getOppfolging().then((data) => {
       setOppfolging(data)

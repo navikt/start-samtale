@@ -3,6 +3,7 @@ import AlleredeSvart from '../../components/AlleredeSvart'
 import { feilmelding } from '../../components/util/text-area-utils'
 import { Button, GuidePanel, Textarea, TextField } from '@navikt/ds-react'
 import AvbrytButton from '../../components/AvbrytButton'
+import { useNavigate } from 'react-router-dom'
 
 interface Props {
   loading: boolean
@@ -22,6 +23,8 @@ function HvaMotetSkalHandleOmView(props: Props) {
   const [temaSvar, setTemaSvar] = useState(initTextState)
   const [tidspunktSvar, setTidspunktSvar] = useState(initTextState)
   const [feilState, setFeil] = useState(false)
+
+  const navigate = useNavigate()
 
   const feil = feilmelding(feilState, maksLengde, temaSvar, customFeil)
 
@@ -51,12 +54,13 @@ function HvaMotetSkalHandleOmView(props: Props) {
       />
       <div className="flex">
         <Button
-          className="mr-4"
-          disabled={props.loading}
           variant="secondary"
-          onClick={() => props.onSubmit(undefined, undefined)}
+          className="mr-4"
+          onClick={() => {
+            navigate(-1)
+          }}
         >
-          Hopp over
+          Forrige steg
         </Button>
         <Button
           loading={props.loading}
