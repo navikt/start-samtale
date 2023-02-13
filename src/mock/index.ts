@@ -21,7 +21,7 @@ const worker = setupWorker(...handlers)
 export default () =>
   worker.start({
     serviceWorker: {
-      url: import.meta.env.BASE_URL,
+      url: import.meta.env.BASE_URL + 'mockServiceWorker.js',
     },
     // turn off MSW warnings for specific routes
     onUnhandledRequest(req, print) {
