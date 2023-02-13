@@ -13,7 +13,7 @@
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "build-gh-pages": "VITE_USE_HASH_ROUTER=true vite dev --base=/start-samtale/"
+    "build-gh-pages": "VITE_USE_HASH_ROUTER=true vite build --base=/start-samtale/"
   },
   "browserslist": {
     "production": [
