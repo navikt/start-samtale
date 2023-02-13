@@ -5,7 +5,7 @@
   "license": "MIT",
   "repository": "https://github.com/navikt/start-samtale.git",
   "engines": {
-    "node": "16.15.1"
+    "node": "16"
   },
   "scripts": {
     "dev": "vite",
