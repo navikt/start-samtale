@@ -12,7 +12,7 @@ function Oppsummering() {
   const navigate = useNavigate()
 
   const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : ''
-  const href = `${import.meta.env.BASE_URL}/arbeidsrettet-dialog${dialogIdLink}`
+  const href = `${import.meta.env.BASE_URL}arbeidsrettet-dialog${dialogIdLink}`
   logSkjemaFullfoert()
 
   return (
