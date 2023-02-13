@@ -72,7 +72,7 @@ function Sporsmal() {
     <>
       <Router basename={basename}>
         <Routes>
-          <Route index element={<OnsketMoteFormSporsmal />} />
+          <Route path="/" element={<OnsketMoteFormSporsmal />} />
           <Route
             path={`/${HVA_PAGE_ID}`}
             element={<HvaMotetSkalHandleOmSporsmal />}
