@@ -10,7 +10,7 @@ import {
   MoteForm,
   VIDEO,
 } from './moteFormUtil'
-import AvbrytButton from '../../components/AvbrytButton'
+import AvsluttKnapp from '../../components/AvsluttKnapp'
 
 interface Props {
   loading: boolean
@@ -60,7 +60,7 @@ function OnsketMoteFormView(props: Props) {
         >
           Neste steg
         </Button>
-        <AvbrytButton />
+        <AvsluttKnapp />
       </div>
     </div>
   )

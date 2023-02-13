@@ -82,7 +82,6 @@ function Sporsmal() {
             element={<DinSituasjonSporsmal />}
           />
           <Route path={`/${OPPSUMMERING_PAGE_ID}`} element={<Oppsummering />} />
-          <Route path="/minside" element={<OnsketMoteFormSporsmal />} />
         </Routes>
       </Router>
     </>

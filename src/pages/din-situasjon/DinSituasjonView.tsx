@@ -3,7 +3,7 @@ import AlleredeSvart from '../../components/AlleredeSvart'
 import { feilmelding } from '../../components/util/text-area-utils'
 import { Button, GuidePanel, Textarea } from '@navikt/ds-react'
 
-import AvbrytButton from '../../components/AvbrytButton'
+import AvsluttKnapp from '../../components/AvsluttKnapp'
 import { useNavigate } from 'react-router-dom'
 
 const initTextState: string = ''
@@ -66,7 +66,7 @@ function DinSituasjonView(props: Props) {
           Send
         </Button>
       </div>
-      <AvbrytButton />
+      <AvsluttKnapp />
     </div>
   )
 }

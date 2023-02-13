@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom'
 import queryString from 'query-string'
 import { logSkjemaFullfoert } from '../../components/util/amplitude-utils'
 import { Alert, BodyLong, Button, Heading, Link } from '@navikt/ds-react'
+import AvsluttKnapp from '../../components/AvsluttKnapp'
 
 export const PAGE_ID = 'oppsummering'
 
@@ -30,14 +31,7 @@ function Oppsummering() {
           Veilederen vil kontakte deg i løpet av noen dager.
         </BodyLong>
       </Alert>
-      <Button
-        variant="secondary"
-        onClick={() => {
-          navigate('/minside')
-        }}
-      >
-        Jeg er ferdig
-      </Button>
+      <AvsluttKnapp text={'Jeg er ferdig'} variant={'secondary'} />
     </div>
   )
 }
