@@ -8,6 +8,8 @@ import { dispatchDialogData } from '../dispatchDialogData'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/Oppsummering'
 import { getQueryParam } from '../../components/util/querystring-utils'
+import { lagDialogTekst } from '../../components/util/dialogTekstUtil'
+import { KANAL_SPORSMAL, moteFormValue } from '../onsket-moteform/moteFormUtil'
 
 export const PAGE_ID = 'hva-motet-skal-handle-om'
 
@@ -21,20 +23,13 @@ function HvaMotetSkalHandleOmSporsmal() {
   const answered = getQueryParam(location.search, 'answered') === 'true'
   const navigate = useNavigate()
 
-  const sendDialogData = (spm: string, svar?: string) => {
-    if (!svar) return Promise.resolve({ id: dialogId })
-    const dialogInputData = {
-      svar,
-      spm,
-      dialogId: dialogId,
-    }
-    return dispatchDialogData(dialogInputData, fetchDispatch)
-  }
-
   const onSubmit = async (temaSvar?: string, tidspunktSvar?: string) => {
-    await sendDialogData(SPORSMAL_TEMA, temaSvar)
-    await sendDialogData(SPORSMAL_TIDSPUNKT, tidspunktSvar)
-
+    const dialogInputData = [
+      { svar: moteFormValue(location.state.svar), spm: KANAL_SPORSMAL },
+      { svar: temaSvar, spm: SPORSMAL_TEMA },
+      { svar: tidspunktSvar, spm: SPORSMAL_TIDSPUNKT },
+    ]
+    dispatchDialogData(lagDialogTekst(dialogInputData), fetchDispatch)
     navigate(location.pathname + `?dialogId=${dialogId}&answered=true`, {
       replace: true,
     })

@@ -5,10 +5,12 @@ import { fetchReducer, initialFetchState } from '../fetchReducer'
 import { dispatchDialogData } from '../dispatchDialogData'
 import { PAGE_ID as OPPSUMMERING_PAGE_ID } from '../oppsummering/Oppsummering'
 import { getQueryParam } from '../../components/util/querystring-utils'
+import { KANAL_SPORSMAL, moteFormValue } from '../onsket-moteform/moteFormUtil'
+import { lagDialogTekst } from '../../components/util/dialogTekstUtil'
 
 export const PAGE_ID = 'din-situasjon'
 
-function DinSituasjonSporsmal(props: {}) {
+function DinSituasjonSporsmal() {
   const location = useLocation()
   const navigate = useNavigate()
   const [fetchState, fetchDispatch] = useReducer(
@@ -20,17 +22,18 @@ function DinSituasjonSporsmal(props: {}) {
 
   const onSubmit = (value: string) => {
     if (value.length !== 0) {
-      const dialogInputData = {
-        svar: value,
-        spm: SPORSMAL,
-        dialogId: dialogId,
-      }
-      dispatchDialogData(dialogInputData, fetchDispatch).then((res) => {
-        navigate(location.pathname + `?dialogId=${res.id}&answered=true`, {
-          replace: true,
-        })
-        navigate(`/${OPPSUMMERING_PAGE_ID}`)
-      })
+      const dialogInputData = [
+        { svar: moteFormValue(location.state.svar), spm: KANAL_SPORSMAL },
+        { svar: value, spm: SPORSMAL },
+      ]
+      dispatchDialogData(lagDialogTekst(dialogInputData), fetchDispatch).then(
+        (res) => {
+          navigate(location.pathname + `?dialogId=${res.id}&answered=true`, {
+            replace: true,
+          })
+          navigate(`/${OPPSUMMERING_PAGE_ID}`)
+        }
+      )
     } else {
       const queryParam = dialogId ? `?dialogId=${dialogId}` : ''
       navigate(`/${OPPSUMMERING_PAGE_ID}${queryParam}`)

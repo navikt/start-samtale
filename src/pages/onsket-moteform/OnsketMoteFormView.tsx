@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import { Button, Radio, RadioGroup } from '@navikt/ds-react'
 import AlleredeSvart from '../../components/AlleredeSvart'
 import {
-  SPORSMAL,
+  KANAL_SPORSMAL,
   WRITE,
   MEET,
   PHONE,
@@ -28,7 +28,7 @@ function OnsketMoteFormView(props: Props) {
     <div className="space-y-8">
       <AlleredeSvart visible={props.answered} />
       <RadioGroup
-        legend={SPORSMAL}
+        legend={KANAL_SPORSMAL}
         onChange={(val: MoteForm) => setValue(val)}
         error={feil}
       >
