@@ -37,7 +37,7 @@ function invalidOppfolging(oppfolging: OppfolgingData | undefined) {
 
 function Router(props: { basename: string; children?: React.ReactNode }) {
   if (import.meta.env.VITE_USE_HASH_ROUTER) {
-    return <HashRouter basename={props.basename}>{props.children}</HashRouter>
+    return <HashRouter>{props.children}</HashRouter>
   }
   return (
     <BrowserRouter basename={props.basename}>{props.children}</BrowserRouter>
@@ -71,7 +71,7 @@ function Sporsmal() {
     <>
       <Router basename={basename}>
         <Routes>
-          <Route path="/" element={<OnsketMoteFormSporsmal />} />
+          <Route index element={<OnsketMoteFormSporsmal />} />
           <Route
             path={`/${HVA_PAGE_ID}`}
             element={<HvaMotetSkalHandleOmSporsmal />}

@@ -33,7 +33,7 @@ function Oppsummering() {
       <Button
         variant="secondary"
         onClick={() => {
-          navigate(`${import.meta.env.BASE_URL}minside`)
+          navigate('/minside')
         }}
       >
         Jeg er ferdig

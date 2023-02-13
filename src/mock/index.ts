@@ -4,8 +4,10 @@ import { opprettDialog } from './dialog'
 import { oppfolging } from './oppfolging'
 
 const handlers = [
-  rest.post(`/veilarbdialog/api/dialog`, async (req, res, ctx) =>
-    res(ctx.status(200), ctx.json(opprettDialog(await req.json())))
+  rest.post(
+    `${import.meta.env.BASE_URL}veilarbdialog/api/dialog`,
+    async (req, res, ctx) =>
+      res(ctx.status(200), ctx.json(opprettDialog(await req.json())))
   ),
   rest.post(
     `${import.meta.env.BASE_URL}veilarbvedtakinfo/api/motestotte`,

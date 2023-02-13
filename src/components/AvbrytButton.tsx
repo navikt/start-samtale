@@ -1,12 +1,15 @@
 import { Button } from '@navikt/ds-react'
 import React from 'react'
+import { useNavigate } from 'react-router-dom'
 
 export const AvbrytButton = () => {
+  const navigate = useNavigate()
+
   return (
     <Button
       variant="tertiary"
       onClick={() => {
-        window.location.href = `${import.meta.env.BASE_URL}minside`
+        navigate('/minside')
       }}
     >
       Avbryt
