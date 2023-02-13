@@ -23,7 +23,7 @@ function DinSituasjonSporsmal() {
   const onSubmit = (value: string) => {
     if (value.length !== 0) {
       const dialogInputData = [
-        { svar: moteFormValue(location.state.svar), spm: KANAL_SPORSMAL },
+        { svar: moteFormValue(location.state.kanal), spm: KANAL_SPORSMAL },
         { svar: value, spm: SPORSMAL },
       ]
       dispatchDialogData(lagDialogTekst(dialogInputData), fetchDispatch).then(

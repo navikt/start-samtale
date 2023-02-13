@@ -25,7 +25,7 @@ function HvaMotetSkalHandleOmSporsmal() {
 
   const onSubmit = async (temaSvar?: string, tidspunktSvar?: string) => {
     const dialogInputData = [
-      { svar: moteFormValue(location.state.svar), spm: KANAL_SPORSMAL },
+      { svar: moteFormValue(location.state.kanal), spm: KANAL_SPORSMAL },
       { svar: temaSvar, spm: SPORSMAL_TEMA },
       { svar: tidspunktSvar, spm: SPORSMAL_TIDSPUNKT },
     ]
