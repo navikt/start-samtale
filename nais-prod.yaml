@@ -60,7 +60,7 @@ spec:
           "fallbackStrategy": "SERVE_INDEX_HTML",
           "proxies": [
             { "fromPath": "/veilarbvedtakinfo", "toUrl": "http://pto-proxy/proxy/veilarbvedtakinfo" },
-            { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.prod-fss-pub.nais.io", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "prod-fss" } },
+            { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.prod-fss-pub.nais.io", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "prod-fss" } },
             { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.prod-fss-pub.nais.io", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "prod-fss" } }
           ],
           "redirects": [
