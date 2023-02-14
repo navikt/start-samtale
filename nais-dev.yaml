@@ -56,8 +56,8 @@ spec:
           "fallbackStrategy": "serve",
           "proxies": [
             { "from": "/veilarbvedtakinfo", "to": "http://pto-proxy/proxy/veilarbvedtakinfo" },
-            { "from": "/veilarboppfolging", "to": "https://veilarbdialog.dev-fss-pub.nais.io", "preserveContextPath": false },
-            { "from": "/veilarbdialog", "to": "https://veilarbdialog.dev-fss-pub.nais.io", "preserveContextPath": false }
+            { "from": "/veilarboppfolging", "to": "https://veilarbdialog.dev-fss-pub.nais.io", "preserveContextPath": true },
+            { "from": "/veilarbdialog", "to": "https://veilarbdialog.dev-fss-pub.nais.io", "preserveContextPath": true }
           ],
           "redirects": [
             {
