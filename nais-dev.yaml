@@ -56,8 +56,8 @@ spec:
           "fallbackStrategy": "serve",
           "proxies": [
             { "from": "/veilarbvedtakinfo", "to": "http://pto-proxy/proxy/veilarbvedtakinfo" },
-            { "from": "/veilarboppfolging", "to": "http://pto-proxy/proxy/veilarboppfolging" },
-            { "from": "/veilarbdialog", "to": "http://pto-proxy/proxy/veilarbdialog" }
+            { "from": "/veilarboppfolging", "to": "http://veilarbdialog.dev-fss-pub.nais.io" },
+            { "from": "/veilarbdialog", "to": "http://veilarbdialog.dev-fss-pub.nais.io" }
           ],
           "redirects": [
             {
