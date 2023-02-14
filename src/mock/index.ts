@@ -25,7 +25,13 @@ export default () =>
     // turn off MSW warnings for specific routes
     onUnhandledRequest(req, print) {
       // specify routes to exclude
-      const excludedRoutes = ['/favicon.ico', '/manifest.json', '/src']
+      console.log(req)
+      const excludedRoutes = [
+        '/favicon.ico',
+        '/manifest.json',
+        '/src',
+        '/client.js',
+      ]
 
       // check if the req.url.pathname contains excludedRoutes
       const isExcluded = excludedRoutes.some((route) =>
