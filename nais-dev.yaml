@@ -9,10 +9,10 @@ spec:
   image: ghcr.io/navikt/poao-frontend/poao-frontend:2023.01.13_08.09-36c09678654f
   port: 8080
   liveness:
-    path: /internal/isAlive
+    path: /internal/alive
     initialDelay: 20
   readiness:
-    path: /internal/isReady
+    path: /internal/ready
     initialDelay: 20
   replicas:
     min: 1
@@ -29,6 +29,9 @@ spec:
     - https://pto.dev.nav.no/arbeid/start-samtale
   idporten:
     enabled: true
+    sidecar:
+      enabled: true
+      autoLogin: true
   tokenx:
     enabled: true
   accessPolicy:
@@ -56,7 +59,7 @@ spec:
           "contextPath": "/arbeid/start-samtale",
           "fallbackStrategy": "SERVE_INDEX_HTML",
           "proxies": [
-            { "fromPath": "/veilarbvedtakinfo", "toUrl": "http://pto-proxy/proxy/veilarbvedtakinfo", "toApp": { "name": "veilarbvedtakinfo", "namespace": "pto", "cluster": "dev-fss" } },
+            { "fromPath": "/veilarbvedtakinfo", "toUrl": "http://pto-proxy/proxy/veilarbvedtakinfo" },
             { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.dev-fss-pub.nais.io", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "dev-fss" } },
             { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.dev-fss-pub.nais.io", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "dev-fss" } }
           ],
