@@ -15,7 +15,7 @@ const handlers = [
   ),
   rest.get(
     `${import.meta.env.BASE_URL}veilarboppfolging/api/oppfolging`,
-    (req, res, ctx) => res(ctx.status(200), ctx.json(oppfolging))
+    (req, res, ctx) => res(ctx.status(500), ctx.json(oppfolging))
   ),
 ]
 
@@ -25,7 +25,6 @@ export default () =>
     // turn off MSW warnings for specific routes
     onUnhandledRequest(req, print) {
       // specify routes to exclude
-      console.log(req)
       const excludedRoutes = [
         '/favicon.ico',
         '/manifest.json',

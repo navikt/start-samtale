@@ -30,10 +30,12 @@ function Sporsmal() {
   const [oppfolging, setOppfolging] = useState<undefined | OppfolgingData>()
 
   useEffect(() => {
-    getOppfolging().then((data) => {
-      setOppfolging(data)
-      setLaster(false)
-    })
+    getOppfolging()
+      .then((data) => {
+        setOppfolging(data)
+        setLaster(false)
+      })
+      .catch(() => setLaster(false))
   }, [setOppfolging, setLaster])
 
   if (laster) {
@@ -48,11 +50,7 @@ function Sporsmal() {
     return <Alert variant="warning">Du har ikke tilgang til denne siden.</Alert>
   }
 
-  return (
-    <>
-      <OnsketMoteFormSporsmal />
-    </>
-  )
+  return <OnsketMoteFormSporsmal />
 }
 
 export default Sporsmal
