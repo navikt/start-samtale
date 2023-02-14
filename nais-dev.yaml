@@ -18,6 +18,8 @@ spec:
     min: 1
     max: 2
     cpuThresholdPercentage: 75
+  ingresses:
+    - https://pto.dev.nav.no/arbeid/start-samtale
   resources:
     limits:
       cpu: "1"
@@ -25,8 +27,6 @@ spec:
     requests:
       cpu: 250m
       memory: 256Mi
-  ingresses:
-    - https://pto.dev.nav.no/arbeid/start-samtale
   idporten:
     enabled: true
     sidecar:
@@ -45,7 +45,6 @@ spec:
       - name: start-samtale-dev
   envFrom:
     - configmap: pto-config
-    - configmap: loginservice-idporten
   env:
     - name: JSON_CONFIG
       value: >
@@ -61,7 +60,7 @@ spec:
           "proxies": [
             { "fromPath": "/veilarbvedtakinfo", "toUrl": "http://pto-proxy/proxy/veilarbvedtakinfo" },
             { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.dev-fss-pub.nais.io/veilarboppfolging", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "dev-fss" } },
-            { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.dev-fss-pub.nais.io", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "dev-fss" } }
+            { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.dev-fss-pub.nais.io/veilarbdialog", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "dev-fss" } }
           ],
           "redirects": [
             {

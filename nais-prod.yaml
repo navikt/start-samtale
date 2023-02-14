@@ -6,7 +6,7 @@ metadata:
   labels:
     team: pto
 spec:
-  image: ghcr.io/navikt/pto-frontend/pto-frontend:2023.01.13_08.11-4fff74d23073
+  image: ghcr.io/navikt/poao-frontend/poao-frontend:2023.01.13_08.09-36c09678654f
   port: 8080
   liveness:
     path: /internal/alive
@@ -45,7 +45,6 @@ spec:
       - name: start-samtale-prod
   envFrom:
     - configmap: pto-config
-    - configmap: loginservice-idporten
   env:
     - name: JSON_CONFIG
       value: >
@@ -60,8 +59,8 @@ spec:
           "fallbackStrategy": "SERVE_INDEX_HTML",
           "proxies": [
             { "fromPath": "/veilarbvedtakinfo", "toUrl": "http://pto-proxy/proxy/veilarbvedtakinfo" },
-            { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.prod-fss-pub.nais.io", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "prod-fss" } },
-            { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.prod-fss-pub.nais.io", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "prod-fss" } }
+            { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.prod-fss-pub.nais.io/veilarboppfolging", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "prod-fss" } },
+            { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.prod-fss-pub.nais.io/veilarbdialog", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "prod-fss" } }
           ],
           "redirects": [
             {
