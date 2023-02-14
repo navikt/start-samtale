@@ -15,7 +15,7 @@ import Oppsummering, {
   PAGE_ID as OPPSUMMERING_PAGE_ID,
 } from './pages/oppsummering/Oppsummering'
 
-function Router(props: { basename: string; children?: React.ReactNode }) {
+const Router = (props: { basename: string; children?: React.ReactNode }) => {
   if (import.meta.env.VITE_USE_HASH_ROUTER) {
     return <HashRouter>{props.children}</HashRouter>
   }
