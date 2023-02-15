@@ -1,12 +1,19 @@
-import React from 'react';
-import ReactDOM from 'react-dom';
-import App from './App';
-import {initAmplitude} from "./components/util/amplitude-utils";
+import React from 'react'
+import App from './App'
+import { createRoot } from 'react-dom/client'
 
-if (process.env.REACT_APP_MOCK === 'true') {
-    require('./mock');
+const useMock = import.meta.env.DEV || import.meta.env.VITE_USE_HASH_ROUTER
+
+if (useMock) {
+  import('./mock')
+    .then(({ default: startWorker }) => startWorker())
+    .then(() => createRoot(document.getElementById('root')!!).render(<App />))
+} else {
+  createRoot(document.getElementById('root')!!).render(<App />)
 }
 
-initAmplitude();
-
-ReactDOM.render(<App />, document.getElementById('root'));
+if (import.meta.env.PROD) {
+  import('./components/util/amplitude-utils').then((amplitude) =>
+    amplitude.initAmplitude()
+  )
+}

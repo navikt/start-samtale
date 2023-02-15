@@ -1,95 +1,69 @@
-import React, { useState } from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import { Textarea } from 'nav-frontend-skjema';
-import { Flatknapp, Hovedknapp } from 'nav-frontend-knapper';
-import Veilederpanel from 'nav-frontend-veilederpanel';
-import { ReactComponent as SVG } from '../veileder_motestotte.svg';
-import Lenke from 'nav-frontend-lenker';
-import AlleredeSvart from '../../components/AlleredeSvart';
-import { avbrytMetrikk } from '../../components/util/frontendlogger';
-import { PAGE_ID } from './HvaMotetSkalHandleOmSporsmal';
-import { feilmelding, tekstTeller } from '../../components/util/text-area-utils';
-import StartSamtaleStegindikator from '../../components/StartSamtaleStegindikator';
+import React, { useState } from 'react'
+import { Button, GuidePanel, Textarea, TextField } from '@navikt/ds-react'
+import { useNavigate } from 'react-router-dom'
+import LenkeKnapp from '../../components/LenkeKnapp'
 
 interface Props {
-    loading: boolean;
-    onSubmit: (arg: string) => void;
-    answered: boolean;
+  loading: boolean
+  onSubmit: (temaSvar?: string, tidspunktSvar?: string) => void
 }
 
-const initTextState: string = '';
-const maksLengde = 500;
+const initTextState: string = ''
+const maksLengde = 400
 
-export const SPORSMAL = 'Hva ønsker du å snakke om?';
-const customFeil = 'Du kan ikke sende en tom melding.';
+export const SPORSMAL_TEMA = 'Hva ønsker du å snakke om?'
+export const SPORSMAL_TIDSPUNKT = 'Er det tidspunkt som ikke passer?'
 
-function HvaMotetSkalHandleOmView(props: Props) {
-    const [value, setValue] = useState(initTextState);
-    const [feilState, setFeil] = useState(false);
+const HvaMotetSkalHandleOmView = (props: Props) => {
+  const [temaSvar, setTemaSvar] = useState(initTextState)
+  const [tidspunktSvar, setTidspunktSvar] = useState(initTextState)
 
-    const feil = feilmelding(feilState, maksLengde, value, customFeil);
-    const customTekstTeller = tekstTeller(350);
+  const navigate = useNavigate()
 
-    return (
-        <>
-            <div className="veileder-budskap">
-                <StartSamtaleStegindikator aktivtSteg={1}/>
-                <div className="custom-veilederpanel">
-                    <Veilederpanel kompakt={true} svg={<SVG id="veileder-icon"/>}>
-                        <Undertittel>
-                            I samtalen ønsker veilederen
-                        </Undertittel>
-                        <ul>
-                            <li><Normaltekst>å bli bedre kjent med situasjonen din</Normaltekst></li>
-                            <li><Normaltekst>å snakke om jobbmulighetene dine</Normaltekst>
-                            </li>
-                        </ul>
-                    </Veilederpanel>
-                </div>
-            </div>
-            <div className="spm">
-                <AlleredeSvart visible={props.answered} className="spm-row"/>
-                <div className="spm-row">
-                    <Textarea
-                        placeholder="Skriv noen stikkord til samtalen, eller hopp over"
-                        textareaClass="spm-text-area"
-                        disabled={props.loading}
-                        label={<Undertittel className="spm-row">{SPORSMAL}</Undertittel>}
-                        tellerTekst={customTekstTeller}
-                        maxLength={maksLengde}
-                        feil={feil}
-                        value={value}
-                        onChange={(e) => setValue(e.target.value)}
-                    />
-                </div>
-                <Hovedknapp
-                    className="send-knapp"
-                    spinner={props.loading}
-                    disabled={props.loading}
-                    onClick={() => {
-                        if (value === '' || value.length >= maksLengde) {
-                            setFeil(true);
-                        } else {
-                            setFeil(false);
-                            props.onSubmit(value);
-                        }
-                    }}
-                >
-                    Send
-                </Hovedknapp>
-                <Flatknapp
-                    className="hopp-knapp"
-                    disabled={props.loading}
-                    onClick={() => props.onSubmit('')}
-                >
-                    Hopp over
-                </Flatknapp>
-            </div>
-            <Lenke href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
-                Avbryt
-            </Lenke>
-        </>
-    );
+  return (
+    <div className="space-y-8">
+      <GuidePanel>
+        I samtalen ønsker veilederen å bli bedre kjent med situasjonen din, og å
+        snakke om jobbmulighetene dine.
+      </GuidePanel>
+      <Textarea
+        label={`${SPORSMAL_TEMA} (valgfritt)`}
+        description="Skriv gjerne noen stikkord til samtalen"
+        disabled={props.loading}
+        maxLength={maksLengde}
+        value={temaSvar}
+        onChange={(e) => setTemaSvar(e.target.value)}
+      />
+      <TextField
+        label={`${SPORSMAL_TIDSPUNKT} (valgfritt)`}
+        description="Vi vil prøve å ta hensyn til dine ønsker"
+        disabled={props.loading}
+        value={tidspunktSvar}
+        onChange={(e) => setTidspunktSvar((e.target as HTMLInputElement).value)}
+      />
+      <div className="flex">
+        <Button
+          variant="secondary"
+          className="mr-4"
+          onClick={() => {
+            navigate(-1)
+          }}
+        >
+          Forrige steg
+        </Button>
+        <Button
+          loading={props.loading}
+          disabled={props.loading}
+          onClick={() => {
+            props.onSubmit(temaSvar, tidspunktSvar)
+          }}
+        >
+          Send
+        </Button>
+      </div>
+      <LenkeKnapp href={import.meta.env.VITE_MIN_SIDE_URL}>Avbryt</LenkeKnapp>
+    </div>
+  )
 }
 
-export default HvaMotetSkalHandleOmView;
+export default HvaMotetSkalHandleOmView

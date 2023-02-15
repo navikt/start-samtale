@@ -11,17 +11,17 @@ jobs:
     name: Deploy application to dev
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
         with:
-          node-version: '14'
+          node-version: 18
           cache: 'npm'
       - name: Install dependencies
         run: npm ci
       - name: Run tests
         run: npm run test
       - name: Build application
-        run: npm run build
+        run: npm run build-dev
       - name: Gcloud auth
         uses: google-github-actions/auth@v0
         with:
@@ -29,7 +29,7 @@ jobs:
       - name: Setup gcloud
         uses: google-github-actions/setup-gcloud@v0
       - name: Upload files to GCS
-        run: gsutil -m rsync -r build gs://start-samtale-dev
+        run: gsutil -m rsync -r dist gs://start-samtale-dev
       - name: Create release
         uses: actions/create-release@v1
         env:

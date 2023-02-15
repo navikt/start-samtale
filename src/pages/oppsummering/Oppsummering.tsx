@@ -1,43 +1,40 @@
-import React from 'react';
-import { Normaltekst, Undertittel } from 'nav-frontend-typografi';
-import {AlertStripeSuksess} from 'nav-frontend-alertstriper';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import queryString from 'query-string';
-import {logSkjemaFullført} from "../../components/util/amplitude-utils";
+import React from 'react'
+import { useLocation } from 'react-router-dom'
+import { logSkjemaFullfoert } from '../../components/util/amplitude-utils'
+import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react'
+import LenkeKnapp from '../../components/LenkeKnapp'
 
-export const PAGE_ID = 'oppsummering';
+export const PAGE_ID = 'oppsummering'
 
-function Oppsummering(props: RouteComponentProps) {
-    const parsed = queryString.parse(props.location.search);
+const Oppsummering = () => {
+  const location = useLocation()
 
-    const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : '';
-    const href = `${process.env.PUBLIC_URL}/arbeidsrettet-dialog${dialogIdLink}`;
-    logSkjemaFullført();
+  const dialogId = location.state.dialogId
 
-    return (
-        <>
-            <div className="spm">
-                <Undertittel className="spm-row">
-                    Takk for tilbakemelding
-                </Undertittel>
-                <div className="spm-row">
-                    <AlertStripeSuksess>
-                        <Normaltekst>
-                            Svarene er&nbsp;
-                            <a href={`${href}`}>delt med veilederen din.</a>&nbsp;
-                        </Normaltekst>
-                        <Normaltekst>
-                            Veilederen vil kontakte deg i løpet av noen dager.
-                        </Normaltekst>
+  logSkjemaFullfoert()
 
-                    </AlertStripeSuksess>
-                </div>
-                <a className="knapp knapp--flat ferdig-knapp" href={`${process.env.PUBLIC_URL}/minside`}>
-                    Ferdig
-                </a>
-            </div>
-        </>
-    );
+  return (
+    <div className="space-y-8">
+      <Heading level="2" size="medium">
+        Takk for tilbakemelding
+      </Heading>
+      <Alert variant="success">
+        <BodyLong>
+          Svarene er delt med veilederen din i dialogen dere har sammen.
+          <Link href={`${import.meta.env.VITE_DIALOG_URL}/${dialogId}`}>
+            Du kan lese svaret ditt der.
+          </Link>
+          &nbsp;
+        </BodyLong>
+        <BodyLong className="pt-2">
+          Veilederen vil kontakte deg i løpet av noen dager.
+        </BodyLong>
+      </Alert>
+      <LenkeKnapp href={import.meta.env.VITE_MIN_SIDE_URL} variant="secondary">
+        Jeg er ferdig
+      </LenkeKnapp>
+    </div>
+  )
 }
 
-export default withRouter(Oppsummering);
+export default Oppsummering

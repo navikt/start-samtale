@@ -1,24 +1,21 @@
-import {FetchAction, FetchActionTypes} from './fetchReducer';
-import {DialogData, NyDialogMeldingData} from '../components/api/dataTypes';
-import {postDialog} from '../components/api/api';
+import { FetchAction, FetchActionTypes } from './fetchReducer'
+import { DialogData, NyDialogMeldingData } from '../components/api/dataTypes'
+import { postDialog } from '../components/api/api'
 
-interface InputData {
-    spm: string;
-    svar: string;
-    dialogId?: string;
-}
-
-export function dispatchDialogData(inputData: InputData, dispatch: (value: FetchAction) => void): Promise<DialogData> {
-    dispatch({type: FetchActionTypes.LOADING});
-    const tekst = `Spørsmål fra NAV: ${inputData.spm}\n Svaret mitt: ${inputData.svar}`;
-    const data: NyDialogMeldingData = {dialogId: inputData.dialogId, tekst: tekst, overskrift: 'Veiledning'};
-    return postDialog(data)
-        .then(res => {
-            dispatch({type: FetchActionTypes.OK, value: res.id});
-            return res;
-        })
-        .catch((reason) => {
-            dispatch({type: FetchActionTypes.FAILURE});
-            return Promise.reject(reason);
-        });
+export const dispatchDialogData = (
+  inputData: NyDialogMeldingData | undefined,
+  dispatch: (value: FetchAction) => void
+): Promise<DialogData> => {
+  if (!inputData)
+    return Promise.reject('Kan ikke lage en dialog uten innhold (svar)')
+  dispatch({ type: FetchActionTypes.LOADING })
+  return postDialog(inputData)
+    .then((res) => {
+      dispatch({ type: FetchActionTypes.OK, value: res.id })
+      return res
+    })
+    .catch((reason) => {
+      dispatch({ type: FetchActionTypes.FAILURE })
+      return Promise.reject(reason)
+    })
 }

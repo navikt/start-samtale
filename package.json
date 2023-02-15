@@ -1,37 +1,20 @@
 {
   "name": "forberede-moete",
   "version": "1.0.0",
-  "homepage": "/arbeid/start-samtale",
   "license": "MIT",
   "repository": "https://github.com/navikt/start-samtale.git",
   "engines": {
-    "node": "16.15.1"
+    "node": "16"
   },
   "scripts": {
-    "start": "cross-env REACT_APP_MOCK=true PUBLIC_URL=/  craco start",
-    "build": "cross-env REACT_APP_MOCK=false craco build",
-    "test": "craco test",
-    "test:coverage": "npm test -- --coverage --watchAll=false",
-    "eject": "craco eject",
-    "build-github-pages": "cross-env REACT_APP_MOCK=true REACT_APP_USE_HASH_ROUTER=true PUBLIC_URL=/start-samtale craco build",
-    "heroku-serve": "serve -s build -l $PORT",
-    "heroku-postbuild": "cross-env REACT_APP_MOCK=true PUBLIC_URL=/ craco build",
-    "lint": "echo \"Not implemented\""
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged",
-      "commit-msg": "node commit-message-checker.js"
-    }
-  },
-  "lint-staged": {
-    "*.{js,ts,tsx,json,less,css,md}": [
-      "prettier --write",
-      "git add"
-    ]
-  },
-  "eslintConfig": {
-    "extends": "react-app"
+    "dev": "vite",
+    "dev-test": "vite --mode dev --base /arbeid/start-samtale/",
+    "build": "vite build --base /arbeid/start-samtale/",
+    "build-dev": "vite build --mode dev --base /arbeid/start-samtale/",
+    "preview": "vite preview",
+    "test": "vitest",
+    "coverage": "vitest run --coverage",
+    "build-gh-pages": "VITE_USE_HASH_ROUTER=true vite build --mode dev --base /start-samtale/"
   },
   "browserslist": {
     "production": [
@@ -46,53 +29,36 @@
     ]
   },
   "dependencies": {
-    "@navikt/fnrvalidator": "^1.1.0",
-    "amplitude-js": "^8.21.3",
-    "babel-polyfill": "^6.26.0",
-    "classnames": "^2.2.6",
-    "lodash.throttle": "^4.1.1",
-    "nav-frontend-alertstriper": "^4.0.1",
-    "nav-frontend-alertstriper-style": "^3.0.1",
-    "nav-frontend-core": "^6.0.1",
-    "nav-frontend-ikoner-assets": "^3.0.1",
-    "nav-frontend-js-utils": "^1.0.19",
-    "nav-frontend-knapper": "^3.0.2",
-    "nav-frontend-knapper-style": "^2.0.2",
-    "nav-frontend-lenker": "^2.0.1",
-    "nav-frontend-lenker-style": "^2.0.1",
-    "nav-frontend-paneler-style": "^2.0.1",
-    "nav-frontend-skjema": "^4.0.1",
-    "nav-frontend-skjema-style": "^3.0.1",
-    "nav-frontend-spinner": "^3.0.1",
-    "nav-frontend-spinner-style": "^1.0.2",
-    "nav-frontend-stegindikator": "^2.0.1",
-    "nav-frontend-stegindikator-style": "^2.0.1",
-    "nav-frontend-typografi": "^4.0.1",
-    "nav-frontend-typografi-style": "^2.0.1",
-    "nav-frontend-veileder": "^3.0.1",
-    "nav-frontend-veileder-style": "^3.0.1",
-    "nav-frontend-veilederpanel": "^2.0.1",
-    "nav-frontend-veilederpanel-style": "^2.0.1",
-    "prop-types": "^15.7.2",
-    "query-string": "^6.11.1",
-    "react": "^16.13.1",
-    "react-dom": "^16.13.1",
-    "react-router-dom": "^5.1.2",
-    "react-scripts": "^5.0.1",
-    "serve": "^14.0.1",
-    "typescript": "^3.8.3"
+    "@navikt/ds-css": "^2.1.7",
+    "@navikt/ds-react": "^2.1.7",
+    "@navikt/ds-tailwind": "^2.1.7",
+    "@navikt/ds-tokens": "^2.1.7",
+    "@types/node": "^18.13.0",
+    "@vitejs/plugin-react": "^3.1.0",
+    "amplitude-js": "^8.21.4",
+    "classnames": "^2.3.2",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.8.1",
+    "typescript": "^4.9.5",
+    "vite": "^4.1.1",
+    "vite-plugin-html": "^3.2.0"
   },
   "devDependencies": {
-    "@craco/craco": "^6.2.0",
     "@types/amplitude-js": "^8.16.2",
-    "@types/jest": "^25.2.1",
-    "@types/node": "^13.11.0",
-    "@types/react": "^16.9.32",
-    "@types/react-dom": "^16.9.6",
-    "@types/react-router-dom": "^5.1.5",
-    "craco-less": "^2.0.0",
-    "cross-env": "^6.0.3",
-    "enzyme": "^3.11.0",
-    "yet-another-fetch-mock": "^3.4.0"
+    "@types/react": "^18.0.27",
+    "@types/react-dom": "^18.0.10",
+    "@vitest/coverage-c8": "^0.28.4",
+    "autoprefixer": "^10.4.13",
+    "cross-env": "^7.0.3",
+    "happy-dom": "^8.2.6",
+    "msw": "^1.0.0",
+    "postcss": "^8.4.21",
+    "prettier": "2.8.4",
+    "tailwindcss": "^3.2.6",
+    "vitest": "^0.28.4"
+  },
+  "msw": {
+    "workerDirectory": "public"
   }
 }

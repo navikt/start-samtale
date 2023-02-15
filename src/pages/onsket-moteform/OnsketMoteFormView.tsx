@@ -1,90 +1,66 @@
-import React, { useState } from 'react';
-import { Undertittel } from 'nav-frontend-typografi';
-import { RadioPanelGruppe } from 'nav-frontend-skjema';
-import {Hovedknapp} from 'nav-frontend-knapper';
-import Lenke from 'nav-frontend-lenker';
-import AlleredeSvart from '../../components/AlleredeSvart';
-import { avbrytMetrikk } from '../../components/util/frontendlogger';
-import { PAGE_ID } from './OnsketMoteFormSporsmal';
-import StartSamtaleStegindikator from '../../components/StartSamtaleStegindikator';
-
-export type MoteForm = 'MEET' | 'PHONE' | 'WRITE' | 'VIDEO';
-
-const MEET: MoteForm = 'MEET';
-const PHONE: MoteForm = 'PHONE';
-const VIDEO: MoteForm = 'VIDEO';
-export const WRITE: MoteForm = 'WRITE';
-
-export function moteFormValue(form: MoteForm): string {
-    switch (form) {
-        case 'MEET':
-            return 'I et møte på NAV-kontoret';
-        case 'PHONE':
-            return 'I en telefonsamtale';
-        case 'VIDEO':
-            return 'I et videomøte';
-        case 'WRITE':
-            return 'Jeg vil skrive her';
-        default:
-            return 'Ukjent';
-    }
-}
-
-export const SPORSMAL = 'Hvor vil du starte samtalen med veilederen din?';
+import React, { useState } from 'react'
+import { Button, Radio, RadioGroup } from '@navikt/ds-react'
+import {
+  SPORSMAL_KANAL,
+  WRITE,
+  MEET,
+  PHONE,
+  moteFormValue,
+  MoteForm,
+  VIDEO,
+} from './moteFormUtil'
+import LenkeKnapp from '../../components/LenkeKnapp'
 
 interface Props {
-    loading: boolean;
-    onSubmit: (arg: string) => void;
-    answered: boolean;
+  loading: boolean
+  onSubmit: (arg: string) => void
 }
 
-function OnsketMoteFormView(props: Props) {
-    const [value, setValue] = useState<string | undefined>(undefined);
-    const [feilState, setFeil] = useState(false);
+const OnsketMoteFormView = (props: Props) => {
+  const [value, setValue] = useState<string | undefined>(undefined)
+  const [feilState, setFeil] = useState(false)
 
-    const feil = feilState ? 'Velg ett alternativ' : undefined;
+  const feil = feilState ? 'Du må oppgi hvor du vil starte samtalen' : undefined
 
-    return (
-        <>
-            <StartSamtaleStegindikator aktivtSteg={0}/>
-            <div className="spm">
-                <AlleredeSvart visible={props.answered} className="spm-row"/>
-                <RadioPanelGruppe
-                    className="spm-row"
-                    legend={<Undertittel className="spm-row">{SPORSMAL}</Undertittel>}
-                    name=""
-                    radios={[
-                        {label: moteFormValue(MEET), disabled: props.loading, value: MEET},
-                        {label: moteFormValue(PHONE), disabled: props.loading, value: PHONE},
-                        {label: moteFormValue(VIDEO), disabled: props.loading, value: VIDEO},
-                        {label: moteFormValue(WRITE), disabled: props.loading, value: WRITE},
-                    ]}
-                    checked={value}
-                    onChange={(_, val) => setValue(val)}
-                    feil={feil}
-                />
-
-                <Hovedknapp
-                    className="send-knapp"
-                    spinner={props.loading}
-                    disabled={props.loading}
-                    onClick={() => {
-                        if (value === undefined) {
-                            setFeil(true);
-                        } else {
-                            setFeil(false);
-                            props.onSubmit(value);
-                        }
-                    }}
-                >
-                    Send
-                </Hovedknapp>
-            </div>
-            <Lenke href={`${process.env.PUBLIC_URL}/minside`} onClick={() => avbrytMetrikk(PAGE_ID)}>
-                Avbryt
-            </Lenke>
-        </>
-    );
+  return (
+    <div className="space-y-8">
+      <RadioGroup
+        legend={SPORSMAL_KANAL}
+        onChange={(val: MoteForm) => setValue(val)}
+        error={feil}
+      >
+        <Radio value={MEET} disabled={props.loading}>
+          {moteFormValue(MEET)}
+        </Radio>
+        <Radio value={PHONE} disabled={props.loading}>
+          {moteFormValue(PHONE)}
+        </Radio>
+        <Radio value={VIDEO} disabled={props.loading}>
+          {moteFormValue(VIDEO)}
+        </Radio>
+        <Radio value={WRITE} disabled={props.loading}>
+          {moteFormValue(WRITE)}
+        </Radio>
+      </RadioGroup>
+      <div className="flex flex-col items-start space-y-8">
+        <Button
+          loading={props.loading}
+          disabled={props.loading}
+          onClick={() => {
+            if (value === undefined) {
+              setFeil(true)
+            } else {
+              setFeil(false)
+              props.onSubmit(value)
+            }
+          }}
+        >
+          Neste steg
+        </Button>
+        <LenkeKnapp href={import.meta.env.VITE_MIN_SIDE_URL}>Avbryt</LenkeKnapp>
+      </div>
+    </div>
+  )
 }
 
-export default OnsketMoteFormView;
+export default OnsketMoteFormView

@@ -6,18 +6,20 @@ metadata:
   labels:
     team: pto
 spec:
-  image: ghcr.io/navikt/pto-frontend/pto-frontend:2023.01.13_08.11-4fff74d23073
+  image: ghcr.io/navikt/poao-frontend/poao-frontend:2023.01.13_08.09-36c09678654f
   port: 8080
   liveness:
-    path: /internal/isAlive
+    path: /internal/alive
     initialDelay: 20
   readiness:
-    path: /internal/isReady
+    path: /internal/ready
     initialDelay: 20
   replicas:
     min: 1
     max: 2
     cpuThresholdPercentage: 75
+  ingresses:
+    - https://pto.dev.nav.no/arbeid/start-samtale
   resources:
     limits:
       cpu: "1"
@@ -25,49 +27,42 @@ spec:
     requests:
       cpu: 250m
       memory: 256Mi
-  ingresses:
-    - https://pto.dev.nav.no/arbeid/start-samtale
-  accessPolicy:
-    outbound:
-      rules:
-        - application: pto-proxy
-      external:
-        - host: navtestb2c.b2clogin.com
+  idporten:
+    enabled: true
+    sidecar:
+      enabled: true
+      autoLogin: true
+  tokenx:
+    enabled: true
   gcp:
     buckets:
       - name: start-samtale-dev
-  envFrom:
-    - configmap: pto-config
-    - configmap: loginservice-idporten
   env:
-    - name: ENFORCE_LOGIN
-      value: "true"
-    - name: LOGIN_REDIRECT_URL
-      value: https://loginservice.dev.nav.no/login?redirect={RETURN_TO_URL}&level=Level4
-    - name: TOKEN_COOKIE_NAME
-      value: selvbetjening-idtoken
-    - name: GCS_BUCKET_NAME
-      value: start-samtale-dev
-    - name: CONTEXT_PATH
-      value: /arbeid/start-samtale
     - name: JSON_CONFIG
       value: >
         {
-          "fallbackStrategy": "serve",
-          "proxies": [
-            { "from": "/veilarbvedtakinfo", "to": "http://pto-proxy/proxy/veilarbvedtakinfo" },
-            { "from": "/veilarboppfolging", "to": "http://pto-proxy/proxy/veilarboppfolging" },
-            { "from": "/veilarbdialog", "to": "http://pto-proxy/proxy/veilarbdialog" }
-          ],
-          "redirects": [
-            {
-              "from": "/minside",
-              "to": "{{MINSIDE_URL}}"
-            },
-            {
-              "from": "/arbeidsrettet-dialog",
-              "to": "{{ARBEIDSRETTET_DIALOG_URL}}",
-              "preserveContextPath": "true"
+          "gcs": {
+            "bucketName": "start-samtale-dev"
+          },
+          "auth": {
+            "loginProvider": "ID_PORTEN"
+          },
+          "header": {
+            "csp": {
+              "defaultSrc":["'self'", "*.nav.no"],
+              "scriptSrc":["'self'", "*.nav.no","*.psplugin.com","*.hotjar.com","*.taskanalytics.com","'unsafe-inline'","'unsafe-eval'", "blob:", "*.boost.ai"],
+              "styleSrc":["*.nav.no","*.psplugin.com","'unsafe-inline'"],
+              "fontSrc":["*.psplugin.com","*.hotjar.com","cdn.nav.no","data:"],
+              "imgSrc":["*.nav.no","*.psplugin.com","*.vimeocdn.com","*.hotjar.com","www.vergic.com"],
+              "frameSrc":["*.hotjar.com","player.vimeo.com","video.qbrick.com"],
+              "connectSrc":["*.nav.no","*.boost.ai","*.psplugin.com","*.hotjar.com","*.hotjar.io","*.taskanalytics.com"]
             }
+          },
+          "contextPath": "/arbeid/start-samtale",
+          "fallbackStrategy": "SERVE_INDEX_HTML",
+          "proxies": [
+            { "fromPath": "/veilarbvedtakinfo", "toUrl": "https://veilarbvedtakinfo.dev-fss-pub.nais.io/veilarbvedtakinfo", "toApp": { "name": "veilarbvedtakinfo", "namespace": "pto", "cluster": "dev-fss" } },
+            { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.dev-fss-pub.nais.io/veilarboppfolging", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "dev-fss" } },
+            { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.dev-fss-pub.nais.io/veilarbdialog", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "dev-fss" } }
           ]
         }

@@ -9,9 +9,12 @@
 /coverage
 
 # production
+dist
+dist-ssr
 /build
 
 # misc
+*.local
 .DS_Store
 .env.local
 .env.development.local
