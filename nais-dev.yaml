@@ -43,8 +43,6 @@ spec:
   gcp:
     buckets:
       - name: start-samtale-dev
-  envFrom:
-    - configmap: pto-config
   env:
     - name: JSON_CONFIG
       value: >
@@ -65,12 +63,12 @@ spec:
           "redirects": [
             {
               "fromPath": "/minside",
-              "toUrl": "{{MINSIDE_URL}}",
+              "toUrl": "https://www.dev.nav.no/minside",
               "preserveFromPath": "false"
             },
             {
               "fromPath": "/arbeidsrettet-dialog/*",
-              "toUrl": "{{ARBEIDSRETTET_DIALOG_URL}}",
+              "toUrl": "https://pto.dev.nav.no/arbeid/dialog",
               "preserveFromPath": "false"
             }
           ]
