@@ -47,6 +47,17 @@ spec:
           "auth": {
             "loginProvider": "ID_PORTEN"
           },
+          "header": {
+            "csp": {
+              "defaultSrc":["'self'", "*.nav.no"],
+              "scriptSrc":["'self'", "*.nav.no","*.psplugin.com","*.hotjar.com","*.taskanalytics.com","'unsafe-inline'","'unsafe-eval'", "blob:", "*.boost.ai"],
+              "styleSrc":["*.nav.no","*.psplugin.com","'unsafe-inline'"],
+              "fontSrc":["*.psplugin.com","*.hotjar.com","cdn.nav.no","data:"],
+              "imgSrc":["*.nav.no","*.psplugin.com","*.vimeocdn.com","*.hotjar.com","www.vergic.com"],
+              "frameSrc":["*.hotjar.com","player.vimeo.com","video.qbrick.com"],
+              "connectSrc":["*.nav.no","*.boost.ai","*.psplugin.com","*.hotjar.com","*.hotjar.io","*.taskanalytics.com"]
+            }
+          },
           "contextPath": "/arbeid/start-samtale",
           "fallbackStrategy": "SERVE_INDEX_HTML",
           "proxies": [
