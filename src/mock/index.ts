@@ -15,7 +15,7 @@ const handlers = [
   ),
   rest.get(
     `${import.meta.env.BASE_URL}veilarboppfolging/api/oppfolging`,
-    (req, res, ctx) => res(ctx.status(500), ctx.json(oppfolging))
+    (req, res, ctx) => res(ctx.status(200), ctx.json(oppfolging))
   ),
 ]
 
