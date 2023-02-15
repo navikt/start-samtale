@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import '@navikt/ds-css'
 import './index.css'
 import Tittel from './components/banner/Tittel'
@@ -14,6 +14,9 @@ import DinSituasjonSporsmal, {
 import Oppsummering, {
   PAGE_ID as OPPSUMMERING_PAGE_ID,
 } from './pages/oppsummering/Oppsummering'
+import { Alert, Loader } from '@navikt/ds-react'
+import { invalidOppfolging, useOppfolging } from './components/useOppfolging'
+import OnsketMoteFormSporsmal from './pages/onsket-moteform/OnsketMoteFormSporsmal'
 
 const Router = (props: { basename: string; children?: React.ReactNode }) => {
   if (import.meta.env.VITE_USE_HASH_ROUTER) {
@@ -31,7 +34,29 @@ const stripTrailingSlash = (url: string) => {
 const App = () => {
   const basename = stripTrailingSlash(import.meta.env.BASE_URL)
 
-  logSkjemaStartet()
+  useEffect(() => {
+    logSkjemaStartet()
+  }, [])
+
+  const { lasterOppfolging: laster, oppfolging } = useOppfolging()
+
+  if (laster) {
+    return (
+      <div className="flex justify-center mt-20">
+        <Loader size="xlarge" />
+      </div>
+    )
+  }
+
+  if (invalidOppfolging(oppfolging)) {
+    return (
+      <div className="flex items-center flex-col mt-10">
+        <Alert className="max-w-xl" variant="warning">
+          Du har ikke tilgang til denne siden.
+        </Alert>
+      </div>
+    )
+  }
 
   return (
     <div className="flex flex-col items-center mt-6">
@@ -39,7 +64,7 @@ const App = () => {
         <Tittel />
         <Router basename={basename}>
           <Routes>
-            <Route path="/" element={<Sporsmal />} />
+            <Route path="/" element={<OnsketMoteFormSporsmal />} />
             <Route
               path={`/${HVA_PAGE_ID}`}
               element={<HvaMotetSkalHandleOmSporsmal />}
