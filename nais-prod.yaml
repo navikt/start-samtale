@@ -71,7 +71,7 @@ spec:
             {
               "fromPath": "/arbeidsrettet-dialog/*",
               "toUrl": "{{ARBEIDSRETTET_DIALOG_URL}}",
-              "preserveFromPath": "true"
+              "preserveFromPath": "false"
             }
           ]
         }
