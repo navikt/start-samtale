@@ -8,6 +8,10 @@ concurrency:
 
 jobs:
   deploy-dev:
+    permissions:
+      contents: 'read'
+      id-token: 'write'
+      packages: 'write'
     name: Deploy application to dev
     runs-on: ubuntu-latest
     steps:
