@@ -64,12 +64,12 @@ spec:
             {
               "fromPath": "/minside",
               "toUrl": "https://www.dev.nav.no/minside",
-              "preserveFromPath": "false"
+              "preserveFromPath": false
             },
             {
               "fromPath": "/arbeidsrettet-dialog/*",
               "toUrl": "https://pto.dev.nav.no/arbeid/dialog",
-              "preserveFromPath": "false"
+              "preserveFromPath": false
             }
           ]
         }
