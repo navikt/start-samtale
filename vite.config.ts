@@ -19,6 +19,7 @@ export default defineConfig(({ mode }) => {
         },
       }),
     ],
+    base: `https://cdn${env.PROD ? '' : '.dev'}.nav.no/dab/start-samtale/dist/`,
     server: {
       port: 3000,
     },
