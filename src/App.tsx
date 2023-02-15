@@ -28,10 +28,11 @@ const stripTrailingSlash = (url: string) => {
   return url.endsWith('/') ? url.slice(0, -1) : url
 }
 
-function App() {
+const App = () => {
   const basename = stripTrailingSlash(import.meta.env.BASE_URL)
 
   logSkjemaStartet()
+
   return (
     <div className="flex flex-col items-center">
       <div className="max-w-xl">

@@ -1,13 +1,11 @@
 import React, { useState } from 'react'
-import AlleredeSvart from '../../components/AlleredeSvart'
 import { Button, GuidePanel, Textarea, TextField } from '@navikt/ds-react'
-import AvsluttKnapp from '../../components/AvsluttKnapp'
 import { useNavigate } from 'react-router-dom'
+import LenkeKnapp from '../../components/LenkeKnapp'
 
 interface Props {
   loading: boolean
   onSubmit: (temaSvar?: string, tidspunktSvar?: string) => void
-  answered: boolean
 }
 
 const initTextState: string = ''
@@ -16,7 +14,7 @@ const maksLengde = 400
 export const SPORSMAL_TEMA = 'Hva ønsker du å snakke om?'
 export const SPORSMAL_TIDSPUNKT = 'Er det tidspunkt som ikke passer?'
 
-function HvaMotetSkalHandleOmView(props: Props) {
+const HvaMotetSkalHandleOmView = (props: Props) => {
   const [temaSvar, setTemaSvar] = useState(initTextState)
   const [tidspunktSvar, setTidspunktSvar] = useState(initTextState)
 
@@ -28,7 +26,6 @@ function HvaMotetSkalHandleOmView(props: Props) {
         I samtalen ønsker veilederen å bli bedre kjent med situasjonen din, og å
         snakke om jobbmulighetene dine.
       </GuidePanel>
-      <AlleredeSvart visible={props.answered} />
       <Textarea
         label={`${SPORSMAL_TEMA} (valgfritt)`}
         description="Skriv gjerne noen stikkord til samtalen"
@@ -64,7 +61,7 @@ function HvaMotetSkalHandleOmView(props: Props) {
           Send
         </Button>
       </div>
-      <AvsluttKnapp />
+      <LenkeKnapp href="minside">Avbryt</LenkeKnapp>
     </div>
   )
 }

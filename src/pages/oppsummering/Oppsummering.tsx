@@ -1,18 +1,17 @@
 import React from 'react'
-import { useLocation, useNavigate } from 'react-router-dom'
-import queryString from 'query-string'
+import { useLocation } from 'react-router-dom'
 import { logSkjemaFullfoert } from '../../components/util/amplitude-utils'
 import { Alert, BodyLong, Heading, Link } from '@navikt/ds-react'
-import AvsluttKnapp from '../../components/AvsluttKnapp'
+import LenkeKnapp from '../../components/LenkeKnapp'
 
 export const PAGE_ID = 'oppsummering'
 
-function Oppsummering() {
+const Oppsummering = () => {
   const location = useLocation()
-  const parsed = queryString.parse(location.search)
 
-  const dialogIdLink = parsed.dialogId ? `/${parsed.dialogId}` : ''
-  const href = `${import.meta.env.BASE_URL}arbeidsrettet-dialog${dialogIdLink}`
+  const dialogId = location.state.dialogId
+  const href = `${import.meta.env.BASE_URL}arbeidsrettet-dialog/${dialogId}`
+
   logSkjemaFullfoert()
 
   return (
@@ -30,7 +29,9 @@ function Oppsummering() {
           Veilederen vil kontakte deg i løpet av noen dager.
         </BodyLong>
       </Alert>
-      <AvsluttKnapp text={'Jeg er ferdig'} variant={'secondary'} />
+      <LenkeKnapp href="minside" variant="secondary">
+        Jeg er ferdig
+      </LenkeKnapp>
     </div>
   )
 }

@@ -1,24 +1,22 @@
 import React, { useState } from 'react'
-import AlleredeSvart from '../../components/AlleredeSvart'
 import { feilmelding } from '../../components/util/text-area-utils'
 import { Button, GuidePanel, Textarea } from '@navikt/ds-react'
 
-import AvsluttKnapp from '../../components/AvsluttKnapp'
 import { useNavigate } from 'react-router-dom'
+import LenkeKnapp from '../../components/LenkeKnapp'
 
 const initTextState: string = ''
 
 interface Props {
   loading: boolean
   onSubmit: (arg: string) => void
-  answered: boolean
 }
 
-export const SPORSMAL = 'Fortell'
+export const SPORSMAL_DIN_SITUASJON = 'Fortell'
 const customFeil = 'Du må skrive noe for å starte en samtale'
 const maksLengde = 400
 
-function DinSituasjonView(props: Props) {
+const DinSituasjonView = (props: Props) => {
   const navigate = useNavigate()
   const [value, setValue] = useState(initTextState)
   const [feilState, setFeil] = useState(false)
@@ -31,7 +29,6 @@ function DinSituasjonView(props: Props) {
         Fortell gjerne om hva slags jobb du ønsker deg, og om hva som kan hindre
         deg i å jobbe.
       </GuidePanel>
-      <AlleredeSvart visible={props.answered} />
       <Textarea
         label={'Skriv til veilederen din (obligatorisk)'}
         maxLength={maksLengde}
@@ -66,7 +63,7 @@ function DinSituasjonView(props: Props) {
           Send
         </Button>
       </div>
-      <AvsluttKnapp />
+      <LenkeKnapp href="minside">Avbryt</LenkeKnapp>
     </div>
   )
 }

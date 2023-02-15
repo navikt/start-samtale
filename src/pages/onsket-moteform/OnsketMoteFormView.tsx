@@ -1,8 +1,7 @@
 import React, { useState } from 'react'
 import { Button, Radio, RadioGroup } from '@navikt/ds-react'
-import AlleredeSvart from '../../components/AlleredeSvart'
 import {
-  KANAL_SPORSMAL,
+  SPORSMAL_KANAL,
   WRITE,
   MEET,
   PHONE,
@@ -10,15 +9,14 @@ import {
   MoteForm,
   VIDEO,
 } from './moteFormUtil'
-import AvsluttKnapp from '../../components/AvsluttKnapp'
+import LenkeKnapp from '../../components/LenkeKnapp'
 
 interface Props {
   loading: boolean
   onSubmit: (arg: string) => void
-  answered: boolean
 }
 
-function OnsketMoteFormView(props: Props) {
+const OnsketMoteFormView = (props: Props) => {
   const [value, setValue] = useState<string | undefined>(undefined)
   const [feilState, setFeil] = useState(false)
 
@@ -26,9 +24,8 @@ function OnsketMoteFormView(props: Props) {
 
   return (
     <div className="space-y-8">
-      <AlleredeSvart visible={props.answered} />
       <RadioGroup
-        legend={KANAL_SPORSMAL}
+        legend={SPORSMAL_KANAL}
         onChange={(val: MoteForm) => setValue(val)}
         error={feil}
       >
@@ -60,7 +57,7 @@ function OnsketMoteFormView(props: Props) {
         >
           Neste steg
         </Button>
-        <AvsluttKnapp />
+        <LenkeKnapp href="minside">Avbryt</LenkeKnapp>
       </div>
     </div>
   )

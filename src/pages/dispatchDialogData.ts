@@ -2,10 +2,10 @@ import { FetchAction, FetchActionTypes } from './fetchReducer'
 import { DialogData, NyDialogMeldingData } from '../components/api/dataTypes'
 import { postDialog } from '../components/api/api'
 
-export function dispatchDialogData(
+export const dispatchDialogData = (
   inputData: NyDialogMeldingData | undefined,
   dispatch: (value: FetchAction) => void
-): Promise<DialogData> {
+): Promise<DialogData> => {
   if (!inputData)
     return Promise.reject('Kan ikke lage en dialog uten innhold (svar)')
   dispatch({ type: FetchActionTypes.LOADING })

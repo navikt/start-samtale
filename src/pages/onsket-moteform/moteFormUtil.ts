@@ -5,7 +5,7 @@ export const PHONE = 'PHONE'
 export const VIDEO = 'VIDEO'
 export const WRITE = 'WRITE'
 
-export const KANAL_SPORSMAL = 'Hvor vil du starte samtalen? (obligatorisk)'
+export const SPORSMAL_KANAL = 'Hvor vil du starte samtalen? (obligatorisk)'
 
 export function moteFormValue(form: MoteForm): string {
   switch (form) {

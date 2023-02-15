@@ -25,7 +25,7 @@ function invalidOppfolging(oppfolging: OppfolgingData | undefined) {
   )
 }
 
-function Sporsmal() {
+const Sporsmal = () => {
   const [laster, setLaster] = useState(true)
   const [oppfolging, setOppfolging] = useState<undefined | OppfolgingData>()
 
