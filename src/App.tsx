@@ -34,7 +34,7 @@ const App = () => {
   logSkjemaStartet()
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-6">
       <div className="max-w-xl">
         <Tittel />
         <Router basename={basename}>

@@ -65,10 +65,11 @@ spec:
           "redirects": [
             {
               "fromPath": "/minside",
-              "toUrl": "{{MINSIDE_URL}}"
+              "toUrl": "{{MINSIDE_URL}}",
+              "preserveFromPath": "false"
             },
             {
-              "fromPath": "/arbeidsrettet-dialog",
+              "fromPath": "/arbeidsrettet-dialog/*",
               "toUrl": "{{ARBEIDSRETTET_DIALOG_URL}}",
               "preserveFromPath": "true"
             }
