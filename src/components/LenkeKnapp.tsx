@@ -9,7 +9,7 @@ interface Props {
 
 const LenkeKnapp = ({ href, variant, children }: Props) => {
   return (
-    <a className="flex" href={`${import.meta.env.BASE_URL}${href}`}>
+    <a className="flex" href={href}>
       <Button variant={variant || 'tertiary'}>{children}</Button>
     </a>
   )

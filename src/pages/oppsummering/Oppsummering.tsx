@@ -10,7 +10,6 @@ const Oppsummering = () => {
   const location = useLocation()
 
   const dialogId = location.state.dialogId
-  const href = `${import.meta.env.BASE_URL}arbeidsrettet-dialog/${dialogId}`
 
   logSkjemaFullfoert()
 
@@ -22,14 +21,16 @@ const Oppsummering = () => {
       <Alert variant="success">
         <BodyLong>
           Svarene er delt med veilederen din i dialogen dere har sammen.
-          <Link href={`${href}`}>Du kan lese svaret ditt der.</Link>
+          <Link href={`${import.meta.env.VITE_DIALOG_URL}/${dialogId}`}>
+            Du kan lese svaret ditt der.
+          </Link>
           &nbsp;
         </BodyLong>
         <BodyLong className="pt-2">
           Veilederen vil kontakte deg i løpet av noen dager.
         </BodyLong>
       </Alert>
-      <LenkeKnapp href="minside" variant="secondary">
+      <LenkeKnapp href={import.meta.env.VITE_MIN_SIDE_URL} variant="secondary">
         Jeg er ferdig
       </LenkeKnapp>
     </div>

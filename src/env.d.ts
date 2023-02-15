@@ -5,6 +5,8 @@ interface ImportMetaEnv {
   readonly PROD: boolean
   readonly SSR: boolean
   readonly VITE_USE_HASH_ROUTER: boolean
+  readonly VITE_MIN_SIDE_URL: string
+  readonly VITE_DIALOG_URL: string
 }
 
 interface ImportMeta {

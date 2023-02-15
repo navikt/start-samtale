@@ -34,12 +34,6 @@ spec:
       autoLogin: true
   tokenx:
     enabled: true
-  accessPolicy:
-    outbound:
-      rules:
-        - application: pto-proxy
-      external:
-        - host: navtestb2c.b2clogin.com
   gcp:
     buckets:
       - name: start-samtale-dev
@@ -59,17 +53,5 @@ spec:
             { "fromPath": "/veilarbvedtakinfo", "toUrl": "https://veilarbvedtakinfo.dev-fss-pub.nais.io/veilarbvedtakinfo", "toApp": { "name": "veilarbvedtakinfo", "namespace": "pto", "cluster": "dev-fss" } },
             { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.dev-fss-pub.nais.io/veilarboppfolging", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "dev-fss" } },
             { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.dev-fss-pub.nais.io/veilarbdialog", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "dev-fss" } }
-          ],
-          "redirects": [
-            {
-              "fromPath": "/minside",
-              "toUrl": "https://www.dev.nav.no/minside",
-              "preserveFromPath": false
-            },
-            {
-              "fromPath": "/arbeidsrettet-dialog/*",
-              "toUrl": "https://pto.dev.nav.no/arbeid/dialog",
-              "preserveFromPath": false
-            }
           ]
         }

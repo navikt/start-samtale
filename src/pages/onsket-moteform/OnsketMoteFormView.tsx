@@ -57,7 +57,7 @@ const OnsketMoteFormView = (props: Props) => {
         >
           Neste steg
         </Button>
-        <LenkeKnapp href="minside">Avbryt</LenkeKnapp>
+        <LenkeKnapp href={import.meta.env.VITE_MIN_SIDE_URL}>Avbryt</LenkeKnapp>
       </div>
     </div>
   )
