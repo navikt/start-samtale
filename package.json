@@ -1,7 +1,6 @@
 {
   "name": "forberede-moete",
   "version": "1.0.0",
-  "homepage": "/arbeid/start-samtale",
   "license": "MIT",
   "repository": "https://github.com/navikt/start-samtale.git",
   "engines": {
