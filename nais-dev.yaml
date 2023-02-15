@@ -58,7 +58,7 @@ spec:
           "contextPath": "/arbeid/start-samtale",
           "fallbackStrategy": "SERVE_INDEX_HTML",
           "proxies": [
-            { "fromPath": "/veilarbvedtakinfo", "toUrl": "http://pto-proxy/proxy/veilarbvedtakinfo" },
+            { "fromPath": "/veilarbvedtakinfo", "toUrl": "https://veilarbvedtakinfo.dev-fss-pub.nais.io/veilarbvedtakinfo", "toApp": { "name": "veilarbvedtakinfo", "namespace": "pto", "cluster": "dev-fss" } },
             { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.dev-fss-pub.nais.io/veilarboppfolging", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "dev-fss" } },
             { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.dev-fss-pub.nais.io/veilarbdialog", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "dev-fss" } }
           ],
