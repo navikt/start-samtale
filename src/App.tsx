@@ -27,12 +27,8 @@ const Router = (props: { basename: string; children?: React.ReactNode }) => {
   )
 }
 
-const stripTrailingSlash = (url: string) => {
-  return url.endsWith('/') ? url.slice(0, -1) : url
-}
-
 const App = () => {
-  const basename = stripTrailingSlash(import.meta.env.BASE_URL)
+  const routerBasename = import.meta.env.VITE_ROUTER_BASENAME
 
   useEffect(() => {
     logSkjemaStartet()
@@ -62,7 +58,7 @@ const App = () => {
     <div className="flex flex-col items-center mt-6">
       <div className="max-w-xl">
         <Tittel />
-        <Router basename={basename}>
+        <Router basename={routerBasename}>
           <Routes>
             <Route path="/" element={<OnsketMoteFormSporsmal />} />
             <Route
