@@ -1,4 +1,4 @@
-name: pto frontend container
+name: Deploy container to dev
 
 on:
   workflow_dispatch:
