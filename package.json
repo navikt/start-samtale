@@ -10,7 +10,7 @@
     "dev": "vite",
     "dev-test": "vite --mode dev --base /arbeid/start-samtale/",
     "build": "vite build",
-    "build-dev": "vite build --mode dev --base /arbeid/start-samtale/",
+    "build-dev": "vite build --mode dev",
     "preview": "vite preview",
     "test": "vitest",
     "coverage": "vitest run --coverage",
