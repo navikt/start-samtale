@@ -9,6 +9,8 @@ concurrency:
 
 env:
   APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+  IMAGE_TAG: ${{ github.sha }}
+  IMAGE: ghcr.io/${{ github.repository }}/start-samtale
 
 jobs:
   deploy:
