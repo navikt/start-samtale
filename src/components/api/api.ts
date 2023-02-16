@@ -1,12 +1,15 @@
 import { fetchData } from './fetchData'
 import { DialogData, NyDialogMeldingData, OppfolgingData } from './dataTypes'
 
-export const API_VEILARBDIALOG =
-  import.meta.env.BASE_URL + 'veilarbdialog/api/dialog'
-export const API_VEILARBVEDTAKINFO =
-  import.meta.env.BASE_URL + 'veilarbvedtakinfo/api/motestotte'
-export const API_VEILARBOPPFOLGING =
-  import.meta.env.BASE_URL + 'veilarboppfolging/api/oppfolging'
+export const API_VEILARBDIALOG = `${
+  import.meta.env.VITE_API_BASE_URL
+}/veilarbdialog/api/dialog`
+export const API_VEILARBVEDTAKINFO = `${
+  import.meta.env.VITE_API_BASE_URL
+}/veilarbvedtakinfo/api/motestotte`
+export const API_VEILARBOPPFOLGING = `${
+  import.meta.env.VITE_API_BASE_URL
+}/veilarboppfolging/api/oppfolging`
 
 function getCookie(name: string) {
   const re = new RegExp(`${name}=([^;]+)`)
