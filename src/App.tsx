@@ -60,7 +60,7 @@ const App = () => {
 
   return (
     <div className="flex flex-col items-center mt-6">
-      <div className="max-w-xl">
+      <div className="max-w-xl m-4">
         <Tittel />
         <Router basename={basename}>
           <Routes>
