@@ -1,0 +1,23 @@
+name: pto frontend container
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: pto_frontend_container
+  cancel-in-progress: true
+
+env:
+  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+      - name: deploy dev
+        uses: nais/deploy/actions/deploy@v1
+        env:
+          CLUSTER: dev-gcp
+          RESOURCE: nais-dev.yaml
