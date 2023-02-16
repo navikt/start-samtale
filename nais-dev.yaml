@@ -47,7 +47,7 @@ spec:
           "auth": {
             "loginProvider": "ID_PORTEN"
           },
-          "cors": { "origin": ["cdn.*.nav.no"] },
+          "cors": { "origin": ["cdn.dev.nav.no"] },
           "header": {
             "csp": {
               "defaultSrc":["'self'", "*.nav.no"],
