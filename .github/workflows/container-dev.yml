@@ -8,7 +8,6 @@ concurrency:
   cancel-in-progress: true
 
 env:
-  APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
   IMAGE_TAG: ${{ github.sha }}
   IMAGE: ghcr.io/${{ github.repository }}/start-samtale
 
@@ -33,3 +32,4 @@ jobs:
           CLUSTER: dev-gcp
           RESOURCE: nais-dev.yaml
           VAR: version=${{ env.IMAGE_TAG }}
+          APIKEY: ${{ secrets.NAIS_DEPLOY_APIKEY }}
