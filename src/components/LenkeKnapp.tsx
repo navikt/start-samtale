@@ -1,4 +1,4 @@
-import { Button } from '@navikt/ds-react'
+import { Button, Link } from '@navikt/ds-react'
 import React from 'react'
 
 interface Props {
@@ -9,9 +9,9 @@ interface Props {
 
 const LenkeKnapp = ({ href, variant, children }: Props) => {
   return (
-    <a className="flex" href={href}>
-      <Button variant={variant || 'tertiary'}>{children}</Button>
-    </a>
+    <Button variant={variant || 'tertiary'} as="a" href={href}>
+      {children}
+    </Button>
   )
 }
 
