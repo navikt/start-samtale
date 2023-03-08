@@ -22,7 +22,6 @@ const DinSituasjonView = (props: Props) => {
   const [feilState, setFeil] = useState(false)
 
   const feil = feilmelding(feilState, maksLengde, value, customFeil)
-  const labelTekst = 'Skriv til veilederen din'
   return (
     <div className="space-y-8">
       <GuidePanel>
@@ -33,7 +32,6 @@ const DinSituasjonView = (props: Props) => {
         label={'Skriv til veilederen din (obligatorisk)'}
         maxLength={maksLengde}
         value={value}
-        aria-label={labelTekst}
         disabled={props.loading}
         onChange={(e) => setValue(e.target.value)}
         error={feil}
