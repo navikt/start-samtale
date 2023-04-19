@@ -37,6 +37,12 @@ spec:
   gcp:
     buckets:
       - name: start-samtale-prod
+  accessPolicy:
+    outbound:
+      external:
+        - host: veilarboppfolging.prod-fss-pub.nais.io
+        - host: veilarbdialog.prod-fss-pub.nais.io
+        - host: veilarbvedtakinfo.prod-fss-pub.nais.io
   env:
     - name: JSON_CONFIG
       value: >
