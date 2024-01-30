@@ -30,11 +30,11 @@ jobs:
       - name: Build application
         run: npm run build-dev
       - name: Gcloud auth
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCS_SA_KEY_DEV }}
       - name: Setup gcloud
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v2
       - name: Upload files to GCS
         run: gsutil -m rsync -r dist gs://start-samtale-dev
       - name: Create release
@@ -63,11 +63,11 @@ jobs:
       - name: Build application
         run: npm run build
       - name: Gcloud auth
-        uses: google-github-actions/auth@v0
+        uses: google-github-actions/auth@v2
         with:
           credentials_json: ${{ secrets.GCS_SA_KEY_PROD }}
       - name: Setup gcloud
-        uses: google-github-actions/setup-gcloud@v0
+        uses: google-github-actions/setup-gcloud@v2
       - name: Upload files to GCS
         run: gsutil -m rsync -r dist gs://start-samtale-prod
       - name: Create release
