@@ -29,10 +29,10 @@
     ]
   },
   "dependencies": {
-    "@navikt/ds-css": "^5.14.0",
-    "@navikt/ds-react": "^5.14.0",
-    "@navikt/ds-tailwind": "^5.14.0",
-    "@navikt/ds-tokens": "^5.14.0",
+    "@navikt/ds-css": "^5.17.3",
+    "@navikt/ds-react": "^5.17.3",
+    "@navikt/ds-tailwind": "^5.17.3",
+    "@navikt/ds-tokens": "^5.17.3",
     "@types/node": "^18.13.0",
     "@vitejs/plugin-react": "^3.1.0",
     "amplitude-js": "^8.21.4",
