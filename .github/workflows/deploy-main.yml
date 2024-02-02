@@ -70,8 +70,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
       - name: Upload files to GCS
         run: gsutil -m rsync -r dist gs://start-samtale-prod
-      - name: Create release
-        uses: actions/create-release@v1
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
