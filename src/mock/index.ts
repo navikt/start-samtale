@@ -15,11 +15,11 @@ const handlers = [
   ),
   http.post(
     `${import.meta.env.BASE_URL}veilarbvedtakinfo/api/motestotte`,
-    (req, res, ctx) => res(ctx.status(204)),
+    async () => new Response(null, {status: 204})
   ),
   http.get(
     `${import.meta.env.BASE_URL}veilarboppfolging/api/oppfolging`,
-    (req, res, ctx) => res(ctx.status(200), ctx.json(oppfolging)),
+    async () => HttpResponse.json(oppfolging)
   ),
 ]
 
