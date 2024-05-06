@@ -1,8 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect } from 'react'
 import '@navikt/ds-css'
 import './index.css'
 import Tittel from './components/banner/Tittel'
-import Sporsmal from './pages/Sporsmal'
 import { logSkjemaStartet } from './components/util/amplitude-utils'
 import { BrowserRouter, HashRouter, Route, Routes } from 'react-router-dom'
 import HvaMotetSkalHandleOmSporsmal, {

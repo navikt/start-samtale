@@ -1,21 +1,25 @@
 // tslint:disable
-import { rest, setupWorker } from 'msw'
+import { http, HttpResponse } from 'msw'
 import { opprettDialog } from './dialog'
 import { oppfolging } from './oppfolging'
+import { setupWorker } from 'msw/browser'
+import { NyDialogMeldingData } from '../components/api/dataTypes'
 
 const handlers = [
-  rest.post(
+  http.post(
     `${import.meta.env.BASE_URL}veilarbdialog/api/dialog`,
-    async (req, res, ctx) =>
-      res(ctx.status(200), ctx.json(opprettDialog(await req.json())))
+    async ({ request: req }) =>
+      HttpResponse.json(
+        opprettDialog((await req.json()) as NyDialogMeldingData),
+      ),
   ),
-  rest.post(
+  http.post(
     `${import.meta.env.BASE_URL}veilarbvedtakinfo/api/motestotte`,
-    (req, res, ctx) => res(ctx.status(204))
+    (req, res, ctx) => res(ctx.status(204)),
   ),
-  rest.get(
+  http.get(
     `${import.meta.env.BASE_URL}veilarboppfolging/api/oppfolging`,
-    (req, res, ctx) => res(ctx.status(200), ctx.json(oppfolging))
+    (req, res, ctx) => res(ctx.status(200), ctx.json(oppfolging)),
   ),
 ]
 
@@ -36,9 +40,7 @@ export default () =>
       ]
 
       // check if the req.url.pathname contains excludedRoutes
-      const isExcluded = excludedRoutes.some((route) =>
-        req.url.pathname.includes(route)
-      )
+      const isExcluded = excludedRoutes.some((route) => req.url.includes(route))
 
       if (isExcluded) {
         return
