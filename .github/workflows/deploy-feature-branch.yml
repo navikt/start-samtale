@@ -32,7 +32,6 @@ jobs:
         run: gsutil -m rsync -r dist gs://start-samtale-dev
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
           tag_name: release/dev@${{ github.sha }}
           release_name: dev
           prerelease: true
