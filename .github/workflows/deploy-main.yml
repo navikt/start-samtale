@@ -37,14 +37,6 @@ jobs:
         uses: google-github-actions/setup-gcloud@v2
       - name: Upload files to GCS
         run: gsutil -m rsync -r dist gs://start-samtale-dev
-      - name: Create release
-        uses: actions/create-release@v1
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        with:
-          tag_name: release/dev@${{ github.sha }}
-          release_name: dev
-          prerelease: true
 
   deploy-prod:
     name: Deploy application to prod
