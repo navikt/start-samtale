@@ -43,6 +43,9 @@ spec:
         - host: veilarboppfolging.prod-fss-pub.nais.io
         - host: veilarbdialog.prod-fss-pub.nais.io
         - host: veilarbvedtakinfo.prod-fss-pub.nais.io
+      rules:
+        - application: veilarbdialog
+          namespace: dab
   env:
     - name: JSON_CONFIG
       value: >
