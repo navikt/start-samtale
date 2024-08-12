@@ -41,7 +41,6 @@ spec:
     outbound:
       external:
         - host: veilarboppfolging.dev-fss-pub.nais.io
-        - host: veilarbdialog.dev-fss-pub.nais.io
         - host: veilarbvedtakinfo.dev-fss-pub.nais.io
       rules:
         - application: veilarbdialog
@@ -73,6 +72,6 @@ spec:
           "proxies": [
             { "fromPath": "/veilarbvedtakinfo", "toUrl": "https://veilarbvedtakinfo.dev-fss-pub.nais.io/veilarbvedtakinfo", "toApp": { "name": "veilarbvedtakinfo", "namespace": "pto", "cluster": "dev-fss" } },
             { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.dev-fss-pub.nais.io/veilarboppfolging", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "dev-fss" } },
-            { "fromPath": "/veilarbdialog", "toUrl": "https://veilarbdialog.dev-fss-pub.nais.io/veilarbdialog", "toApp": { "name": "veilarbdialog", "namespace": "pto", "cluster": "dev-fss" } }
+            { "fromPath": "/veilarbdialog", "toUrl": "http://veilarbdialog.dab/veilarbdialog", "toApp": { "name": "veilarbdialog", "namespace": "dab", "cluster": "dev-gcp" } }
           ]
         }
