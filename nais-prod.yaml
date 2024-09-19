@@ -45,7 +45,7 @@ spec:
         - application: veilarbdialog
           namespace: dab
         - application: veilarboppfolging
-          namespace: dab
+          namespace: poao
   env:
     - name: JSON_CONFIG
       value: >
