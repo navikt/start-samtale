@@ -40,11 +40,12 @@ spec:
   accessPolicy:
     outbound:
       external:
-        - host: veilarboppfolging.prod-fss-pub.nais.io
         - host: veilarbvedtakinfo.prod-fss-pub.nais.io
       rules:
         - application: veilarbdialog
           namespace: dab
+        - application: veilarboppfolging
+          namespace: poao
   env:
     - name: JSON_CONFIG
       value: >
@@ -71,7 +72,7 @@ spec:
           "fallbackStrategy": "SERVE_INDEX_HTML",
           "proxies": [  
             { "fromPath": "/veilarbvedtakinfo", "toUrl": "https://veilarbvedtakinfo.prod-fss-pub.nais.io/veilarbvedtakinfo", "toApp": { "name": "veilarbvedtakinfo", "namespace": "pto", "cluster": "prod-fss" } },
-            { "fromPath": "/veilarboppfolging", "toUrl": "https://veilarboppfolging.prod-fss-pub.nais.io/veilarboppfolging", "toApp": { "name": "veilarboppfolging", "namespace": "pto", "cluster": "prod-fss" } },
+            { "fromPath": "/veilarboppfolging", "toUrl": "http://veilarboppfolging.poao/veilarboppfolging", "toApp": { "name": "veilarboppfolging", "namespace": "poao", "cluster": "prod-gcp" } },
             { "fromPath": "/veilarbdialog", "toUrl": "http://veilarbdialog.dab/veilarbdialog", "toApp": { "name": "veilarbdialog", "namespace": "dab", "cluster": "prod-gcp" } }
           ]
         }
